@@ -10,7 +10,6 @@ def create_link(date_in, date_out):
     out_day = date_out.day
     out_year = date_out.year
     count_people = 1
-    city = "Kazan"
     country = "Russia"
     off_set = 1000
 
@@ -22,7 +21,7 @@ def create_link(date_in, date_out):
           "&checkout_year={checkout_year}" \
           "&group_adults={group_adults}" \
           "&group_children=0&order=price" \
-          "&ss={city}%2C%20{country}" \
+          "&ss=%2C%20{country}" \
           "&offset={limit}".format(
             checkin_month=month,
             checkin_monthday=day,
@@ -31,7 +30,6 @@ def create_link(date_in, date_out):
             checkout_monthday=out_day,
             checkout_year=out_year,
             group_adults=count_people,
-            city=city,
             country=country,
             limit=off_set
             )
