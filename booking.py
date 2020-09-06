@@ -1,7 +1,7 @@
-from datetime import datetime  # noqa:D100
+import datetime  # noqa:D100
 
 
-def create_link(date_in, date_out):
+def create_link(date_in: datetime.datetime, date_out: datetime.datetime):
     """Создание ссылки для сбора данных."""
     month = date_in.month
     day = date_in.day
@@ -39,9 +39,9 @@ def create_link(date_in, date_out):
 
 def main():
     """Главный метод по обработке данных."""
-    date_in = datetime.now()
+    date_in = datetime.datetime.now()
     print("Введите дату отьезда в формате ##.##.##")
-    date_out = datetime.strptime(input(), '%d.%m.%y')
+    date_out = datetime.datetime.strptime(input(), '%d.%m.%y')
     url = create_link(date_in, date_out)
     print(url)
 
