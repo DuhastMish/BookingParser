@@ -1,11 +1,20 @@
 import datetime  # noqa:D100
 import requests
+import json
 from bs4 import BeautifulSoup
 
 session = requests.Session()
 REQUEST_HEADER = {"User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.75 Safari/537.36"}
 TODAY = datetime.datetime.now()
 NEXT_WEEK = TODAY + datetime.timedelta(7)
+
+
+def get_data_from_json():
+    """Закидование данных с файла в программу"""
+    with open('output.json', 'r', encoding="utf-8") as f:
+        hotel_information = json.load(f)
+
+    return hotel_information
 
 
 def create_link(date_in: datetime.datetime, date_out: datetime.datetime = NEXT_WEEK):
