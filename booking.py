@@ -4,9 +4,11 @@ import json
 from bs4 import BeautifulSoup
 
 session = requests.Session()
-REQUEST_HEADER = {"User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.75 Safari/537.36"}
+REQUEST_HEADER = {
+    "User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.75 Safari/537.36"}
 TODAY = datetime.datetime.now()
 NEXT_WEEK = TODAY + datetime.timedelta(7)
+
 
 class Parser:
     def name(hotel):
@@ -25,7 +27,8 @@ class Parser:
         if hotel.select_one("div.bui-price-display__value.prco-inline-block-maker-helper") is None:
             return ''
         else:
-            return hotel.select_one("div.bui-price-display__value.prco-inline-block-maker-helper").text.strip()[:-5].replace(" ", "")
+            return hotel.select_one("div.bui-price-display__value.prco-inline-block-maker-helper").text.strip()[
+                   :-5].replace(" ", "")
 
 
 def get_data_from_json():
@@ -34,6 +37,16 @@ def get_data_from_json():
         hotel_information = json.load(f)
 
     return hotel_information
+
+
+def save_data_to_json(results, country):
+    """Запись в файл"""
+    date = datetime.datetime.now()
+    date = date.strftime("%Y-%m-%d-%H.%M.%S")
+    with open('booking_{country}_{date}.json'.format(country=country, date=date), 'w', encoding="utf-8") as f:
+        json.dump(results, f, ensure_ascii=False, indent=4)
+
+
 
 
 def get_max_offset(soup):
@@ -64,16 +77,16 @@ def create_link(country: str, off_set: int, date_in: datetime.datetime, date_out
           "&group_children=0&order=price" \
           "&ss=%2C%20{country}" \
           "&offset={limit}".format(
-            checkin_month=month_in,
-            checkin_day=day_in,
-            checkin_year=year_in,
-            checkout_month=month_out,
-            checkout_day=day_out,
-            checkout_year=year_out,
-            group_adults=count_people,
-            country=country,
-            limit=off_set
-            )
+        checkin_month=month_in,
+        checkin_day=day_in,
+        checkin_year=year_in,
+        checkout_month=month_out,
+        checkout_day=day_out,
+        checkout_year=year_out,
+        group_adults=count_people,
+        country=country,
+        limit=off_set
+    )
 
     return url
 
@@ -125,7 +138,8 @@ def main():
     off_set = 1000
     date_out = NEXT_WEEK
 
-    get_info(country, off_set, date_in, date_out)
+    andrey_govno = get_info(country, off_set, date_in, date_out)
+    save_data_to_json(andrey_govno, country)
 
 
 if __name__ == "__main__":

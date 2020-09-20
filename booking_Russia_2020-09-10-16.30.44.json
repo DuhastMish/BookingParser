@@ -1,0 +1,5082 @@
+[
+    [
+        {
+            "name": "kovcheg-hostel",
+            "rating": "",
+            "price": "1680"
+        },
+        {
+            "name": "Loft HOSTEL",
+            "rating": "6,4",
+            "price": "1683"
+        },
+        {
+            "name": "Хостел Antre на Фонтанке",
+            "rating": "7,9",
+            "price": "1706"
+        },
+        {
+            "name": "Air Hostel",
+            "rating": "5,9",
+            "price": "1715"
+        },
+        {
+            "name": "HotelHot Kotelniki",
+            "rating": "6,4",
+            "price": "1729"
+        },
+        {
+            "name": "Хостел Синема",
+            "rating": "5,4",
+            "price": "1743"
+        },
+        {
+            "name": "Северный Хостел",
+            "rating": "8,4",
+            "price": "1743"
+        },
+        {
+            "name": "Хостел Территория Комфорта",
+            "rating": "",
+            "price": "1750"
+        },
+        {
+            "name": "Соната",
+            "rating": "7,8",
+            "price": "1750"
+        },
+        {
+            "name": "Гостевой дом на Кавказской",
+            "rating": "7,0",
+            "price": "1750"
+        },
+        {
+            "name": "Хостел Лидер",
+            "rating": "7,7",
+            "price": "1750"
+        },
+        {
+            "name": "Общежитие Лихоборы",
+            "rating": "",
+            "price": "1750"
+        },
+        {
+            "name": "на улице Чапаева",
+            "rating": "9,5",
+            "price": "1750"
+        },
+        {
+            "name": "ХОСТЕЛ 312",
+            "rating": "",
+            "price": "1750"
+        },
+        {
+            "name": "Хостел БЕГЕМОТ",
+            "rating": "6,2",
+            "price": "1750"
+        },
+        {
+            "name": "Hostel",
+            "rating": "5,8",
+            "price": "1750"
+        },
+        {
+            "name": "Хостел в Купавне",
+            "rating": "4,8",
+            "price": "1750"
+        },
+        {
+            "name": "Мини Гостиница Уют",
+            "rating": "",
+            "price": "1750"
+        },
+        {
+            "name": "Гостевой дом Вечный Зов",
+            "rating": "8,6",
+            "price": "1750"
+        },
+        {
+            "name": "Общежитие на Железнодорожной 17Б",
+            "rating": "",
+            "price": "1750"
+        },
+        {
+            "name": "Частный сектор Воскресенский",
+            "rating": "",
+            "price": "1750"
+        },
+        {
+            "name": "«МЫШГОРОД» Город Мастеров – Кемпинг & Центр ремёсел",
+            "rating": "9,7",
+            "price": "1750"
+        },
+        {
+            "name": "Petroglify",
+            "rating": "9,6",
+            "price": "1750"
+        },
+        {
+            "name": "Мини-отель Дача",
+            "rating": "8,9",
+            "price": "1750"
+        },
+        {
+            "name": "Хостел Южный",
+            "rating": "5,8",
+            "price": "1750"
+        }
+    ],
+    [
+        {
+            "name": "Мотель \"М-55 Байкал\"",
+            "rating": "",
+            "price": "1750"
+        },
+        {
+            "name": "Мой Хостел",
+            "rating": "5,7",
+            "price": "1750"
+        },
+        {
+            "name": "Хостел на Асафьева",
+            "rating": "7,9",
+            "price": "1750"
+        },
+        {
+            "name": "Островок",
+            "rating": "",
+            "price": "1750"
+        },
+        {
+            "name": "Хостел (Мотель) Ночлег Водстрой",
+            "rating": "4,9",
+            "price": "1750"
+        },
+        {
+            "name": "Комнаты на самом берегу моря",
+            "rating": "",
+            "price": "1756"
+        },
+        {
+            "name": "Sosenki 105 Hostel",
+            "rating": "6,5",
+            "price": "1758"
+        },
+        {
+            "name": "«Гостиный дом на Невском»",
+            "rating": "6,4",
+            "price": "1764"
+        },
+        {
+            "name": "Хостел ХотелХот Перово",
+            "rating": "6,8",
+            "price": "1796"
+        },
+        {
+            "name": "Хостел Земляничная поляна",
+            "rating": "9,3",
+            "price": "1820"
+        },
+        {
+            "name": "Hostel-Dvorik",
+            "rating": "6,4",
+            "price": "1890"
+        },
+        {
+            "name": "Хостел ДВА МЕДВЕДЯ",
+            "rating": "8,0",
+            "price": "1890"
+        },
+        {
+            "name": "ХОСТЕЛ-ИНТУРИСТ",
+            "rating": "9,3",
+            "price": "1890"
+        },
+        {
+            "name": "Compass Hostel",
+            "rating": "5,4",
+            "price": "1890"
+        },
+        {
+            "name": "Хостел Карамель",
+            "rating": "8,6",
+            "price": "1890"
+        },
+        {
+            "name": "Золотое руно",
+            "rating": "6,6",
+            "price": "1900"
+        },
+        {
+            "name": "Hostel on Olympiyskiy prospekt",
+            "rating": "6,4",
+            "price": "1920"
+        },
+        {
+            "name": "Гостиница-хостел ДРУЖБА",
+            "rating": "6,4",
+            "price": "1925"
+        },
+        {
+            "name": "Хостел Бест",
+            "rating": "8,8",
+            "price": "1956"
+        },
+        {
+            "name": "Друзья на Банковском",
+            "rating": "8,4",
+            "price": "1960"
+        },
+        {
+            "name": "Хостел Друзья Граффити",
+            "rating": "7,8",
+            "price": "1960"
+        },
+        {
+            "name": "Друзья на Сенной",
+            "rating": "8,8",
+            "price": "1960"
+        },
+        {
+            "name": "Друзья на Литейном",
+            "rating": "8,7",
+            "price": "1960"
+        },
+        {
+            "name": "Гостиница Хостел - Вагон",
+            "rating": "5,2",
+            "price": "1960"
+        },
+        {
+            "name": "Друзья Лайт",
+            "rating": "8,5",
+            "price": "1960"
+        }
+    ],
+    [
+        {
+            "name": "Бриг- Вумен",
+            "rating": "8,1",
+            "price": "1985"
+        },
+        {
+            "name": "Хостел на 1-й Фрезерной",
+            "rating": "9,2",
+            "price": "1985"
+        },
+        {
+            "name": "Guest House Zarechniy",
+            "rating": "6,5",
+            "price": "1995"
+        },
+        {
+            "name": "Хостел ХотелХот Бауманская",
+            "rating": "7,2",
+            "price": "1995"
+        },
+        {
+            "name": "Hostel Ali Baba",
+            "rating": "8,4",
+            "price": "1995"
+        },
+        {
+            "name": "Уютная кровать / Cozy Bed",
+            "rating": "7,9",
+            "price": "2023"
+        },
+        {
+            "name": "Друзья Лайф",
+            "rating": "8,5",
+            "price": "2030"
+        },
+        {
+            "name": "B&B (Bed&Beer)",
+            "rating": "5,3",
+            "price": "2030"
+        },
+        {
+            "name": "Харбин Хостел",
+            "rating": "8,1",
+            "price": "2044"
+        },
+        {
+            "name": "Хостел Париж",
+            "rating": "7,9",
+            "price": "2061"
+        },
+        {
+            "name": "WeekendSleep Hostel",
+            "rating": "7,9",
+            "price": "2079"
+        },
+        {
+            "name": "Hostel on Kostyleva",
+            "rating": "8,7",
+            "price": "2086"
+        },
+        {
+            "name": "HZ Хостел",
+            "rating": "7,3",
+            "price": "2093"
+        },
+        {
+            "name": "Визит",
+            "rating": "7,3",
+            "price": "2095"
+        },
+        {
+            "name": "Друзья на Восстания",
+            "rating": "8,6",
+            "price": "2100"
+        },
+        {
+            "name": "Хостел «Друзья на Достоевского»",
+            "rating": "8,1",
+            "price": "2100"
+        },
+        {
+            "name": "Дом путешественников \"Три тритона\"",
+            "rating": "7,0",
+            "price": "2100"
+        },
+        {
+            "name": "Хостел ЭКСПО",
+            "rating": "8,3",
+            "price": "2100"
+        },
+        {
+            "name": "Travel Inn Преображенская",
+            "rating": "7,3",
+            "price": "2100"
+        },
+        {
+            "name": "хостел ЖАРА",
+            "rating": "6,6",
+            "price": "2100"
+        },
+        {
+            "name": "Lighthost",
+            "rating": "7,6",
+            "price": "2100"
+        },
+        {
+            "name": "Хостел Дом",
+            "rating": "7,8",
+            "price": "2100"
+        },
+        {
+            "name": "База отдыха \"Динамо\"",
+            "rating": "6,9",
+            "price": "2100"
+        },
+        {
+            "name": "Wind Hunters Surf Station",
+            "rating": "8,4",
+            "price": "2100"
+        },
+        {
+            "name": "Полушкина Роща",
+            "rating": "7,8",
+            "price": "2100"
+        }
+    ],
+    [
+        {
+            "name": "ZigZag Hostel",
+            "rating": "9,5",
+            "price": "2100"
+        },
+        {
+            "name": "Берег",
+            "rating": "8,9",
+            "price": "2100"
+        },
+        {
+            "name": "Гостиница Славянка",
+            "rating": "7,1",
+            "price": "2100"
+        },
+        {
+            "name": "Hostel Uyut",
+            "rating": "8,8",
+            "price": "2100"
+        },
+        {
+            "name": "Хостел Кузьминки",
+            "rating": "7,4",
+            "price": "2100"
+        },
+        {
+            "name": "Gallery Hostel",
+            "rating": "7,1",
+            "price": "2100"
+        },
+        {
+            "name": "Гостевой Дом СИТИ",
+            "rating": "6,1",
+            "price": "2100"
+        },
+        {
+            "name": "Алые Паруса",
+            "rating": "",
+            "price": "2100"
+        },
+        {
+            "name": "Хостел",
+            "rating": "",
+            "price": "2100"
+        },
+        {
+            "name": "Отель-Хостел Медвежье",
+            "rating": "",
+            "price": "2100"
+        },
+        {
+            "name": "Гостиница Тура",
+            "rating": "3,7",
+            "price": "2100"
+        },
+        {
+            "name": "Хостел Continental",
+            "rating": "9,5",
+            "price": "2100"
+        },
+        {
+            "name": "Комфорт Blizzzko Хостел",
+            "rating": "7,6",
+            "price": "2100"
+        },
+        {
+            "name": "Хостел на Технологическом проезде 1",
+            "rating": "7,7",
+            "price": "2100"
+        },
+        {
+            "name": "Welcome Home",
+            "rating": "4,6",
+            "price": "2100"
+        },
+        {
+            "name": "Guest House KDV",
+            "rating": "8,9",
+            "price": "2100"
+        },
+        {
+            "name": "Mramorka Extreme Park Camping",
+            "rating": "",
+            "price": "2100"
+        },
+        {
+            "name": "Хостел Заречье",
+            "rating": "",
+            "price": "2100"
+        },
+        {
+            "name": "Economy Hotel Dinamo",
+            "rating": "8,1",
+            "price": "2100"
+        },
+        {
+            "name": "Хостел Комфорт",
+            "rating": "8,4",
+            "price": "2100"
+        },
+        {
+            "name": "MAXROOMS Barnaul",
+            "rating": "7,0",
+            "price": "2100"
+        },
+        {
+            "name": "Хостел Кино",
+            "rating": "8,1",
+            "price": "2100"
+        },
+        {
+            "name": "Хостел «Тёплый»",
+            "rating": "8,2",
+            "price": "2100"
+        },
+        {
+            "name": "Общежитие на Молодежной",
+            "rating": "6,3",
+            "price": "2100"
+        },
+        {
+            "name": "Dom hostel",
+            "rating": "8,6",
+            "price": "2100"
+        }
+    ],
+    [
+        {
+            "name": "Хостел Гостиница Луч",
+            "rating": "5,9",
+            "price": "2100"
+        },
+        {
+            "name": "Дом добра",
+            "rating": "",
+            "price": "2100"
+        },
+        {
+            "name": "Отель Адмиралъ",
+            "rating": "6,4",
+            "price": "2100"
+        },
+        {
+            "name": "Tizen",
+            "rating": "8,0",
+            "price": "2100"
+        },
+        {
+            "name": "Guest house PEREULOK",
+            "rating": "7,7",
+            "price": "2100"
+        },
+        {
+            "name": "Hostel Skala",
+            "rating": "7,2",
+            "price": "2100"
+        },
+        {
+            "name": "Хостел \"Кот на Крыше\"",
+            "rating": "7,6",
+            "price": "2100"
+        },
+        {
+            "name": "1 арт хостел Чайковский",
+            "rating": "8,1",
+            "price": "2100"
+        },
+        {
+            "name": "Хостел 1 Парк Отель",
+            "rating": "8,0",
+            "price": "2100"
+        },
+        {
+            "name": "Capsule Hotel Pulkovo",
+            "rating": "6,4",
+            "price": "2100"
+        },
+        {
+            "name": "Светлое Будущее",
+            "rating": "4,1",
+            "price": "2100"
+        },
+        {
+            "name": "Кемпинг Горизонт",
+            "rating": "8,1",
+            "price": "2100"
+        },
+        {
+            "name": "XOSTEI2.4",
+            "rating": "",
+            "price": "2100"
+        },
+        {
+            "name": "Хостел Дом на Горе",
+            "rating": "5,1",
+            "price": "2110"
+        },
+        {
+            "name": "Хостел на Рыльской",
+            "rating": "7,0",
+            "price": "2128"
+        },
+        {
+            "name": "Хостел Точка",
+            "rating": "7,9",
+            "price": "2139"
+        },
+        {
+            "name": "Гнездо Новослободская хостел",
+            "rating": "7,4",
+            "price": "2142"
+        },
+        {
+            "name": "Хостел Белорусский Вокзал",
+            "rating": "6,3",
+            "price": "2157"
+        },
+        {
+            "name": "Хостел Уютное Местечко",
+            "rating": "8,4",
+            "price": "2195"
+        },
+        {
+            "name": "Гамак",
+            "rating": "8,3",
+            "price": "2200"
+        },
+        {
+            "name": "Travel Inn Электрозаводская",
+            "rating": "7,9",
+            "price": "2202"
+        },
+        {
+            "name": "Hostel Pobeda",
+            "rating": "8,7",
+            "price": "2205"
+        },
+        {
+            "name": "Хостел Дом Путешественника",
+            "rating": "7,9",
+            "price": "2205"
+        },
+        {
+            "name": "Hostel Manjari",
+            "rating": "8,0",
+            "price": "2205"
+        },
+        {
+            "name": "Kalina",
+            "rating": "7,2",
+            "price": "2205"
+        }
+    ],
+    [
+        {
+            "name": "Ирон 1",
+            "rating": "7,7",
+            "price": "2205"
+        },
+        {
+            "name": "Олд Флэт Хостел на Советской",
+            "rating": "8,0",
+            "price": "2205"
+        },
+        {
+            "name": "Kamchatka Hostel",
+            "rating": "3,3",
+            "price": "2205"
+        },
+        {
+            "name": "Homestay on Kirochnaya 12",
+            "rating": "3,3",
+            "price": "2205"
+        },
+        {
+            "name": "Travel Inn Первомайская",
+            "rating": "8,2",
+            "price": "2240"
+        },
+        {
+            "name": "Отель Диамонд",
+            "rating": "7,6",
+            "price": "2240"
+        },
+        {
+            "name": "Skyrooms Hostel",
+            "rating": "7,0",
+            "price": "2240"
+        },
+        {
+            "name": "AHOSTEL",
+            "rating": "8,2",
+            "price": "2240"
+        },
+        {
+            "name": "Хостел Эконом",
+            "rating": "",
+            "price": "2240"
+        },
+        {
+            "name": "Travel Inn Фонвизинская",
+            "rating": "8,1",
+            "price": "2240"
+        },
+        {
+            "name": "I Like City Тектсильщики",
+            "rating": "8,2",
+            "price": "2240"
+        },
+        {
+            "name": "MTM Hostel",
+            "rating": "9,2",
+            "price": "2240"
+        },
+        {
+            "name": "Олд Флэт Хостел на Некрасова",
+            "rating": "7,3",
+            "price": "2250"
+        },
+        {
+            "name": "Liniya Hostel",
+            "rating": "7,1",
+            "price": "2273"
+        },
+        {
+            "name": "Хостел Сталинград",
+            "rating": "9,0",
+            "price": "2275"
+        },
+        {
+            "name": "Хостел «Fresh Казань»",
+            "rating": "8,7",
+            "price": "2280"
+        },
+        {
+            "name": "Skandi",
+            "rating": "8,9",
+            "price": "2300"
+        },
+        {
+            "name": "Пушкин стрит",
+            "rating": "8,4",
+            "price": "2300"
+        },
+        {
+            "name": "Gostinitsa Usadba",
+            "rating": "",
+            "price": "2300"
+        },
+        {
+            "name": "Chekhov Гостевой дом",
+            "rating": "8,8",
+            "price": "2310"
+        },
+        {
+            "name": "Профит хостел",
+            "rating": "8,9",
+            "price": "2310"
+        },
+        {
+            "name": "Travel Inn Тимирязевская",
+            "rating": "7,4",
+            "price": "2310"
+        },
+        {
+            "name": "Moon Hostel",
+            "rating": "8,1",
+            "price": "2310"
+        },
+        {
+            "name": "Хостел Онлихостел",
+            "rating": "7,9",
+            "price": "2321"
+        },
+        {
+            "name": "Хостел Лучик",
+            "rating": "8,2",
+            "price": "2328"
+        }
+    ],
+    [
+        {
+            "name": "Hostel Lime",
+            "rating": "7,4",
+            "price": "2333"
+        },
+        {
+            "name": "A 54 Mega Hostel",
+            "rating": "6,9",
+            "price": "2344"
+        },
+        {
+            "name": "Plus Peter Hostel",
+            "rating": "8,7",
+            "price": "2363"
+        },
+        {
+            "name": "Travel Inn Комсомольская",
+            "rating": "7,9",
+            "price": "2380"
+        },
+        {
+            "name": "Хостел Хостелович",
+            "rating": "7,1",
+            "price": "2380"
+        },
+        {
+            "name": "Travel Inn Новослободская",
+            "rating": "7,0",
+            "price": "2380"
+        },
+        {
+            "name": "Хостел Горького 85",
+            "rating": "7,7",
+            "price": "2380"
+        },
+        {
+            "name": "Гаяз Исхаки",
+            "rating": "6,7",
+            "price": "2380"
+        },
+        {
+            "name": "Хостел Воздух",
+            "rating": "7,7",
+            "price": "2394"
+        },
+        {
+            "name": "Travel Inn Менделеевская",
+            "rating": "",
+            "price": "2394"
+        },
+        {
+            "name": "Кунак",
+            "rating": "9,1",
+            "price": "2400"
+        },
+        {
+            "name": "Хостел Вежливый Лось на Бунинской аллее",
+            "rating": "8,1",
+            "price": "2415"
+        },
+        {
+            "name": "Gusev Hostel",
+            "rating": "7,6",
+            "price": "2426"
+        },
+        {
+            "name": "Hostel Kuzmich",
+            "rating": "6,1",
+            "price": "2426"
+        },
+        {
+            "name": "Bedandbike Rooms",
+            "rating": "8,1",
+            "price": "2429"
+        },
+        {
+            "name": "Хостел Ночь Легка",
+            "rating": "6,3",
+            "price": "2440"
+        },
+        {
+            "name": "Хостел Bravo на Казанской",
+            "rating": "8,8",
+            "price": "2450"
+        },
+        {
+            "name": "Хостел Гости Краснодар",
+            "rating": "8,7",
+            "price": "2450"
+        },
+        {
+            "name": "Travel Inn Достоевская",
+            "rating": "7,6",
+            "price": "2450"
+        },
+        {
+            "name": "Отель Маракеш",
+            "rating": "7,2",
+            "price": "2450"
+        },
+        {
+            "name": "Hostel Pioner",
+            "rating": "7,3",
+            "price": "2450"
+        },
+        {
+            "name": "Prichal Ruza",
+            "rating": "7,9",
+            "price": "2450"
+        },
+        {
+            "name": "Weekendsleep Лермонтовский Проспект",
+            "rating": "9,1",
+            "price": "2450"
+        },
+        {
+            "name": "Хостел Мира 5",
+            "rating": "7,7",
+            "price": "2450"
+        },
+        {
+            "name": "Orange Hostel",
+            "rating": "8,3",
+            "price": "2450"
+        }
+    ],
+    [
+        {
+            "name": "Хостел Жили-Были",
+            "rating": "8,8",
+            "price": "2450"
+        },
+        {
+            "name": "Славянский",
+            "rating": "",
+            "price": "2450"
+        },
+        {
+            "name": "СЕРГIЕВЪ",
+            "rating": "7,7",
+            "price": "2450"
+        },
+        {
+            "name": "Хостел Секретное Место",
+            "rating": "6,7",
+            "price": "2450"
+        },
+        {
+            "name": "Хостел Лайк",
+            "rating": "7,0",
+            "price": "2450"
+        },
+        {
+            "name": "Хостел ЮГ",
+            "rating": "8,3",
+            "price": "2450"
+        },
+        {
+            "name": "Hostel Ug",
+            "rating": "9,4",
+            "price": "2450"
+        },
+        {
+            "name": "Хостел E-burgHostel",
+            "rating": "9,0",
+            "price": "2450"
+        },
+        {
+            "name": "Hostel Edem Noginsk",
+            "rating": "5,7",
+            "price": "2450"
+        },
+        {
+            "name": "Хостел Успенский Двор",
+            "rating": "8,4",
+            "price": "2450"
+        },
+        {
+            "name": "Owl's nest хостел Красногорск",
+            "rating": "7,3",
+            "price": "2450"
+        },
+        {
+            "name": "Ветер странствий",
+            "rating": "7,9",
+            "price": "2450"
+        },
+        {
+            "name": "Мини-ОТЕЛЬ ПОБЕДА",
+            "rating": "7,9",
+            "price": "2450"
+        },
+        {
+            "name": "Hostel Happy House на Холмогорова",
+            "rating": "8,5",
+            "price": "2450"
+        },
+        {
+            "name": "#FRENDZONA",
+            "rating": "8,1",
+            "price": "2450"
+        },
+        {
+            "name": "Zarechye Hostel",
+            "rating": "",
+            "price": "2450"
+        },
+        {
+            "name": "Voykovskaya Hostel",
+            "rating": "5,4",
+            "price": "2450"
+        },
+        {
+            "name": "Хостел Очаг",
+            "rating": "8,5",
+            "price": "2450"
+        },
+        {
+            "name": "Хостел Терек",
+            "rating": "",
+            "price": "2450"
+        },
+        {
+            "name": "Hostel Laguna",
+            "rating": "7,2",
+            "price": "2450"
+        },
+        {
+            "name": "Hostel вЛюблино",
+            "rating": "7,4",
+            "price": "2450"
+        },
+        {
+            "name": "Voronezh Dom 42 k 3 arenda koikomesta",
+            "rating": "8,5",
+            "price": "2450"
+        },
+        {
+            "name": "Peter Hostel",
+            "rating": "8,6",
+            "price": "2450"
+        },
+        {
+            "name": "Hostel_Nur",
+            "rating": "7,2",
+            "price": "2450"
+        },
+        {
+            "name": "Гостиница Домашняя",
+            "rating": "",
+            "price": "2450"
+        }
+    ],
+    [
+        {
+            "name": "Хороший Хостел",
+            "rating": "9,0",
+            "price": "2450"
+        },
+        {
+            "name": "Hostel №1 na Kozhuhovskoy",
+            "rating": "8,0",
+            "price": "2450"
+        },
+        {
+            "name": "Hostel Happy House в центре",
+            "rating": "8,1",
+            "price": "2450"
+        },
+        {
+            "name": "Gaidai Hostel",
+            "rating": "7,9",
+            "price": "2450"
+        },
+        {
+            "name": "Мини-Отель «На Итальянской»",
+            "rating": "8,4",
+            "price": "2450"
+        },
+        {
+            "name": "Хостел на Дачном шоссе.",
+            "rating": "",
+            "price": "2450"
+        },
+        {
+            "name": "Sparte",
+            "rating": "6,5",
+            "price": "2450"
+        },
+        {
+            "name": "Hostel Like on Narodnoy Voli",
+            "rating": "8,0",
+            "price": "2450"
+        },
+        {
+            "name": "Парк-отель РИО",
+            "rating": "6,4",
+            "price": "2450"
+        },
+        {
+            "name": "Mini-Hotel Zhemchuzhina",
+            "rating": "7,8",
+            "price": "2450"
+        },
+        {
+            "name": "Аква Комплекс Дельфин",
+            "rating": "6,6",
+            "price": "2450"
+        },
+        {
+            "name": "Guest House Old Flat on Vosstaniya",
+            "rating": "7,1",
+            "price": "2450"
+        },
+        {
+            "name": "Mir Hostel",
+            "rating": "8,6",
+            "price": "2450"
+        },
+        {
+            "name": "Sweet Home",
+            "rating": "8,4",
+            "price": "2450"
+        },
+        {
+            "name": "SV Хостел",
+            "rating": "9,4",
+            "price": "2450"
+        },
+        {
+            "name": "Хостел Глобус",
+            "rating": "8,5",
+            "price": "2450"
+        },
+        {
+            "name": "Alaska Hostel",
+            "rating": "7,6",
+            "price": "2450"
+        },
+        {
+            "name": "Хостел Добро",
+            "rating": "7,8",
+            "price": "2450"
+        },
+        {
+            "name": "Хорошее место",
+            "rating": "",
+            "price": "2450"
+        },
+        {
+            "name": "Гостиница \"Отдых\"",
+            "rating": "6,1",
+            "price": "2450"
+        },
+        {
+            "name": "Spb hostel",
+            "rating": "8,2",
+            "price": "2450"
+        },
+        {
+            "name": "Хостел Кот Базилио",
+            "rating": "8,7",
+            "price": "2450"
+        },
+        {
+            "name": "Хостел Дом 2",
+            "rating": "",
+            "price": "2450"
+        },
+        {
+            "name": "Наш Хостел",
+            "rating": "7,9",
+            "price": "2450"
+        },
+        {
+            "name": "Гостевой дом ИЗУМРУД",
+            "rating": "",
+            "price": "2450"
+        }
+    ],
+    [
+        {
+            "name": "Хостел 95",
+            "rating": "",
+            "price": "2450"
+        },
+        {
+            "name": "Хостел Ефремов",
+            "rating": "6,8",
+            "price": "2450"
+        },
+        {
+            "name": "Хостел Чемпион",
+            "rating": "9,8",
+            "price": "2450"
+        },
+        {
+            "name": "Уютное место",
+            "rating": "",
+            "price": "2450"
+        },
+        {
+            "name": "Хостел 44",
+            "rating": "9,1",
+            "price": "2450"
+        },
+        {
+            "name": "GOOD Hostel Naberezhnye Chelny",
+            "rating": "8,9",
+            "price": "2450"
+        },
+        {
+            "name": "Semya Hostel",
+            "rating": "7,5",
+            "price": "2450"
+        },
+        {
+            "name": "Lesnoi orekh",
+            "rating": "8,9",
+            "price": "2450"
+        },
+        {
+            "name": "Хостел Философ",
+            "rating": "7,5",
+            "price": "2450"
+        },
+        {
+            "name": "ULA Hostel",
+            "rating": "8,8",
+            "price": "2451"
+        },
+        {
+            "name": "Russland hostel",
+            "rating": "7,9",
+            "price": "2461"
+        },
+        {
+            "name": "Hostel Mariinsk",
+            "rating": "8,2",
+            "price": "2464"
+        },
+        {
+            "name": "Hostel Измайлова",
+            "rating": "9,0",
+            "price": "2471"
+        },
+        {
+            "name": "Head Hostel Hotel",
+            "rating": "8,6",
+            "price": "2478"
+        },
+        {
+            "name": "Хостелы Рус - Дмитровская",
+            "rating": "8,8",
+            "price": "2499"
+        },
+        {
+            "name": "Хостел Старый Дворик",
+            "rating": "7,6",
+            "price": "2514"
+        },
+        {
+            "name": "womаn obshezhitie on nevskiy 119",
+            "rating": "8,4",
+            "price": "2520"
+        },
+        {
+            "name": "Ретро",
+            "rating": "8,4",
+            "price": "2520"
+        },
+        {
+            "name": "Travel Inn Авиамоторная",
+            "rating": "8,1",
+            "price": "2520"
+        },
+        {
+            "name": "Фортуна Инн",
+            "rating": "8,1",
+            "price": "2520"
+        },
+        {
+            "name": "Хостелы Рус - Красноярск",
+            "rating": "9,2",
+            "price": "2520"
+        },
+        {
+            "name": "Хостел New",
+            "rating": "7,9",
+            "price": "2520"
+        },
+        {
+            "name": "Hostel Ugolok",
+            "rating": "8,1",
+            "price": "2520"
+        },
+        {
+            "name": "Хостел Радуга",
+            "rating": "9,2",
+            "price": "2520"
+        },
+        {
+            "name": "Hostel Good",
+            "rating": "",
+            "price": "2520"
+        }
+    ],
+    [
+        {
+            "name": "Хостел АЛЬТ",
+            "rating": "",
+            "price": "2520"
+        },
+        {
+            "name": "Хостел Дача на Ветеранов",
+            "rating": "5,6",
+            "price": "2520"
+        },
+        {
+            "name": "Moscow Friends Hostel",
+            "rating": "7,8",
+            "price": "2520"
+        },
+        {
+            "name": "Hostel na 7 nebe",
+            "rating": "8,6",
+            "price": "2520"
+        },
+        {
+            "name": "А54 на Маркса",
+            "rating": "8,7",
+            "price": "2520"
+        },
+        {
+            "name": "Hostel Voronezh",
+            "rating": "7,2",
+            "price": "2520"
+        },
+        {
+            "name": "Salus палаточный кемпинг",
+            "rating": "8,3",
+            "price": "2520"
+        },
+        {
+            "name": "Montana hostel",
+            "rating": "8,6",
+            "price": "2548"
+        },
+        {
+            "name": "Берлога",
+            "rating": "8,9",
+            "price": "2550"
+        },
+        {
+            "name": "Бэрри-Хостел",
+            "rating": "9,0",
+            "price": "2550"
+        },
+        {
+            "name": "Big Hostel",
+            "rating": "8,3",
+            "price": "2590"
+        },
+        {
+            "name": "Hostel Izmaylovo",
+            "rating": "8,0",
+            "price": "2590"
+        },
+        {
+            "name": "Hostel Nerazluchniki",
+            "rating": "8,0",
+            "price": "2590"
+        },
+        {
+            "name": "Хостел Скобелев Бутово",
+            "rating": "8,1",
+            "price": "2590"
+        },
+        {
+            "name": "Другой Хостел",
+            "rating": "8,0",
+            "price": "2594"
+        },
+        {
+            "name": "Хостелы Рус - Измайлово",
+            "rating": "8,2",
+            "price": "2597"
+        },
+        {
+            "name": "Arambol Хостел",
+            "rating": "8,8",
+            "price": "2600"
+        },
+        {
+            "name": "Гостевой дом Радушный",
+            "rating": "9,1",
+            "price": "2600"
+        },
+        {
+            "name": "Hostel на Серпуховской",
+            "rating": "7,8",
+            "price": "2618"
+        },
+        {
+            "name": "Хостел 22 на Лухмановской",
+            "rating": "9,0",
+            "price": "2625"
+        },
+        {
+            "name": "Котэль",
+            "rating": "9,3",
+            "price": "2632"
+        },
+        {
+            "name": "Хостел Лайм",
+            "rating": "8,5",
+            "price": "2633"
+        },
+        {
+            "name": "Hostel on Chernitsynskiy 7",
+            "rating": "6,7",
+            "price": "2646"
+        },
+        {
+            "name": "Coчи Хостел",
+            "rating": "6,9",
+            "price": "2650"
+        },
+        {
+            "name": "Вокзал Кострома Сырная",
+            "rating": "9,0",
+            "price": "2650"
+        }
+    ],
+    [
+        {
+            "name": "Apartments",
+            "rating": "7,2",
+            "price": "2653"
+        },
+        {
+            "name": "Story Hostel",
+            "rating": "8,7",
+            "price": "2660"
+        },
+        {
+            "name": "Хостел Olimp",
+            "rating": "8,9",
+            "price": "2660"
+        },
+        {
+            "name": "CRAB HOSTEL",
+            "rating": "9,4",
+            "price": "2660"
+        },
+        {
+            "name": "Game Hostel",
+            "rating": "7,5",
+            "price": "2660"
+        },
+        {
+            "name": "LUNA",
+            "rating": "6,8",
+            "price": "2660"
+        },
+        {
+            "name": "Hotel Amantai",
+            "rating": "6,8",
+            "price": "2660"
+        },
+        {
+            "name": "Hostel Pixel",
+            "rating": "8,5",
+            "price": "2660"
+        },
+        {
+            "name": "VIP Hostel K8",
+            "rating": "7,5",
+            "price": "2660"
+        },
+        {
+            "name": "Ночь на Земле",
+            "rating": "9,4",
+            "price": "2660"
+        },
+        {
+            "name": "Hostair",
+            "rating": "7,5",
+            "price": "2665"
+        },
+        {
+            "name": "Хостелы Рус - Черкизовская",
+            "rating": "9,0",
+            "price": "2673"
+        },
+        {
+            "name": "Nicehostel Моховая",
+            "rating": "8,8",
+            "price": "2678"
+        },
+        {
+            "name": "Хостел Берлога",
+            "rating": "8,3",
+            "price": "2678"
+        },
+        {
+            "name": "iHostel",
+            "rating": "7,8",
+            "price": "2678"
+        },
+        {
+            "name": "гостевой дом Апушкино",
+            "rating": "7,4",
+            "price": "2678"
+        },
+        {
+            "name": "Step hostel Aviamotornaya",
+            "rating": "7,2",
+            "price": "2678"
+        },
+        {
+            "name": "Гостевой дом Любава на набережной",
+            "rating": "8,3",
+            "price": "2680"
+        },
+        {
+            "name": "HOSTEL INN",
+            "rating": "",
+            "price": "2680"
+        },
+        {
+            "name": "Хостел Макарена",
+            "rating": "9,0",
+            "price": "2690"
+        },
+        {
+            "name": "CASH/BACK HOSTEL",
+            "rating": "9,8",
+            "price": "2693"
+        },
+        {
+            "name": "Аврора Мини-Отель",
+            "rating": "8,0",
+            "price": "2693"
+        },
+        {
+            "name": "Хостел Старт",
+            "rating": "8,3",
+            "price": "2693"
+        },
+        {
+            "name": "ProLoft Hotel&Hostel",
+            "rating": "8,1",
+            "price": "2700"
+        },
+        {
+            "name": "Sota House",
+            "rating": "8,6",
+            "price": "2700"
+        }
+    ],
+    [
+        {
+            "name": "Московский Хостел",
+            "rating": "7,9",
+            "price": "2700"
+        },
+        {
+            "name": "Хостел Аура",
+            "rating": "5,2",
+            "price": "2709"
+        },
+        {
+            "name": "Nomads hostel",
+            "rating": "8,0",
+            "price": "2716"
+        },
+        {
+            "name": "Hostel Cheap Sleep",
+            "rating": "9,6",
+            "price": "2727"
+        },
+        {
+            "name": "хостел Hi Loft",
+            "rating": "9,6",
+            "price": "2730"
+        },
+        {
+            "name": "Хостел «Канавинский»",
+            "rating": "8,3",
+            "price": "2730"
+        },
+        {
+            "name": "Хостел «Зеленый Дом»",
+            "rating": "8,9",
+            "price": "2730"
+        },
+        {
+            "name": "ЯРанга",
+            "rating": "9,2",
+            "price": "2730"
+        },
+        {
+            "name": "Бугров Хостел",
+            "rating": "8,7",
+            "price": "2730"
+        },
+        {
+            "name": "Nice Days Hostel",
+            "rating": "8,9",
+            "price": "2730"
+        },
+        {
+            "name": "ЭКО Хостел Шереметьево",
+            "rating": "6,0",
+            "price": "2730"
+        },
+        {
+            "name": "Thewakeup",
+            "rating": "7,4",
+            "price": "2730"
+        },
+        {
+            "name": "Dobry Dom Hostel",
+            "rating": "7,5",
+            "price": "2740"
+        },
+        {
+            "name": "Хостел на Пирогова",
+            "rating": "8,5",
+            "price": "2744"
+        },
+        {
+            "name": "\"Hostel-Apartment in Gagarinskaya station\"",
+            "rating": "",
+            "price": "2744"
+        },
+        {
+            "name": "Дом у источника",
+            "rating": "",
+            "price": "2750"
+        },
+        {
+            "name": "Всё Путём",
+            "rating": "7,8",
+            "price": "2750"
+        },
+        {
+            "name": "Хостел Северная Звезда",
+            "rating": "8,3",
+            "price": "2750"
+        },
+        {
+            "name": "Хостел на Партизанской",
+            "rating": "8,6",
+            "price": "2772"
+        },
+        {
+            "name": "Уютный Hostel",
+            "rating": "7,5",
+            "price": "2772"
+        },
+        {
+            "name": "Гостевой дом - эконом.",
+            "rating": "6,5",
+            "price": "2772"
+        },
+        {
+            "name": "Guest House Morskoy Bereg",
+            "rating": "",
+            "price": "2772"
+        },
+        {
+            "name": "Village Hostel",
+            "rating": "8,2",
+            "price": "2780"
+        },
+        {
+            "name": "Velena Guesthouse",
+            "rating": "8,4",
+            "price": "2790"
+        },
+        {
+            "name": "Rolling Stones hostel",
+            "rating": "9,6",
+            "price": "2793"
+        }
+    ],
+    [
+        {
+            "name": "Порт на Сенной",
+            "rating": "8,2",
+            "price": "2793"
+        },
+        {
+            "name": "Хостел Комфорт Парк",
+            "rating": "8,1",
+            "price": "2793"
+        },
+        {
+            "name": "Домик эконом",
+            "rating": "8,4",
+            "price": "2793"
+        },
+        {
+            "name": "Аврора Ж/Д вокзал Гостевые комнаты",
+            "rating": "7,1",
+            "price": "2793"
+        },
+        {
+            "name": "MHostel",
+            "rating": "8,9",
+            "price": "2794"
+        },
+        {
+            "name": "Travel Hostel",
+            "rating": "7,9",
+            "price": "2798"
+        },
+        {
+            "name": "OMZ Hotel",
+            "rating": "7,8",
+            "price": "2800"
+        },
+        {
+            "name": "Гостевой дом Болхов",
+            "rating": "9,5",
+            "price": "2800"
+        },
+        {
+            "name": "Хостел",
+            "rating": "7,3",
+            "price": "2800"
+        },
+        {
+            "name": "Хостел Благодать",
+            "rating": "9,0",
+            "price": "2800"
+        },
+        {
+            "name": "Хостел Да Винчи",
+            "rating": "7,9",
+            "price": "2800"
+        },
+        {
+            "name": "Гостевой дом АГАТ",
+            "rating": "8,9",
+            "price": "2800"
+        },
+        {
+            "name": "Hostel1 Uralskih Rabochih",
+            "rating": "9,2",
+            "price": "2800"
+        },
+        {
+            "name": "Хостел «Зам-Зам»",
+            "rating": "8,7",
+            "price": "2800"
+        },
+        {
+            "name": "Hostel Clover",
+            "rating": "",
+            "price": "2800"
+        },
+        {
+            "name": "Хостел Майкл",
+            "rating": "8,4",
+            "price": "2800"
+        },
+        {
+            "name": "Хостел Лофт",
+            "rating": "8,0",
+            "price": "2800"
+        },
+        {
+            "name": "Na Chemodanakh Hostel",
+            "rating": "8,2",
+            "price": "2800"
+        },
+        {
+            "name": "Гостевой Комплекс «Нефтяник»",
+            "rating": "7,7",
+            "price": "2800"
+        },
+        {
+            "name": "Hostel Bunker",
+            "rating": "8,5",
+            "price": "2800"
+        },
+        {
+            "name": "Hostel \"CENTR\" прямо в центре Грозного",
+            "rating": "9,4",
+            "price": "2800"
+        },
+        {
+            "name": "Хостел на Кутузова",
+            "rating": "",
+            "price": "2800"
+        },
+        {
+            "name": "Метро-Тур хостел",
+            "rating": "8,2",
+            "price": "2800"
+        },
+        {
+            "name": "Гостевой дом на Речной",
+            "rating": "5,6",
+            "price": "2800"
+        },
+        {
+            "name": "Гостевой дом Полянка",
+            "rating": "8,1",
+            "price": "2800"
+        }
+    ],
+    [
+        {
+            "name": "Хостел на Большой Садовой",
+            "rating": "8,1",
+            "price": "2800"
+        },
+        {
+            "name": "Hotel Lucky",
+            "rating": "9,2",
+            "price": "2800"
+        },
+        {
+            "name": "Хостел Алексеевский",
+            "rating": "8,4",
+            "price": "2800"
+        },
+        {
+            "name": "LOFT HOSTEL 102",
+            "rating": "6,1",
+            "price": "2800"
+        },
+        {
+            "name": "Гостиничный комплекс KARAT",
+            "rating": "8,4",
+            "price": "2800"
+        },
+        {
+            "name": "Hostel ROOM",
+            "rating": "8,5",
+            "price": "2800"
+        },
+        {
+            "name": "Hostel Autograph",
+            "rating": "8,8",
+            "price": "2800"
+        },
+        {
+            "name": "Хостел Комфорт",
+            "rating": "8,0",
+            "price": "2800"
+        },
+        {
+            "name": "BLA BLA HOSTEL",
+            "rating": "9,3",
+            "price": "2800"
+        },
+        {
+            "name": "City Hostel",
+            "rating": "9,2",
+            "price": "2800"
+        },
+        {
+            "name": "Grand Hostel",
+            "rating": "7,4",
+            "price": "2800"
+        },
+        {
+            "name": "Гостиница \"Атаманский Двор\"",
+            "rating": "8,6",
+            "price": "2800"
+        },
+        {
+            "name": "Ловец Снов",
+            "rating": "9,4",
+            "price": "2800"
+        },
+        {
+            "name": "Хостел «Достоевский»",
+            "rating": "8,6",
+            "price": "2800"
+        },
+        {
+            "name": "Hotel Solnechanaya",
+            "rating": "7,4",
+            "price": "2800"
+        },
+        {
+            "name": "Хостел Ихтис",
+            "rating": "9,4",
+            "price": "2800"
+        },
+        {
+            "name": "Sweet Village Hostel Ligovskiy",
+            "rating": "8,6",
+            "price": "2800"
+        },
+        {
+            "name": "Гостевые комнаты на Костромской",
+            "rating": "8,2",
+            "price": "2800"
+        },
+        {
+            "name": "Tibet",
+            "rating": "8,7",
+            "price": "2800"
+        },
+        {
+            "name": "Гостиница Родник Удачи",
+            "rating": "7,4",
+            "price": "2800"
+        },
+        {
+            "name": "Hostel Guest58",
+            "rating": "8,6",
+            "price": "2800"
+        },
+        {
+            "name": "Рабочая слобода",
+            "rating": "9,2",
+            "price": "2800"
+        },
+        {
+            "name": "Купеческий дворъ",
+            "rating": "",
+            "price": "2800"
+        },
+        {
+            "name": "Family&Friends",
+            "rating": "9,7",
+            "price": "2800"
+        },
+        {
+            "name": "Green Point Hostel",
+            "rating": "",
+            "price": "2800"
+        }
+    ],
+    [
+        {
+            "name": "Всё путём у Московского Вокзала",
+            "rating": "7,7",
+            "price": "2800"
+        },
+        {
+            "name": "Хостелы Рус-Орёл",
+            "rating": "8,6",
+            "price": "2800"
+        },
+        {
+            "name": "А-Хостел",
+            "rating": "7,4",
+            "price": "2800"
+        },
+        {
+            "name": "Sochi Stars Hostel",
+            "rating": "8,0",
+            "price": "2800"
+        },
+        {
+            "name": "Спорткомплекс Текстильщик",
+            "rating": "6,7",
+            "price": "2800"
+        },
+        {
+            "name": "Гостевой дом Базилик Чаплыгин",
+            "rating": "7,5",
+            "price": "2800"
+        },
+        {
+            "name": "на Чебеньковской",
+            "rating": "7,8",
+            "price": "2800"
+        },
+        {
+            "name": "Гостиница на Ленина",
+            "rating": "",
+            "price": "2800"
+        },
+        {
+            "name": "Svetofor Guestrooms",
+            "rating": "8,7",
+            "price": "2800"
+        },
+        {
+            "name": "Хостел Вороново Клубъ",
+            "rating": "7,1",
+            "price": "2800"
+        },
+        {
+            "name": "Мини-отель Воздух",
+            "rating": "8,5",
+            "price": "2800"
+        },
+        {
+            "name": "Hostel 24х7",
+            "rating": "7,6",
+            "price": "2800"
+        },
+        {
+            "name": "Мини-отель Парадиз",
+            "rating": "7,0",
+            "price": "2800"
+        },
+        {
+            "name": "Teremok Hostel",
+            "rating": "8,2",
+            "price": "2800"
+        },
+        {
+            "name": "Скворечник",
+            "rating": "9,1",
+            "price": "2800"
+        },
+        {
+            "name": "VGosti",
+            "rating": "7,2",
+            "price": "2800"
+        },
+        {
+            "name": "Хостел Уютный",
+            "rating": "",
+            "price": "2800"
+        },
+        {
+            "name": "Центр Активного Отдыха \"КОЛОБОК\"",
+            "rating": "8,1",
+            "price": "2800"
+        },
+        {
+            "name": "Hostel in Centre",
+            "rating": "8,9",
+            "price": "2800"
+        },
+        {
+            "name": "Hotel Dobrye Sosedy",
+            "rating": "6,6",
+            "price": "2800"
+        },
+        {
+            "name": "Хостел Серафима",
+            "rating": "6,6",
+            "price": "2800"
+        },
+        {
+            "name": "Hostel \"KALINKA\"",
+            "rating": "7,4",
+            "price": "2800"
+        },
+        {
+            "name": "Все Сезоны / All Seasons",
+            "rating": "8,5",
+            "price": "2800"
+        },
+        {
+            "name": "Staryy Vokzal",
+            "rating": "6,1",
+            "price": "2800"
+        },
+        {
+            "name": "PichuginHall Hostel",
+            "rating": "9,2",
+            "price": "2800"
+        }
+    ],
+    [
+        {
+            "name": "Light room",
+            "rating": "7,6",
+            "price": "2800"
+        },
+        {
+            "name": "Хостел МИР",
+            "rating": "9,4",
+            "price": "2800"
+        },
+        {
+            "name": "Хостел на Нахимовском проспекте",
+            "rating": "7,6",
+            "price": "2800"
+        },
+        {
+            "name": "Raduga Hostel",
+            "rating": "9,8",
+            "price": "2800"
+        },
+        {
+            "name": "Buen Camino",
+            "rating": "8,8",
+            "price": "2800"
+        },
+        {
+            "name": "Хостел Time",
+            "rating": "8,6",
+            "price": "2800"
+        },
+        {
+            "name": "Hostel ANTIKA",
+            "rating": "7,3",
+            "price": "2800"
+        },
+        {
+            "name": "Hostel Tver",
+            "rating": "7,7",
+            "price": "2800"
+        },
+        {
+            "name": "Hostel TAPIAU",
+            "rating": "9,0",
+            "price": "2800"
+        },
+        {
+            "name": "Hostel ДобролюбовЪ",
+            "rating": "8,2",
+            "price": "2800"
+        },
+        {
+            "name": "Pullman Hostel",
+            "rating": "8,8",
+            "price": "2800"
+        },
+        {
+            "name": "Кам-Ин",
+            "rating": "5,7",
+            "price": "2800"
+        },
+        {
+            "name": "Хостел Сатурн На Бакунинской",
+            "rating": "9,2",
+            "price": "2800"
+        },
+        {
+            "name": "Хостел Революция",
+            "rating": "",
+            "price": "2800"
+        },
+        {
+            "name": "hostel Propolis",
+            "rating": "8,9",
+            "price": "2800"
+        },
+        {
+            "name": "Туристическая база",
+            "rating": "9,1",
+            "price": "2800"
+        },
+        {
+            "name": "Хостел Урал Ровер на Крылова",
+            "rating": "6,6",
+            "price": "2800"
+        },
+        {
+            "name": "Хостел на Кутузова 30",
+            "rating": "",
+            "price": "2800"
+        },
+        {
+            "name": "Mini-Hotel Sozvezdie Plus",
+            "rating": "8,1",
+            "price": "2800"
+        },
+        {
+            "name": "Matreshki Hostel",
+            "rating": "9,3",
+            "price": "2800"
+        },
+        {
+            "name": "Foxhole Hostel",
+            "rating": "8,7",
+            "price": "2800"
+        },
+        {
+            "name": "Гранд Хостел",
+            "rating": "5,9",
+            "price": "2800"
+        },
+        {
+            "name": "Гостиница «Сибирь»",
+            "rating": "5,6",
+            "price": "2800"
+        },
+        {
+            "name": "Хостел АПЕЛЬСИН",
+            "rating": "8,7",
+            "price": "2800"
+        },
+        {
+            "name": "Гостевая комната \"Уют\"",
+            "rating": "8,9",
+            "price": "2800"
+        }
+    ],
+    [
+        {
+            "name": "Hostel Zhili-Byli",
+            "rating": "7,5",
+            "price": "2800"
+        },
+        {
+            "name": "SV Hotel на Таганке",
+            "rating": "7,3",
+            "price": "2800"
+        },
+        {
+            "name": "Хостел Эверест",
+            "rating": "8,9",
+            "price": "2800"
+        },
+        {
+            "name": "Butlerov Hostel",
+            "rating": "7,6",
+            "price": "2800"
+        },
+        {
+            "name": "Dommix",
+            "rating": "5,9",
+            "price": "2800"
+        },
+        {
+            "name": "Ninel Hostel",
+            "rating": "",
+            "price": "2800"
+        },
+        {
+            "name": "Домашний",
+            "rating": "9,3",
+            "price": "2800"
+        },
+        {
+            "name": "Baza Otdykha TurMAN",
+            "rating": "7,5",
+            "price": "2800"
+        },
+        {
+            "name": "Tulskiy Hostel on Demidovskaya",
+            "rating": "5,8",
+            "price": "2800"
+        },
+        {
+            "name": "Hostel Vstrecha",
+            "rating": "7,8",
+            "price": "2800"
+        },
+        {
+            "name": "Старый Мост",
+            "rating": "7,5",
+            "price": "2800"
+        },
+        {
+            "name": "Hostel Severyanka",
+            "rating": "7,4",
+            "price": "2800"
+        },
+        {
+            "name": "Мини-отель Sigma",
+            "rating": "7,3",
+            "price": "2800"
+        },
+        {
+            "name": "Хостел Вежливый Лось на ВДНХ",
+            "rating": "",
+            "price": "2800"
+        },
+        {
+            "name": "Travel Hostel",
+            "rating": "9,0",
+            "price": "2800"
+        },
+        {
+            "name": "Северная",
+            "rating": "6,9",
+            "price": "2800"
+        },
+        {
+            "name": "Hostel Friday",
+            "rating": "8,6",
+            "price": "2800"
+        },
+        {
+            "name": "Camping Bereg Best Beach Stylish Coastline National Park Valday",
+            "rating": "9,7",
+            "price": "2800"
+        },
+        {
+            "name": "Авантаж Хостел",
+            "rating": "8,2",
+            "price": "2800"
+        },
+        {
+            "name": "Cheremshan Hotel",
+            "rating": "7,1",
+            "price": "2800"
+        },
+        {
+            "name": "Hostel Loft-74",
+            "rating": "8,7",
+            "price": "2800"
+        },
+        {
+            "name": "Авитон",
+            "rating": "6,7",
+            "price": "2800"
+        },
+        {
+            "name": "Хостел Выбор",
+            "rating": "8,0",
+            "price": "2800"
+        },
+        {
+            "name": "Хостел ПушкинЪ",
+            "rating": "8,8",
+            "price": "2800"
+        },
+        {
+            "name": "Хостел Бульвар",
+            "rating": "8,4",
+            "price": "2800"
+        }
+    ],
+    [
+        {
+            "name": "Роял Хостел",
+            "rating": "8,6",
+            "price": "2800"
+        },
+        {
+            "name": "А-хостел",
+            "rating": "7,5",
+            "price": "2800"
+        },
+        {
+            "name": "Хостел 1",
+            "rating": "8,8",
+            "price": "2800"
+        },
+        {
+            "name": "Hostel Barneo",
+            "rating": "8,3",
+            "price": "2800"
+        },
+        {
+            "name": "B&B Hostel на Мамина-Сибиряка 58",
+            "rating": "8,2",
+            "price": "2800"
+        },
+        {
+            "name": "Гостиница Юбилейная",
+            "rating": "8,4",
+            "price": "2800"
+        },
+        {
+            "name": "Хостел Уют",
+            "rating": "9,1",
+            "price": "2800"
+        },
+        {
+            "name": "Хостел Резерв",
+            "rating": "7,5",
+            "price": "2800"
+        },
+        {
+            "name": "Hostel Podsolnuh",
+            "rating": "7,7",
+            "price": "2800"
+        },
+        {
+            "name": "Гостевой дом \"Антей\"",
+            "rating": "8,3",
+            "price": "2800"
+        },
+        {
+            "name": "Капсульный хостел Yes Bopoнеж",
+            "rating": "9,3",
+            "price": "2800"
+        },
+        {
+            "name": "хостел НАШЕ МЕСТО",
+            "rating": "8,7",
+            "price": "2800"
+        },
+        {
+            "name": "Hostel Kak Doma",
+            "rating": "7,4",
+            "price": "2800"
+        },
+        {
+            "name": "Old Flat on Nevsky",
+            "rating": "7,1",
+            "price": "2800"
+        },
+        {
+            "name": "Evrika",
+            "rating": "8,5",
+            "price": "2800"
+        },
+        {
+            "name": "Кемпинг Медвежий угол Красная поляна",
+            "rating": "9,5",
+            "price": "2800"
+        },
+        {
+            "name": "Хостел Like Липецк",
+            "rating": "7,9",
+            "price": "2800"
+        },
+        {
+            "name": "Хостел АТЛАС",
+            "rating": "",
+            "price": "2800"
+        },
+        {
+            "name": "I'll Be Back Hostel",
+            "rating": "9,0",
+            "price": "2800"
+        },
+        {
+            "name": "Гостиница Оптимал",
+            "rating": "8,4",
+            "price": "2800"
+        },
+        {
+            "name": "Хостел Арбуз",
+            "rating": "8,4",
+            "price": "2800"
+        },
+        {
+            "name": "Хостел на Каширском Шоссе",
+            "rating": "5,5",
+            "price": "2800"
+        },
+        {
+            "name": "Хостел Петровский-II",
+            "rating": "",
+            "price": "2800"
+        },
+        {
+            "name": "Гостиница Лебедь",
+            "rating": "7,3",
+            "price": "2800"
+        },
+        {
+            "name": "Хостел Гостевой дом",
+            "rating": "8,6",
+            "price": "2800"
+        }
+    ],
+    [
+        {
+            "name": "Хостелы Рус - Сергиев Посад",
+            "rating": "7,9",
+            "price": "2800"
+        },
+        {
+            "name": "Бализ",
+            "rating": "9,1",
+            "price": "2800"
+        },
+        {
+            "name": "Лилия",
+            "rating": "",
+            "price": "2800"
+        },
+        {
+            "name": "Хостел Легко Поспать",
+            "rating": "6,8",
+            "price": "2800"
+        },
+        {
+            "name": "Hostel Gorozhanin",
+            "rating": "7,9",
+            "price": "2800"
+        },
+        {
+            "name": "Звезда Хостел",
+            "rating": "6,6",
+            "price": "2800"
+        },
+        {
+            "name": "Хостел Гагарин",
+            "rating": "8,8",
+            "price": "2800"
+        },
+        {
+            "name": "Hostel Enot",
+            "rating": "8,4",
+            "price": "2800"
+        },
+        {
+            "name": "Cosy Hostel on Dekabristov 103B",
+            "rating": "",
+            "price": "2800"
+        },
+        {
+            "name": "Отель Цезарь",
+            "rating": "6,6",
+            "price": "2800"
+        },
+        {
+            "name": "Кемпинг Солнечный",
+            "rating": "8,0",
+            "price": "2800"
+        },
+        {
+            "name": "Халва",
+            "rating": "",
+            "price": "2800"
+        },
+        {
+            "name": "Милана",
+            "rating": "",
+            "price": "2800"
+        },
+        {
+            "name": "Гостевой дом «Дельфин»",
+            "rating": "7,2",
+            "price": "2800"
+        },
+        {
+            "name": "Хостел Северное шоссе",
+            "rating": "",
+            "price": "2800"
+        },
+        {
+            "name": "Гостевой дом Мечта",
+            "rating": "9,4",
+            "price": "2800"
+        },
+        {
+            "name": "Хостел Мозаика",
+            "rating": "8,5",
+            "price": "2807"
+        },
+        {
+            "name": "Роял Хостел 905",
+            "rating": "8,8",
+            "price": "2811"
+        },
+        {
+            "name": "ГК Главснаб Хостел",
+            "rating": "3,8",
+            "price": "2814"
+        },
+        {
+            "name": "Бабушка Хаус",
+            "rating": "8,1",
+            "price": "2820"
+        },
+        {
+            "name": "Green Hostel Kuzminki",
+            "rating": "8,2",
+            "price": "2829"
+        },
+        {
+            "name": "Хостел Чешир",
+            "rating": "7,7",
+            "price": "2830"
+        },
+        {
+            "name": "Хостел Крылья",
+            "rating": "9,2",
+            "price": "2835"
+        },
+        {
+            "name": "Hostel Monte Carlo",
+            "rating": "8,5",
+            "price": "2835"
+        },
+        {
+            "name": "Хостел Преображенка",
+            "rating": "6,4",
+            "price": "2835"
+        }
+    ],
+    [
+        {
+            "name": "Хостел Чешский дом",
+            "rating": "7,0",
+            "price": "2835"
+        },
+        {
+            "name": "Гостевой Дом Хорошие Новости",
+            "rating": "8,1",
+            "price": "2835"
+        },
+        {
+            "name": "Хостел Фавор",
+            "rating": "9,1",
+            "price": "2835"
+        },
+        {
+            "name": "Комфорт Хостел",
+            "rating": "8,4",
+            "price": "2835"
+        },
+        {
+            "name": "Хостел Рус Ижевск",
+            "rating": "9,4",
+            "price": "2835"
+        },
+        {
+            "name": "Хостел Ломоносова",
+            "rating": "9,5",
+            "price": "2835"
+        },
+        {
+            "name": "Gamak Hostel",
+            "rating": "8,8",
+            "price": "2835"
+        },
+        {
+            "name": "Reshetnikov",
+            "rating": "8,7",
+            "price": "2835"
+        },
+        {
+            "name": "OK Хостел",
+            "rating": "7,5",
+            "price": "2835"
+        },
+        {
+            "name": "Гости",
+            "rating": "",
+            "price": "2835"
+        },
+        {
+            "name": "Хостел Квартал Универ",
+            "rating": "8,4",
+            "price": "2835"
+        },
+        {
+            "name": "Радикс Хостел",
+            "rating": "7,6",
+            "price": "2835"
+        },
+        {
+            "name": "Hostel CHERSKY",
+            "rating": "9,8",
+            "price": "2835"
+        },
+        {
+            "name": "Panda Hostel on Baturina 5d",
+            "rating": "8,7",
+            "price": "2835"
+        },
+        {
+            "name": "Podsolnuh Hostel",
+            "rating": "9,0",
+            "price": "2835"
+        },
+        {
+            "name": "Napoleon Hostel Moscow",
+            "rating": "7,3",
+            "price": "2843"
+        },
+        {
+            "name": "VELOHOSTEL Marata",
+            "rating": "8,3",
+            "price": "2850"
+        },
+        {
+            "name": "Time Hostel Centr",
+            "rating": "8,9",
+            "price": "2860"
+        },
+        {
+            "name": "У друзей",
+            "rating": "",
+            "price": "2870"
+        },
+        {
+            "name": "HOSTEL18",
+            "rating": "8,3",
+            "price": "2890"
+        },
+        {
+            "name": "Гостевой дом Земляничная поляна",
+            "rating": "9,1",
+            "price": "2890"
+        },
+        {
+            "name": "Simple Seasons",
+            "rating": "8,2",
+            "price": "2893"
+        },
+        {
+            "name": "Сити Хостел",
+            "rating": "7,7",
+            "price": "2894"
+        },
+        {
+            "name": "Nice hostel",
+            "rating": "9,3",
+            "price": "2898"
+        },
+        {
+            "name": "Хостел Навигатор на Тукая",
+            "rating": "8,9",
+            "price": "2900"
+        }
+    ],
+    [
+        {
+            "name": "Sweet Village Hostel Vladimirskiy",
+            "rating": "8,8",
+            "price": "2900"
+        },
+        {
+            "name": "Hostel October",
+            "rating": "8,1",
+            "price": "2900"
+        },
+        {
+            "name": "Mechta",
+            "rating": "6,8",
+            "price": "2900"
+        },
+        {
+            "name": "Like Hostel",
+            "rating": "9,1",
+            "price": "2905"
+        },
+        {
+            "name": "Хостел \"Пушкин\"",
+            "rating": "9,1",
+            "price": "2916"
+        },
+        {
+            "name": "Cuba Hostel",
+            "rating": "8,8",
+            "price": "2936"
+        },
+        {
+            "name": "Хостел Гнездо Покровка",
+            "rating": "6,5",
+            "price": "2940"
+        },
+        {
+            "name": "Хостел Ильинский",
+            "rating": "8,9",
+            "price": "2940"
+        },
+        {
+            "name": "Хостел Добрин",
+            "rating": "7,8",
+            "price": "2940"
+        },
+        {
+            "name": "Hostel on Lenina 12",
+            "rating": "7,8",
+            "price": "2940"
+        },
+        {
+            "name": "FruStyle Hostel",
+            "rating": "8,3",
+            "price": "2940"
+        },
+        {
+            "name": "Хостел Nice Sochi",
+            "rating": "8,3",
+            "price": "2940"
+        },
+        {
+            "name": "VS Hostel",
+            "rating": "8,9",
+            "price": "2940"
+        },
+        {
+            "name": "Гуд Румс Хостел",
+            "rating": "9,3",
+            "price": "2940"
+        },
+        {
+            "name": "Абсолют Хостел",
+            "rating": "6,9",
+            "price": "2940"
+        },
+        {
+            "name": "ХостелыРус-на Красносельской",
+            "rating": "8,2",
+            "price": "2940"
+        },
+        {
+            "name": "Гостевой дом",
+            "rating": "",
+            "price": "2940"
+        },
+        {
+            "name": "Номера у моря",
+            "rating": "7,9",
+            "price": "2940"
+        },
+        {
+            "name": "Хостел ГАГАРИН",
+            "rating": "8,0",
+            "price": "2945"
+        },
+        {
+            "name": "Полежаев Хостел",
+            "rating": "8,9",
+            "price": "2945"
+        },
+        {
+            "name": "РОС ОТЕЛЬ Хостел 1 Мая",
+            "rating": "8,2",
+            "price": "2950"
+        },
+        {
+            "name": "Хостел \"Казанский\"",
+            "rating": "7,8",
+            "price": "2969"
+        },
+        {
+            "name": "Academ VN Hostel",
+            "rating": "8,4",
+            "price": "2970"
+        },
+        {
+            "name": "Хостелы рус - Семеновская",
+            "rating": "9,0",
+            "price": "2974"
+        },
+        {
+            "name": "Хостел Онегин на Татарстана",
+            "rating": "9,1",
+            "price": "2974"
+        }
+    ],
+    [
+        {
+            "name": "Hostel Apelsin",
+            "rating": "8,5",
+            "price": "2975"
+        },
+        {
+            "name": "Киров Hostel",
+            "rating": "9,7",
+            "price": "2975"
+        },
+        {
+            "name": "Хостел Малахит Лайт",
+            "rating": "8,4",
+            "price": "2975"
+        },
+        {
+            "name": "Hostel Duyzhina",
+            "rating": "8,8",
+            "price": "2975"
+        },
+        {
+            "name": "ЛаKшеРи project hotel and hostel",
+            "rating": "8,5",
+            "price": "2975"
+        },
+        {
+            "name": "Capsula Hostel",
+            "rating": "7,1",
+            "price": "2975"
+        },
+        {
+            "name": "BM Hostel V. Novgorod",
+            "rating": "9,1",
+            "price": "2993"
+        },
+        {
+            "name": "DOM Hostel",
+            "rating": "8,6",
+            "price": "2993"
+        },
+        {
+            "name": "Hostel on Alleya Smelykh",
+            "rating": "8,4",
+            "price": "3000"
+        },
+        {
+            "name": "Serpeyka Guesthouse",
+            "rating": "8,2",
+            "price": "3000"
+        },
+        {
+            "name": "Positive на 4-ой Советской",
+            "rating": "8,7",
+            "price": "3000"
+        },
+        {
+            "name": "Хостел Обнинск",
+            "rating": "8,4",
+            "price": "3000"
+        },
+        {
+            "name": "Hostel Dom",
+            "rating": "7,8",
+            "price": "3004"
+        },
+        {
+            "name": "Салют!",
+            "rating": "9,5",
+            "price": "3008"
+        },
+        {
+            "name": "Travel Inn Красные Ворота",
+            "rating": "8,3",
+            "price": "3010"
+        },
+        {
+            "name": "Mesyagutovo Hotel",
+            "rating": "7,8",
+            "price": "3010"
+        },
+        {
+            "name": "Assol'Hostel",
+            "rating": "8,6",
+            "price": "3010"
+        },
+        {
+            "name": "Hostel Raduga",
+            "rating": "9,0",
+            "price": "3010"
+        },
+        {
+            "name": "Хостел Баба Люба",
+            "rating": "9,2",
+            "price": "3024"
+        },
+        {
+            "name": "Хостел ВокругСвета",
+            "rating": "7,3",
+            "price": "3024"
+        },
+        {
+            "name": "Хостел Рус - Волгоградка",
+            "rating": "6,7",
+            "price": "3038"
+        },
+        {
+            "name": "5k Respublikanskiy proezd 3b",
+            "rating": "8,0",
+            "price": "3040"
+        },
+        {
+            "name": "Хостел В ЭСТОНКЕ",
+            "rating": "7,1",
+            "price": "3045"
+        },
+        {
+            "name": "Монополия хостел",
+            "rating": "8,2",
+            "price": "3053"
+        },
+        {
+            "name": "Sunny World Hostel",
+            "rating": "8,5",
+            "price": "3062"
+        }
+    ],
+    [
+        {
+            "name": "«Bla Bla» Хостел",
+            "rating": "8,9",
+            "price": "3069"
+        },
+        {
+            "name": "Хостел Свет",
+            "rating": "8,7",
+            "price": "3080"
+        },
+        {
+            "name": "Пыра М7",
+            "rating": "",
+            "price": "3080"
+        },
+        {
+            "name": "Гостевой Дом \"Павловское\"",
+            "rating": "5,1",
+            "price": "3080"
+        },
+        {
+            "name": "Хостел Преображенская Площадь",
+            "rating": "6,3",
+            "price": "3084"
+        },
+        {
+            "name": "Accord24 Hostel",
+            "rating": "9,2",
+            "price": "3087"
+        },
+        {
+            "name": "Hostel Republic",
+            "rating": "8,2",
+            "price": "3087"
+        },
+        {
+            "name": "Хостел Мозаика",
+            "rating": "8,1",
+            "price": "3091"
+        },
+        {
+            "name": "Khosta Hostel",
+            "rating": "9,5",
+            "price": "3099"
+        },
+        {
+            "name": "Shabolovka Hotel",
+            "rating": "8,1",
+            "price": "3100"
+        },
+        {
+            "name": "Хостел Белые ночи у Садовой",
+            "rating": "8,7",
+            "price": "3112"
+        },
+        {
+            "name": "Attic Hostel Saint-Petersburg",
+            "rating": "8,4",
+            "price": "3126"
+        },
+        {
+            "name": "FreeLife хостел",
+            "rating": "9,0",
+            "price": "3144"
+        },
+        {
+            "name": "Хостел Fusion",
+            "rating": "8,8",
+            "price": "3150"
+        },
+        {
+            "name": "Leon",
+            "rating": "9,6",
+            "price": "3150"
+        },
+        {
+            "name": "Хостел МореГор",
+            "rating": "9,2",
+            "price": "3150"
+        },
+        {
+            "name": "Хостел Идеал",
+            "rating": "9,1",
+            "price": "3150"
+        },
+        {
+            "name": "Хостелы Рус - Белорусская",
+            "rating": "7,4",
+            "price": "3150"
+        },
+        {
+            "name": "Гостевой Дом Аравана",
+            "rating": "9,1",
+            "price": "3150"
+        },
+        {
+            "name": "Гостевой дом Цимлянский двор",
+            "rating": "6,7",
+            "price": "3150"
+        },
+        {
+            "name": "Хостел Матрешка",
+            "rating": "8,2",
+            "price": "3150"
+        },
+        {
+            "name": "Хостел Автор Таганка",
+            "rating": "8,1",
+            "price": "3150"
+        },
+        {
+            "name": "Хостел Мята Рязань",
+            "rating": "9,5",
+            "price": "3150"
+        },
+        {
+            "name": "DoBeDo Hostel",
+            "rating": "8,7",
+            "price": "3150"
+        },
+        {
+            "name": "Хостел Рус Аннино",
+            "rating": "6,6",
+            "price": "3150"
+        }
+    ],
+    [
+        {
+            "name": "Гостевой дом на Выборгском шоссе 2",
+            "rating": "7,4",
+            "price": "3150"
+        },
+        {
+            "name": "Hostel Krasnodar Stavropolskaya",
+            "rating": "8,5",
+            "price": "3150"
+        },
+        {
+            "name": "HD Hostel",
+            "rating": "8,8",
+            "price": "3150"
+        },
+        {
+            "name": "Sky Hostel Шереметьево",
+            "rating": "7,6",
+            "price": "3150"
+        },
+        {
+            "name": "Хостел Барнаул",
+            "rating": "8,6",
+            "price": "3150"
+        },
+        {
+            "name": "Clever Hostel",
+            "rating": "9,5",
+            "price": "3150"
+        },
+        {
+            "name": "Хостел \"Калинка\"",
+            "rating": "8,7",
+            "price": "3150"
+        },
+        {
+            "name": "SODA HOSTEL",
+            "rating": "9,7",
+            "price": "3150"
+        },
+        {
+            "name": "Dva Kryla Inn",
+            "rating": "8,9",
+            "price": "3150"
+        },
+        {
+            "name": "Hostel U City",
+            "rating": "8,1",
+            "price": "3150"
+        },
+        {
+            "name": "New Piter Life",
+            "rating": "8,1",
+            "price": "3150"
+        },
+        {
+            "name": "Хостел У Башни",
+            "rating": "8,0",
+            "price": "3150"
+        },
+        {
+            "name": "Hostel Den' & Noch'",
+            "rating": "8,8",
+            "price": "3150"
+        },
+        {
+            "name": "Гостиница Сильвер Сити",
+            "rating": "8,0",
+            "price": "3150"
+        },
+        {
+            "name": "Hostel on Kemerovskaya 7",
+            "rating": "9,0",
+            "price": "3150"
+        },
+        {
+            "name": "Hostel Rus - Noginsk",
+            "rating": "8,2",
+            "price": "3150"
+        },
+        {
+            "name": "Hostel Maximoff",
+            "rating": "8,7",
+            "price": "3150"
+        },
+        {
+            "name": "Like Хостел",
+            "rating": "7,4",
+            "price": "3150"
+        },
+        {
+            "name": "Хостел Уютная Компания",
+            "rating": "6,6",
+            "price": "3150"
+        },
+        {
+            "name": "Квартира",
+            "rating": "",
+            "price": "3150"
+        },
+        {
+            "name": "Добрых снов",
+            "rating": "8,9",
+            "price": "3150"
+        },
+        {
+            "name": "BigGal Rooms",
+            "rating": "9,2",
+            "price": "3150"
+        },
+        {
+            "name": "Zvenigorod Hostel",
+            "rating": "3,7",
+            "price": "3150"
+        },
+        {
+            "name": "Хостел А+ / Hostel A+",
+            "rating": "9,0",
+            "price": "3150"
+        },
+        {
+            "name": "Хостел Васильцовский",
+            "rating": "6,3",
+            "price": "3150"
+        }
+    ],
+    [
+        {
+            "name": "Мегахостел",
+            "rating": "",
+            "price": "3150"
+        },
+        {
+            "name": "У ИСТОЧНИКА",
+            "rating": "5,7",
+            "price": "3150"
+        },
+        {
+            "name": "Тук Тук Хостел",
+            "rating": "8,7",
+            "price": "3150"
+        },
+        {
+            "name": "Dilizhans Hotel",
+            "rating": "7,9",
+            "price": "3150"
+        },
+        {
+            "name": "Отель Арсенал",
+            "rating": "9,0",
+            "price": "3150"
+        },
+        {
+            "name": "Луна",
+            "rating": "",
+            "price": "3150"
+        },
+        {
+            "name": "SunVita House",
+            "rating": "8,9",
+            "price": "3150"
+        },
+        {
+            "name": "PRO100HOSTEL.76",
+            "rating": "9,0",
+            "price": "3150"
+        },
+        {
+            "name": "Хостел Цинцкаро",
+            "rating": "6,7",
+            "price": "3150"
+        },
+        {
+            "name": "Хостел Миг",
+            "rating": "7,8",
+            "price": "3150"
+        },
+        {
+            "name": "Хостел Новый День",
+            "rating": "8,1",
+            "price": "3150"
+        },
+        {
+            "name": "Хостел Фильм",
+            "rating": "7,4",
+            "price": "3150"
+        },
+        {
+            "name": "Гостевой дом Nice",
+            "rating": "8,7",
+            "price": "3150"
+        },
+        {
+            "name": "Профилакторий ГАУ ВО \"ЦР АВС\"",
+            "rating": "8,2",
+            "price": "3150"
+        },
+        {
+            "name": "CityLime Hostel",
+            "rating": "8,0",
+            "price": "3150"
+        },
+        {
+            "name": "Гостевой дом Литвич",
+            "rating": "7,9",
+            "price": "3150"
+        },
+        {
+            "name": "Гостевой дом Домашний",
+            "rating": "",
+            "price": "3150"
+        },
+        {
+            "name": "Хостел Чемпион",
+            "rating": "",
+            "price": "3150"
+        },
+        {
+            "name": "Хостел - Краснодар Юбилейный",
+            "rating": "",
+            "price": "3150"
+        },
+        {
+            "name": "Хостел Гости",
+            "rating": "",
+            "price": "3150"
+        },
+        {
+            "name": "HOSTEL-ЗАЧЕТ",
+            "rating": "9,2",
+            "price": "3150"
+        },
+        {
+            "name": "Алмаз Хостел",
+            "rating": "9,1",
+            "price": "3150"
+        },
+        {
+            "name": "Хостел Кедр",
+            "rating": "8,5",
+            "price": "3150"
+        },
+        {
+            "name": "Хостел Вежливый Лось на Семеновской",
+            "rating": "8,0",
+            "price": "3150"
+        },
+        {
+            "name": "Хостел Travel",
+            "rating": "9,1",
+            "price": "3150"
+        }
+    ],
+    [
+        {
+            "name": "KaraDeniz Hostel",
+            "rating": "9,8",
+            "price": "3150"
+        },
+        {
+            "name": "Хостел Лайк",
+            "rating": "8,8",
+            "price": "3150"
+        },
+        {
+            "name": "Russian Tour",
+            "rating": "",
+            "price": "3150"
+        },
+        {
+            "name": "Старый Центр хостел",
+            "rating": "8,7",
+            "price": "3150"
+        },
+        {
+            "name": "Гостевой дом \"Купец Осипов\"",
+            "rating": "",
+            "price": "3150"
+        },
+        {
+            "name": "Хостел Койка-room",
+            "rating": "8,9",
+            "price": "3150"
+        },
+        {
+            "name": "Дом Артистов цирка Арена Тверь",
+            "rating": "6,4",
+            "price": "3150"
+        },
+        {
+            "name": "Хостел Слобода на Бауманской",
+            "rating": "8,0",
+            "price": "3150"
+        },
+        {
+            "name": "Хостел Красная стрекоза",
+            "rating": "9,3",
+            "price": "3150"
+        },
+        {
+            "name": "Maxi House Hostel",
+            "rating": "9,2",
+            "price": "3150"
+        },
+        {
+            "name": "Hostel & Hotel Yuzhniy Dvorik",
+            "rating": "8,6",
+            "price": "3150"
+        },
+        {
+            "name": "Хостел Касл",
+            "rating": "8,7",
+            "price": "3150"
+        },
+        {
+            "name": "Littlehotel",
+            "rating": "7,8",
+            "price": "3150"
+        },
+        {
+            "name": "Хостел Петр Первый",
+            "rating": "7,0",
+            "price": "3150"
+        },
+        {
+            "name": "Hostel Mint",
+            "rating": "8,3",
+            "price": "3150"
+        },
+        {
+            "name": "Hostel3952 - Irkutsk on Marata",
+            "rating": "8,8",
+            "price": "3150"
+        },
+        {
+            "name": "На Обводном",
+            "rating": "",
+            "price": "3150"
+        },
+        {
+            "name": "Stars Хостел",
+            "rating": "8,6",
+            "price": "3150"
+        },
+        {
+            "name": "Хостел Караван",
+            "rating": "7,4",
+            "price": "3150"
+        },
+        {
+            "name": "Тёплый бриз гостевой дом",
+            "rating": "8,2",
+            "price": "3150"
+        },
+        {
+            "name": "Hostel Freeridefriends",
+            "rating": "9,0",
+            "price": "3150"
+        },
+        {
+            "name": "KH HOSTEL",
+            "rating": "8,6",
+            "price": "3150"
+        },
+        {
+            "name": "Хостел Орион",
+            "rating": "7,8",
+            "price": "3150"
+        },
+        {
+            "name": "Гостиница Кузьмолово",
+            "rating": "7,8",
+            "price": "3150"
+        },
+        {
+            "name": "Art-Hostel",
+            "rating": "8,3",
+            "price": "3150"
+        }
+    ],
+    [
+        {
+            "name": "Хостел Удача",
+            "rating": "8,8",
+            "price": "3150"
+        },
+        {
+            "name": "Siberian Hostel",
+            "rating": "9,1",
+            "price": "3150"
+        },
+        {
+            "name": "Жемчужина Чувашии",
+            "rating": "",
+            "price": "3150"
+        },
+        {
+            "name": "Хостел Улей",
+            "rating": "8,9",
+            "price": "3150"
+        },
+        {
+            "name": "База отдыха Дубравушка",
+            "rating": "6,1",
+            "price": "3150"
+        },
+        {
+            "name": "Yo! Hostel on Leningradskaya",
+            "rating": "8,3",
+            "price": "3150"
+        },
+        {
+            "name": "Мотель Союз",
+            "rating": "7,1",
+            "price": "3150"
+        },
+        {
+            "name": "Хостел «Тепло»",
+            "rating": "7,1",
+            "price": "3150"
+        },
+        {
+            "name": "Hostel Start",
+            "rating": "6,6",
+            "price": "3150"
+        },
+        {
+            "name": "Хостел Лайт",
+            "rating": "8,6",
+            "price": "3150"
+        },
+        {
+            "name": "Хостел на Беломорской",
+            "rating": "7,4",
+            "price": "3150"
+        },
+        {
+            "name": "Удобный район Эжва",
+            "rating": "",
+            "price": "3150"
+        },
+        {
+            "name": "Хостел Уютный",
+            "rating": "7,9",
+            "price": "3150"
+        },
+        {
+            "name": "Хостел Гурман",
+            "rating": "",
+            "price": "3150"
+        },
+        {
+            "name": "Three Capitals SPb",
+            "rating": "9,2",
+            "price": "3150"
+        },
+        {
+            "name": "Хостел Марсель",
+            "rating": "7,4",
+            "price": "3150"
+        },
+        {
+            "name": "Hostel In' Yan'",
+            "rating": "",
+            "price": "3150"
+        },
+        {
+            "name": "Irina Guest House",
+            "rating": "8,3",
+            "price": "3150"
+        },
+        {
+            "name": "Romashka Hostel",
+            "rating": "5,9",
+            "price": "3150"
+        },
+        {
+            "name": "Гостиница Жара",
+            "rating": "",
+            "price": "3150"
+        },
+        {
+            "name": "Хостел в центре Петербурга",
+            "rating": "",
+            "price": "3150"
+        },
+        {
+            "name": "Хостел Megapolis777",
+            "rating": "",
+            "price": "3150"
+        },
+        {
+            "name": "Sun Shine Хостел",
+            "rating": "8,9",
+            "price": "3150"
+        },
+        {
+            "name": "adler tourizm",
+            "rating": "",
+            "price": "3150"
+        },
+        {
+            "name": "Гостевой дом в Волконке",
+            "rating": "9,9",
+            "price": "3150"
+        }
+    ],
+    [
+        {
+            "name": "Меридиан на Фортунатовской",
+            "rating": "8,4",
+            "price": "3150"
+        },
+        {
+            "name": "Hostel Like",
+            "rating": "7,8",
+            "price": "3150"
+        },
+        {
+            "name": "хостел Нагорная 4",
+            "rating": "",
+            "price": "3150"
+        },
+        {
+            "name": "Гостевой дом Тур Сервис",
+            "rating": "8,7",
+            "price": "3150"
+        },
+        {
+            "name": "Гостевой Дом «8 Граней»",
+            "rating": "",
+            "price": "3150"
+        },
+        {
+            "name": "Polosaty Hostel",
+            "rating": "9,5",
+            "price": "3179"
+        },
+        {
+            "name": "Hostel Grad'",
+            "rating": "8,5",
+            "price": "3185"
+        },
+        {
+            "name": "ГородОтель Екатеринбург",
+            "rating": "7,3",
+            "price": "3192"
+        },
+        {
+            "name": "Hotel Druzhba",
+            "rating": "6,9",
+            "price": "3203"
+        },
+        {
+            "name": "Хостел Вежливый Лось на Савеловской",
+            "rating": "6,0",
+            "price": "3220"
+        },
+        {
+            "name": "Хостел Гостиничный Проезд",
+            "rating": "8,6",
+            "price": "3220"
+        },
+        {
+            "name": "АРТ хостел Культура",
+            "rating": "7,9",
+            "price": "3240"
+        },
+        {
+            "name": "Хохлома VDK",
+            "rating": "6,9",
+            "price": "3240"
+        },
+        {
+            "name": "Hostel \"Bolshoj Kazachij\"",
+            "rating": "8,7",
+            "price": "3249"
+        },
+        {
+            "name": "Хостел Артист на Курской",
+            "rating": "8,2",
+            "price": "3250"
+        },
+        {
+            "name": "Нижний Хостел",
+            "rating": "7,5",
+            "price": "3250"
+        },
+        {
+            "name": "Mini Hotel and Hostel Clever House",
+            "rating": "8,8",
+            "price": "3250"
+        },
+        {
+            "name": "База отдыха Пирос",
+            "rating": "7,3",
+            "price": "3270"
+        },
+        {
+            "name": "Хостел Liberty",
+            "rating": "9,5",
+            "price": "3273"
+        },
+        {
+            "name": "Хостел Осттров",
+            "rating": "9,4",
+            "price": "3273"
+        },
+        {
+            "name": "Railway capsules",
+            "rating": "9,1",
+            "price": "3273"
+        },
+        {
+            "name": "25 HOSTEL",
+            "rating": "8,0",
+            "price": "3276"
+        },
+        {
+            "name": "V Ugliche",
+            "rating": "9,2",
+            "price": "3285"
+        },
+        {
+            "name": "Hostels Rus - Nakhimovskiy Prospekt",
+            "rating": "8,4",
+            "price": "3289"
+        },
+        {
+            "name": "Хостел Гуртьева",
+            "rating": "8,7",
+            "price": "3290"
+        }
+    ],
+    [
+        {
+            "name": "Hostel Wood Owl",
+            "rating": "7,5",
+            "price": "3290"
+        },
+        {
+            "name": "Baikal Capsule",
+            "rating": "7,8",
+            "price": "3290"
+        },
+        {
+            "name": "Маэстро Хостел",
+            "rating": "8,8",
+            "price": "3290"
+        },
+        {
+            "name": "Ark Hostel",
+            "rating": "8,6",
+            "price": "3290"
+        },
+        {
+            "name": "Зен Хостел - Автозаводская",
+            "rating": "7,4",
+            "price": "3290"
+        },
+        {
+            "name": "Хостел Жить Хорошо",
+            "rating": "7,4",
+            "price": "3290"
+        },
+        {
+            "name": "Дом у моря",
+            "rating": "9,0",
+            "price": "3290"
+        },
+        {
+            "name": "Мини-отель Ленинский 23",
+            "rating": "8,1",
+            "price": "3300"
+        },
+        {
+            "name": "Хостел ДОМАШНИЙ",
+            "rating": "9,6",
+            "price": "3300"
+        },
+        {
+            "name": "LUSTRA",
+            "rating": "9,5",
+            "price": "3300"
+        },
+        {
+            "name": "Hostel on Kulakova 52",
+            "rating": "10",
+            "price": "3300"
+        },
+        {
+            "name": "Хостелы Рус - Полежаевская",
+            "rating": "8,4",
+            "price": "3320"
+        },
+        {
+            "name": "Отель «Бал»",
+            "rating": "8,1",
+            "price": "3325"
+        },
+        {
+            "name": "Hostel My World",
+            "rating": "8,4",
+            "price": "3325"
+        },
+        {
+            "name": "Hostel Pozitiv",
+            "rating": "8,4",
+            "price": "3325"
+        },
+        {
+            "name": "Хостел Барбарис на Пехотной 17",
+            "rating": "8,5",
+            "price": "3325"
+        },
+        {
+            "name": "Дикая Орхидея",
+            "rating": "8,8",
+            "price": "3325"
+        },
+        {
+            "name": "Хостел Полянка на Чистых Прудах",
+            "rating": "8,1",
+            "price": "3326"
+        },
+        {
+            "name": "Kapsula vremeni Сapsule hotel",
+            "rating": "8,9",
+            "price": "3333"
+        },
+        {
+            "name": "Мини-отель Базилик Усмань",
+            "rating": "7,5",
+            "price": "3350"
+        },
+        {
+            "name": "Hostel 42",
+            "rating": "7,5",
+            "price": "3350"
+        },
+        {
+            "name": "Rooms The Park",
+            "rating": "8,5",
+            "price": "3360"
+        },
+        {
+            "name": "Капсульный отель&хостел Купе",
+            "rating": "9,1",
+            "price": "3360"
+        },
+        {
+            "name": "Биксбит Хостел",
+            "rating": "9,5",
+            "price": "3360"
+        },
+        {
+            "name": "HD Hostel Izhevsk",
+            "rating": "9,2",
+            "price": "3360"
+        }
+    ],
+    [
+        {
+            "name": "Хостел Алые паруса",
+            "rating": "9,1",
+            "price": "3360"
+        },
+        {
+            "name": "ABC-hostel",
+            "rating": "9,3",
+            "price": "3360"
+        },
+        {
+            "name": "Volga Discovery Camping",
+            "rating": "",
+            "price": "3360"
+        },
+        {
+            "name": "Гостевой дом Марина",
+            "rating": "8,7",
+            "price": "3360"
+        },
+        {
+            "name": "BAUHAUS",
+            "rating": "9,4",
+            "price": "3374"
+        },
+        {
+            "name": "U Hostel",
+            "rating": "9,4",
+            "price": "3388"
+        },
+        {
+            "name": "Hostel Feelin na Konyushennoy.",
+            "rating": "7,9",
+            "price": "3400"
+        },
+        {
+            "name": "WELCOMEHOSTEL Gorohovaya",
+            "rating": "8,6",
+            "price": "3402"
+        },
+        {
+            "name": "Иж-Хостел",
+            "rating": "8,6",
+            "price": "3430"
+        },
+        {
+            "name": "Мини-отель Базилик Кораблино",
+            "rating": "6,7",
+            "price": "3430"
+        },
+        {
+            "name": "Мини-отель Мансарда",
+            "rating": "8,3",
+            "price": "3430"
+        },
+        {
+            "name": "Капсульный хостел Империя на Павелецкой",
+            "rating": "8,2",
+            "price": "3430"
+        },
+        {
+            "name": "Hostel Corona",
+            "rating": "",
+            "price": "3430"
+        },
+        {
+            "name": "U Deda Guest House",
+            "rating": "9,4",
+            "price": "3430"
+        },
+        {
+            "name": "Hostel Silver Owl",
+            "rating": "8,3",
+            "price": "3465"
+        },
+        {
+            "name": "Хостел Квартира 31",
+            "rating": "9,6",
+            "price": "3465"
+        },
+        {
+            "name": "Гостевой домик в деревне",
+            "rating": "8,8",
+            "price": "3465"
+        },
+        {
+            "name": "Хостел Романовъ",
+            "rating": "9,0",
+            "price": "3465"
+        },
+        {
+            "name": "Nice Hostel Иваново",
+            "rating": "9,5",
+            "price": "3465"
+        },
+        {
+            "name": "BAMBOO",
+            "rating": "9,1",
+            "price": "3465"
+        },
+        {
+            "name": "Мини отель City Life",
+            "rating": "8,2",
+            "price": "3465"
+        },
+        {
+            "name": "Белый Хостел",
+            "rating": "8,9",
+            "price": "3470"
+        },
+        {
+            "name": "Калинин Хостел",
+            "rating": "9,3",
+            "price": "3479"
+        },
+        {
+            "name": "BEREG Hostel",
+            "rating": "9,7",
+            "price": "3481"
+        },
+        {
+            "name": "Хостел В тапочках",
+            "rating": "9,5",
+            "price": "3485"
+        }
+    ],
+    [
+        {
+            "name": "Хостел Олимп",
+            "rating": "7,6",
+            "price": "3493"
+        },
+        {
+            "name": "ГОСТЕВОЙ ДОМ НА ОКТЯБРЬСКОЙ",
+            "rating": "9,5",
+            "price": "3493"
+        },
+        {
+            "name": "Yasenevo Hotel",
+            "rating": "9,3",
+            "price": "3500"
+        },
+        {
+            "name": "Хостел «Пирс»",
+            "rating": "8,0",
+            "price": "3500"
+        },
+        {
+            "name": "Hostel on Moskovskaya 59",
+            "rating": "9,1",
+            "price": "3500"
+        },
+        {
+            "name": "Гостевой Дом на Великой",
+            "rating": "8,9",
+            "price": "3500"
+        },
+        {
+            "name": "Rадость, hotel & hostel",
+            "rating": "9,0",
+            "price": "3500"
+        },
+        {
+            "name": "Хостел Авокадо",
+            "rating": "",
+            "price": "3500"
+        },
+        {
+            "name": "Atmosphere on Petrovka",
+            "rating": "7,6",
+            "price": "3500"
+        },
+        {
+            "name": "Just INN hostel",
+            "rating": "9,0",
+            "price": "3500"
+        },
+        {
+            "name": "Hostel Apart Express",
+            "rating": "9,5",
+            "price": "3500"
+        },
+        {
+            "name": "Хостел LOFT",
+            "rating": "9,3",
+            "price": "3500"
+        },
+        {
+            "name": "Гостиничный Комлекс Элизиум",
+            "rating": "8,0",
+            "price": "3500"
+        },
+        {
+            "name": "Хостел Краб",
+            "rating": "8,2",
+            "price": "3500"
+        },
+        {
+            "name": "FullHouse Hostel",
+            "rating": "8,7",
+            "price": "3500"
+        },
+        {
+            "name": "Отель Рациональ Пятницкое",
+            "rating": "7,5",
+            "price": "3500"
+        },
+        {
+            "name": "Отель Хуторок",
+            "rating": "8,2",
+            "price": "3500"
+        },
+        {
+            "name": "СВ Хостел",
+            "rating": "8,6",
+            "price": "3500"
+        },
+        {
+            "name": "Хостел В Городе N",
+            "rating": "7,7",
+            "price": "3500"
+        },
+        {
+            "name": "Хостел «Акварель на Баумана»",
+            "rating": "8,4",
+            "price": "3500"
+        },
+        {
+            "name": "Хостел Планета",
+            "rating": "9,4",
+            "price": "3500"
+        },
+        {
+            "name": "Хостел СЛОН Пятигорск",
+            "rating": "9,4",
+            "price": "3500"
+        },
+        {
+            "name": "Vagon",
+            "rating": "9,2",
+            "price": "3500"
+        },
+        {
+            "name": "Хостел Сарацин на Большой Красной",
+            "rating": "8,2",
+            "price": "3500"
+        },
+        {
+            "name": "Don-Antonio",
+            "rating": "9,2",
+            "price": "3500"
+        }
+    ],
+    [
+        {
+            "name": "Гостевой дом \"Маныч-Гудило\"",
+            "rating": "8,7",
+            "price": "3500"
+        },
+        {
+            "name": "Sleep Place Hostel",
+            "rating": "8,6",
+            "price": "3500"
+        },
+        {
+            "name": "Hostel Vmeste",
+            "rating": "8,7",
+            "price": "3500"
+        },
+        {
+            "name": "Мини-отель Гостиный двор",
+            "rating": "7,5",
+            "price": "3500"
+        },
+        {
+            "name": "Hostel Koyko Mesto",
+            "rating": "9,4",
+            "price": "3500"
+        },
+        {
+            "name": "Gorodok Hotel",
+            "rating": "7,7",
+            "price": "3500"
+        },
+        {
+            "name": "Хостел Колизей на Народном",
+            "rating": "8,4",
+            "price": "3500"
+        },
+        {
+            "name": "Hostel Start",
+            "rating": "8,1",
+            "price": "3500"
+        },
+        {
+            "name": "Serebryaniy Rozhok",
+            "rating": "8,3",
+            "price": "3500"
+        },
+        {
+            "name": "Добрый Дом центр",
+            "rating": "",
+            "price": "3500"
+        },
+        {
+            "name": "Хостел Station 23",
+            "rating": "9,0",
+            "price": "3500"
+        },
+        {
+            "name": "Гостиница \"ПричалЪ\"",
+            "rating": "7,4",
+            "price": "3500"
+        },
+        {
+            "name": "Hotel Uiut",
+            "rating": "7,0",
+            "price": "3500"
+        },
+        {
+            "name": "Каменский Hotel",
+            "rating": "8,0",
+            "price": "3500"
+        },
+        {
+            "name": "Новый",
+            "rating": "7,9",
+            "price": "3500"
+        },
+        {
+            "name": "River Park Hostel",
+            "rating": "8,7",
+            "price": "3500"
+        },
+        {
+            "name": "Sky",
+            "rating": "7,6",
+            "price": "3500"
+        },
+        {
+            "name": "Хостел Белка",
+            "rating": "8,7",
+            "price": "3500"
+        },
+        {
+            "name": "Гостиница УЮТ",
+            "rating": "",
+            "price": "3500"
+        },
+        {
+            "name": "Хостел Морской",
+            "rating": "7,9",
+            "price": "3500"
+        },
+        {
+            "name": "Хостел Калина Уфа",
+            "rating": "8,8",
+            "price": "3500"
+        },
+        {
+            "name": "Гостиница \"Витамин\"",
+            "rating": "8,6",
+            "price": "3500"
+        },
+        {
+            "name": "Мини-Отель ВЕЧЕР",
+            "rating": "6,2",
+            "price": "3500"
+        },
+        {
+            "name": "Хостел Измайловский Парк",
+            "rating": "8,7",
+            "price": "3500"
+        },
+        {
+            "name": "Papa House",
+            "rating": "9,4",
+            "price": "3500"
+        }
+    ],
+    [
+        {
+            "name": "Хостел Lucky Star",
+            "rating": "3,0",
+            "price": "3500"
+        },
+        {
+            "name": "Маяк",
+            "rating": "9,3",
+            "price": "3500"
+        },
+        {
+            "name": "Chusovskaya Hotel",
+            "rating": "6,8",
+            "price": "3500"
+        },
+        {
+            "name": "the ROOMS",
+            "rating": "7,6",
+            "price": "3500"
+        },
+        {
+            "name": "Хостел Жить просто 2",
+            "rating": "9,7",
+            "price": "3500"
+        },
+        {
+            "name": "Domino Hostel",
+            "rating": "9,5",
+            "price": "3500"
+        },
+        {
+            "name": "Отель Парадиз",
+            "rating": "9,0",
+            "price": "3500"
+        },
+        {
+            "name": "Хостел Древний Псков",
+            "rating": "7,7",
+            "price": "3500"
+        },
+        {
+            "name": "Mini-hotel Karambol",
+            "rating": "9,0",
+            "price": "3500"
+        },
+        {
+            "name": "Хостел ТРИП Тольятти",
+            "rating": "9,7",
+            "price": "3500"
+        },
+        {
+            "name": "Relax",
+            "rating": "5,9",
+            "price": "3500"
+        },
+        {
+            "name": "Хостел Рокет",
+            "rating": "9,2",
+            "price": "3500"
+        },
+        {
+            "name": "Отель и Хостел ЭКОном в Отрадном",
+            "rating": "9,0",
+            "price": "3500"
+        },
+        {
+            "name": "Хостел Котельники 2",
+            "rating": "",
+            "price": "3500"
+        },
+        {
+            "name": "Hostel Shokolad",
+            "rating": "8,1",
+            "price": "3500"
+        },
+        {
+            "name": "Отель Бархат",
+            "rating": "9,0",
+            "price": "3500"
+        },
+        {
+            "name": "Хостел «Счастливый случай»",
+            "rating": "8,8",
+            "price": "3500"
+        },
+        {
+            "name": "Lavanda Cafe Motel",
+            "rating": "",
+            "price": "3500"
+        },
+        {
+            "name": "Гостевой дом на Котле",
+            "rating": "9,5",
+            "price": "3500"
+        },
+        {
+            "name": "Отель-хостел ПушкинЪ",
+            "rating": "9,2",
+            "price": "3500"
+        },
+        {
+            "name": "Сити Хостел Казань",
+            "rating": "8,1",
+            "price": "3500"
+        },
+        {
+            "name": "Общежитие Новомосковского института повышения квалификации",
+            "rating": "7,9",
+            "price": "3500"
+        },
+        {
+            "name": "Хостел Вояж",
+            "rating": "7,9",
+            "price": "3500"
+        },
+        {
+            "name": "Хостел Зодиак",
+            "rating": "7,8",
+            "price": "3500"
+        },
+        {
+            "name": "Хостел Южный",
+            "rating": "8,4",
+            "price": "3500"
+        }
+    ],
+    [
+        {
+            "name": "Pioner Hostel",
+            "rating": "7,6",
+            "price": "3500"
+        },
+        {
+            "name": "Гостиница Бежецк Берлога",
+            "rating": "6,2",
+            "price": "3500"
+        },
+        {
+            "name": "Hostel Korona Khimki",
+            "rating": "8,0",
+            "price": "3500"
+        },
+        {
+            "name": "Hello Hostel",
+            "rating": "8,8",
+            "price": "3500"
+        },
+        {
+            "name": "Гостевой Дом",
+            "rating": "",
+            "price": "3500"
+        },
+        {
+            "name": "Mini Hotel Na Avtovokzale",
+            "rating": "8,0",
+            "price": "3500"
+        },
+        {
+            "name": "Отель Le Voyage",
+            "rating": "8,1",
+            "price": "3500"
+        },
+        {
+            "name": "Гостевой дом",
+            "rating": "",
+            "price": "3500"
+        },
+        {
+            "name": "Усадьба",
+            "rating": "",
+            "price": "3500"
+        },
+        {
+            "name": "Original Hostel",
+            "rating": "9,4",
+            "price": "3500"
+        },
+        {
+            "name": "Lodging Center",
+            "rating": "8,1",
+            "price": "3500"
+        },
+        {
+            "name": "Трак Хаус Гостиница",
+            "rating": "7,2",
+            "price": "3500"
+        },
+        {
+            "name": "Хостел РЕМЕЗ",
+            "rating": "",
+            "price": "3500"
+        },
+        {
+            "name": "КОЛИБРИ отель",
+            "rating": "9,3",
+            "price": "3500"
+        },
+        {
+            "name": "Центральный",
+            "rating": "7,7",
+            "price": "3500"
+        },
+        {
+            "name": "Irkutsk City Lodge",
+            "rating": "7,5",
+            "price": "3500"
+        },
+        {
+            "name": "Clean Hostel na Borsoeva",
+            "rating": "8,6",
+            "price": "3500"
+        },
+        {
+            "name": "beFREE - in Irkutsk",
+            "rating": "9,0",
+            "price": "3500"
+        },
+        {
+            "name": "Гостевой дом Анна",
+            "rating": "8,1",
+            "price": "3500"
+        },
+        {
+            "name": "Шаманка",
+            "rating": "8,4",
+            "price": "3500"
+        },
+        {
+            "name": "Hi Loft Hostel",
+            "rating": "9,1",
+            "price": "3500"
+        },
+        {
+            "name": "Lucky Hostel",
+            "rating": "7,2",
+            "price": "3500"
+        },
+        {
+            "name": "Гостевой дом Светлана",
+            "rating": "8,2",
+            "price": "3500"
+        },
+        {
+            "name": "Гостевой Дом Удача",
+            "rating": "7,4",
+            "price": "3500"
+        },
+        {
+            "name": "Лира Эконом Отель",
+            "rating": "7,7",
+            "price": "3500"
+        }
+    ],
+    [
+        {
+            "name": "Наргиз",
+            "rating": "6,9",
+            "price": "3500"
+        },
+        {
+            "name": "Карелия Хостел",
+            "rating": "8,4",
+            "price": "3500"
+        },
+        {
+            "name": "Кино Хостел на Пушкинской",
+            "rating": "9,0",
+            "price": "3500"
+        },
+        {
+            "name": "Goroda Hostel",
+            "rating": "7,7",
+            "price": "3500"
+        },
+        {
+            "name": "Sadko",
+            "rating": "8,3",
+            "price": "3500"
+        },
+        {
+            "name": "Хостел Альмира",
+            "rating": "8,0",
+            "price": "3500"
+        },
+        {
+            "name": "Rauschen Court",
+            "rating": "9,3",
+            "price": "3500"
+        },
+        {
+            "name": "Kino Hostel EYFORIYA LLС",
+            "rating": "3,0",
+            "price": "3500"
+        },
+        {
+            "name": "Хостел Жили-Были",
+            "rating": "",
+            "price": "3500"
+        },
+        {
+            "name": "Гостиница Столица",
+            "rating": "7,9",
+            "price": "3500"
+        },
+        {
+            "name": "YES! hostel",
+            "rating": "9,1",
+            "price": "3500"
+        },
+        {
+            "name": "Хостел У реки",
+            "rating": "9,0",
+            "price": "3500"
+        },
+        {
+            "name": "Велес Хостел",
+            "rating": "8,9",
+            "price": "3500"
+        },
+        {
+            "name": "Хостел 24",
+            "rating": "7,8",
+            "price": "3500"
+        },
+        {
+            "name": "Барин",
+            "rating": "",
+            "price": "3500"
+        },
+        {
+            "name": "Хостел Аркаим",
+            "rating": "7,7",
+            "price": "3500"
+        },
+        {
+            "name": "Автокемпинг-Караван",
+            "rating": "",
+            "price": "3500"
+        },
+        {
+            "name": "Хостел Теремок",
+            "rating": "6,0",
+            "price": "3500"
+        },
+        {
+            "name": "Eurasia Hostel",
+            "rating": "",
+            "price": "3500"
+        },
+        {
+            "name": "Фермерская усадьба",
+            "rating": "6,2",
+            "price": "3500"
+        },
+        {
+            "name": "Hostel Anturium",
+            "rating": "8,0",
+            "price": "3500"
+        },
+        {
+            "name": "Хостел Причал",
+            "rating": "7,9",
+            "price": "3500"
+        },
+        {
+            "name": "Hotel KAMA",
+            "rating": "8,0",
+            "price": "3500"
+        },
+        {
+            "name": "Kak Doma Hostel",
+            "rating": "7,4",
+            "price": "3500"
+        },
+        {
+            "name": "Стандарт Хостел",
+            "rating": "8,4",
+            "price": "3500"
+        }
+    ],
+    [
+        {
+            "name": "LoftHouse",
+            "rating": "9,7",
+            "price": "3500"
+        },
+        {
+            "name": "Гостевой Дом Надежда",
+            "rating": "8,8",
+            "price": "3500"
+        },
+        {
+            "name": "EShelter Hostel",
+            "rating": "",
+            "price": "3500"
+        },
+        {
+            "name": "Отель Коста Рика",
+            "rating": "6,2",
+            "price": "3500"
+        },
+        {
+            "name": "Хостел БЕЙНИ",
+            "rating": "9,2",
+            "price": "3500"
+        },
+        {
+            "name": "Хостел «Кунгур»",
+            "rating": "9,6",
+            "price": "3500"
+        },
+        {
+            "name": "Хостел Санкт-Петербург",
+            "rating": "8,2",
+            "price": "3500"
+        },
+        {
+            "name": "Central Street",
+            "rating": "9,0",
+            "price": "3500"
+        },
+        {
+            "name": "Гостиница Алмаз",
+            "rating": "8,8",
+            "price": "3500"
+        },
+        {
+            "name": "Iskra Hostel",
+            "rating": "8,0",
+            "price": "3500"
+        },
+        {
+            "name": "Гостиница Медем",
+            "rating": "8,7",
+            "price": "3500"
+        },
+        {
+            "name": "Geek Hotel & Hostel",
+            "rating": "8,7",
+            "price": "3500"
+        },
+        {
+            "name": "Хостел Никольский",
+            "rating": "9,3",
+            "price": "3500"
+        },
+        {
+            "name": "\"Дубровский\"",
+            "rating": "8,9",
+            "price": "3500"
+        },
+        {
+            "name": "ABC-Hostel",
+            "rating": "8,4",
+            "price": "3500"
+        },
+        {
+            "name": "Иркутский Острог",
+            "rating": "7,9",
+            "price": "3500"
+        },
+        {
+            "name": "Хостел Привал №17",
+            "rating": "8,5",
+            "price": "3500"
+        },
+        {
+            "name": "City Hostel",
+            "rating": "8,3",
+            "price": "3500"
+        },
+        {
+            "name": "Хостел 6/57",
+            "rating": "9,2",
+            "price": "3500"
+        },
+        {
+            "name": "Moonrise Отель",
+            "rating": "7,9",
+            "price": "3500"
+        },
+        {
+            "name": "Хостел Аркаим",
+            "rating": "",
+            "price": "3500"
+        },
+        {
+            "name": "New Life Hostel 2 on Glinka",
+            "rating": "7,6",
+            "price": "3500"
+        },
+        {
+            "name": "Hostel на Объединения 14б",
+            "rating": "7,1",
+            "price": "3500"
+        },
+        {
+            "name": "ZaryaHostel",
+            "rating": "",
+            "price": "3500"
+        },
+        {
+            "name": "Хостел Свои Люди",
+            "rating": "9,4",
+            "price": "3500"
+        }
+    ],
+    [
+        {
+            "name": "gostinitsa Saval",
+            "rating": "7,8",
+            "price": "3500"
+        },
+        {
+            "name": "Hostel Svetofor",
+            "rating": "7,9",
+            "price": "3500"
+        },
+        {
+            "name": "Hostel Feel Good",
+            "rating": "8,3",
+            "price": "3500"
+        },
+        {
+            "name": "Гостевые комнаты Сарма Байкал",
+            "rating": "6,3",
+            "price": "3500"
+        },
+        {
+            "name": "Domino Inn",
+            "rating": "7,5",
+            "price": "3500"
+        },
+        {
+            "name": "Мини-отель Тарлеон",
+            "rating": "7,5",
+            "price": "3500"
+        },
+        {
+            "name": "Хостел Аметьево",
+            "rating": "7,4",
+            "price": "3500"
+        },
+        {
+            "name": "Hostel Anthill-K",
+            "rating": "6,7",
+            "price": "3500"
+        },
+        {
+            "name": "Гостиница & Хостел Клевер",
+            "rating": "7,6",
+            "price": "3500"
+        },
+        {
+            "name": "Навигатор Отель",
+            "rating": "8,4",
+            "price": "3500"
+        },
+        {
+            "name": "Отель Эконом",
+            "rating": "8,4",
+            "price": "3500"
+        },
+        {
+            "name": "Dom Dostoyevsky",
+            "rating": "9,0",
+            "price": "3500"
+        },
+        {
+            "name": "Отель Миллионка",
+            "rating": "8,5",
+            "price": "3500"
+        },
+        {
+            "name": "Sokolniki Hostel",
+            "rating": "7,0",
+            "price": "3500"
+        },
+        {
+            "name": "Чемодан",
+            "rating": "8,8",
+            "price": "3500"
+        },
+        {
+            "name": "Гостиница Syberia",
+            "rating": "7,0",
+            "price": "3500"
+        },
+        {
+            "name": "Стрела",
+            "rating": "9,9",
+            "price": "3500"
+        },
+        {
+            "name": "Ezhovskij Guest House",
+            "rating": "6,0",
+            "price": "3500"
+        },
+        {
+            "name": "U Natalyi Guest House",
+            "rating": "9,3",
+            "price": "3500"
+        },
+        {
+            "name": "Гостиница Привал",
+            "rating": "6,3",
+            "price": "3500"
+        },
+        {
+            "name": "Гостевой дом на Крымской 82",
+            "rating": "7,9",
+            "price": "3500"
+        },
+        {
+            "name": "Гостиница Аура",
+            "rating": "",
+            "price": "3500"
+        },
+        {
+            "name": "Aquamarine",
+            "rating": "7,8",
+            "price": "3500"
+        },
+        {
+            "name": "Хостел",
+            "rating": "",
+            "price": "3500"
+        },
+        {
+            "name": "Mini-hotel Paradise",
+            "rating": "8,2",
+            "price": "3500"
+        }
+    ],
+    [
+        {
+            "name": "Жемчужина",
+            "rating": "7,8",
+            "price": "3500"
+        },
+        {
+            "name": "Strannik Hostel",
+            "rating": "8,6",
+            "price": "3500"
+        },
+        {
+            "name": "Гостевой дом Эдем",
+            "rating": "7,1",
+            "price": "3500"
+        },
+        {
+            "name": "Hotel \"Bankir\"",
+            "rating": "5,1",
+            "price": "3500"
+        },
+        {
+            "name": "Гостевой дом Костомарово",
+            "rating": "7,0",
+            "price": "3500"
+        },
+        {
+            "name": "Marina Hostel",
+            "rating": "9,4",
+            "price": "3500"
+        },
+        {
+            "name": "Придорожно-туристический комплекс \"Аист\"",
+            "rating": "8,8",
+            "price": "3500"
+        },
+        {
+            "name": "Хостел «Белый Тополь»",
+            "rating": "8,6",
+            "price": "3500"
+        },
+        {
+            "name": "Гостевой дом \"Маргарита\"",
+            "rating": "9,2",
+            "price": "3500"
+        },
+        {
+            "name": "Хостел Товарищ",
+            "rating": "8,0",
+            "price": "3500"
+        },
+        {
+            "name": "Gostinitsa Mayak",
+            "rating": "8,4",
+            "price": "3500"
+        },
+        {
+            "name": "Хостел на Зеленой Стоянке",
+            "rating": "9,1",
+            "price": "3500"
+        },
+        {
+            "name": "Komsomolskiy",
+            "rating": "7,6",
+            "price": "3500"
+        },
+        {
+            "name": "Теплый-Плед",
+            "rating": "8,9",
+            "price": "3500"
+        },
+        {
+            "name": "Хостел История",
+            "rating": "9,4",
+            "price": "3500"
+        },
+        {
+            "name": "Гостевой Дом Времена Года",
+            "rating": "9,6",
+            "price": "3500"
+        },
+        {
+            "name": "Hostel Prestige",
+            "rating": "",
+            "price": "3500"
+        },
+        {
+            "name": "Хостел Тихое место",
+            "rating": "8,4",
+            "price": "3500"
+        },
+        {
+            "name": "Hostel City",
+            "rating": "8,0",
+            "price": "3500"
+        },
+        {
+            "name": "Centralnaya Hotel",
+            "rating": "7,4",
+            "price": "3500"
+        },
+        {
+            "name": "Найс Рыбинск",
+            "rating": "8,9",
+            "price": "3500"
+        },
+        {
+            "name": "Deliki Hostel",
+            "rating": "9,2",
+            "price": "3500"
+        },
+        {
+            "name": "Гостиница Дюна",
+            "rating": "8,1",
+            "price": "3500"
+        },
+        {
+            "name": "Konkovo Hostel",
+            "rating": "7,2",
+            "price": "3500"
+        },
+        {
+            "name": "Tiger Hostel",
+            "rating": "9,2",
+            "price": "3500"
+        }
+    ],
+    [
+        {
+            "name": "Гостиница \"Юбилейная\"",
+            "rating": "7,7",
+            "price": "3500"
+        },
+        {
+            "name": "База Отдыха \"Лотос\"",
+            "rating": "9,4",
+            "price": "3500"
+        },
+        {
+            "name": "Karavan Hostel",
+            "rating": "5,8",
+            "price": "3500"
+        },
+        {
+            "name": "Russian Sky Hostel",
+            "rating": "6,7",
+            "price": "3500"
+        },
+        {
+            "name": "Хостел Жулебино",
+            "rating": "9,1",
+            "price": "3500"
+        },
+        {
+            "name": "MAXROOMS Здвинск Сибирия",
+            "rating": "",
+            "price": "3500"
+        },
+        {
+            "name": "Хостел Мир",
+            "rating": "8,6",
+            "price": "3500"
+        },
+        {
+            "name": "Hostel Sludyanaya 6a",
+            "rating": "7,6",
+            "price": "3500"
+        },
+        {
+            "name": "Best Hostel",
+            "rating": "7,9",
+            "price": "3500"
+        },
+        {
+            "name": "Хостел",
+            "rating": "",
+            "price": "3500"
+        },
+        {
+            "name": "Смородина хостел Smorodina hostel",
+            "rating": "9,0",
+            "price": "3500"
+        },
+        {
+            "name": "Crocus Хостел",
+            "rating": "9,4",
+            "price": "3500"
+        },
+        {
+            "name": "Country house on Chapaeva",
+            "rating": "8,2",
+            "price": "3500"
+        },
+        {
+            "name": "Sarma's Comfort Rooms on Baikal",
+            "rating": "7,4",
+            "price": "3500"
+        },
+        {
+            "name": "Гостиница Три охотника",
+            "rating": "1,7",
+            "price": "3500"
+        },
+        {
+            "name": "Гостевой дом \"Минутка\"",
+            "rating": "9,4",
+            "price": "3500"
+        },
+        {
+            "name": "Hostel Green Lamp",
+            "rating": "9,1",
+            "price": "3500"
+        },
+        {
+            "name": "Hostel ProletKult",
+            "rating": "8,5",
+            "price": "3500"
+        },
+        {
+            "name": "Хостел Поддубный",
+            "rating": "8,3",
+            "price": "3500"
+        },
+        {
+            "name": "Гостиница «На Весенней»",
+            "rating": "",
+            "price": "3500"
+        },
+        {
+            "name": "Гостиница Алтек",
+            "rating": "8,1",
+            "price": "3500"
+        },
+        {
+            "name": "Sky Hostel",
+            "rating": "8,4",
+            "price": "3500"
+        },
+        {
+            "name": "Гостевой дом Мария",
+            "rating": "9,4",
+            "price": "3500"
+        },
+        {
+            "name": "Теремок",
+            "rating": "5,8",
+            "price": "3500"
+        },
+        {
+            "name": "Хостелы Рус - Бакунинская",
+            "rating": "8,9",
+            "price": "3500"
+        }
+    ]
+]
