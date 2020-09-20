@@ -1,2 +1,5 @@
 beautifulsoup4
 requests
+logging
+re
+logging
