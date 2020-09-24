@@ -5,7 +5,7 @@ import re
 import logging
 from bs4 import BeautifulSoup
 from typing import List, Dict
-import map
+from map import get_coords, draw_map_by_coords
 
 
 session = requests.Session()
@@ -136,9 +136,9 @@ class Parser:
         return neighborhood_list
 
 
-def get_data_from_json():
+def get_data_from_json(file_name: str):
     """Закидование данных с файла в программу."""
-    with open('output.json', 'r', encoding="utf-8") as f:
+    with open(file_name, 'r', encoding="utf-8") as f:
         hotel_information = json.load(f)
 
     return hotel_information
@@ -215,8 +215,6 @@ def get_info(country: str, off_set: int, date_in: datetime.datetime, date_out: d
             time_for_every_page.append(difference.seconds)
             logging.warning(f"Страница {i+1} из {off_set} собрана")
             logging.warning(f"Время до конца {(sum(time_for_every_page)/len(time_for_every_page))*(off_set-i) / 3600} часов")
-            coords = map.getPositions(hotels_info)
-            map.drawMapByCoords(coords)
     return hotels_info
 
 
@@ -266,9 +264,16 @@ def main():
     off_set = 1000
     date_out = NEXT_WEEK
 
-    hotels_info = get_info(country, off_set, date_in, date_out)
+    # hotels_info = get_info(country, off_set, date_in, date_out)
     
-    save_data_to_json(hotels_info, country)
+    # save_data_to_json(hotels_info, country)
+
+    hotels_file_name = 'booking_Russia_2020-09-24-12.43.01.json'
+    hotels_info = get_data_from_json(hotels_file_name)
+
+    # Получаем координаты и рисуем карту
+    coords = get_coords(hotels_info)
+    draw_map_by_coords(coords, 'FirstTenNumbers')
 
 
 if __name__ == "__main__":

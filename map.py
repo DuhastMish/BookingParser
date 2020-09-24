@@ -1,25 +1,26 @@
 import gmplot
+import datetime
 
 # Получаем координаты для отелей 
-def getPositions(hotelsInfo: list):
+def get_coords(hotels_info: list):
 
-    hotelsCoordinates = []
+    hotels_coordinates = []
 
-    for page in range(len(hotelsInfo)):
-        for hotel in range(len(hotelsInfo[page])):
+    for page in range(len(hotels_info)):
+        for hotel in range(len(hotels_info[page])):
             coords = {
-                'latitude': hotelsInfo[page][hotel]['details']['coordinates']['latitude'],
-                'longitude': hotelsInfo[page][hotel]['details']['coordinates']['longitude'],
+                'latitude': hotels_info[page][hotel]['details']['coordinates']['latitude'],
+                'longitude': hotels_info[page][hotel]['details']['coordinates']['longitude'],
             }
-            hotelsCoordinates.append({
-                'name': hotelsInfo[page][hotel]['name'],
+            hotels_coordinates.append({
+                'name': hotels_info[page][hotel]['name'],
                 'coordinates': coords,
             })
 
-    return hotelsCoordinates
+    return hotels_coordinates
 
 # Пример использования google maps
-def drawMapByCoords(coords: list):
+def draw_map_by_coords(coords: list, task: str):
 
     gmap = gmplot.GoogleMapPlotter(coords[0]['coordinates']['latitude'], coords[0]['coordinates']['latitude'], 5)
 
@@ -28,5 +29,4 @@ def drawMapByCoords(coords: list):
         lgd = float(el['coordinates']['longitude'])
         gmap.marker(ltd, lgd)
 
-    gmap.draw('map.html')
-    # Проверить наличие файла
+    gmap.draw('map{0}.html'.format(task))
