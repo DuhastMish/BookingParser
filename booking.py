@@ -5,6 +5,7 @@ import re
 import logging
 from bs4 import BeautifulSoup
 from typing import List, Dict
+from map import get_coords, draw_map_by_coords
 
 
 session = requests.Session()
@@ -135,9 +136,9 @@ class Parser:
         return neighborhood_list
 
 
-def get_data_from_json():
+def get_data_from_json(file_name: str):
     """Закидование данных с файла в программу."""
-    with open('output.json', 'r', encoding="utf-8") as f:
+    with open(file_name, 'r', encoding="utf-8") as f:
         hotel_information = json.load(f)
 
     return hotel_information
@@ -263,8 +264,16 @@ def main():
     off_set = 1000
     date_out = NEXT_WEEK
 
-    hotels_info = get_info(country, off_set, date_in, date_out)
-    save_data_to_json(hotels_info, country)
+    # hotels_info = get_info(country, off_set, date_in, date_out)
+    
+    # save_data_to_json(hotels_info, country)
+
+    hotels_file_name = 'booking_Russia_2020-09-24-12.43.01.json'
+    hotels_info = get_data_from_json(hotels_file_name)
+
+    # Получаем координаты и рисуем карту
+    coords = get_coords(hotels_info)
+    draw_map_by_coords(coords, 'FirstTenNumbers')
 
 
 if __name__ == "__main__":
