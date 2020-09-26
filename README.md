@@ -15,3 +15,9 @@ pip install -r requirements.txt
 ```
 python booking.py
 ```
+
+Чтобы получить новые данные:
+
+```
+python booking.py --get-data
+```

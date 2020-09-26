@@ -1,9 +1,9 @@
-import gmplot
+import gmplot  # noqa:D100
 from typing import List
 
-def get_coords(hotels_info: list) -> List:
-    """Получает координаты для отелей.""" 
 
+def get_coords(hotels_info: list) -> List:
+    """Получает координаты для отелей."""
     hotels_coordinates = []
 
     for page in hotels_info:
@@ -18,11 +18,11 @@ def get_coords(hotels_info: list) -> List:
 
     return hotels_coordinates
 
+
 def draw_map_by_coords(coords: list, task: str) -> None:
     """Рисует карту с метками по заданным координатам."""
-
     gmap = gmplot.GoogleMapPlotter(coords[0]['coordinates']['latitude'], coords[0]['coordinates']['latitude'], 5)
-    
+
     for el in coords:
         ltd = float(el['coordinates']['latitude'])
         lgd = float(el['coordinates']['longitude'])
