@@ -6,6 +6,7 @@ import logging
 from bs4 import BeautifulSoup
 from typing import List, Dict, Optional
 from map import get_coords, draw_map_by_coords
+import matplotlib.pyplot as plt
 from pathlib import Path
 
 
@@ -114,21 +115,27 @@ class Parser:
         if soup.select_one('div.hp-poi-content-container.hp-poi-content-container--column.clearfix') is None:
             neighborhood_list = []
         else:
-            for neighborhood in soup.select_one('div.hp-poi-content-container.hp-poi-content-container--column.clearfix').findAll('li', {"class": "bui-list__item"}):
+            for neighborhood in soup.select_one(
+                    'div.hp-poi-content-container.hp-poi-content-container--column.clearfix').findAll('li', {
+                "class": "bui-list__item"}):
                 neighborhood_structures = {}
 
                 if neighborhood.find("div", {"class": "hp-poi-list__description"}).contents[0].strip() == '':
-                    neighborhood_structures['name'] = neighborhood.find("div", {"class": "hp-poi-list__description"}).span.text.strip()
+                    neighborhood_structures['name'] = neighborhood.find("div", {
+                        "class": "hp-poi-list__description"}).span.text.strip()
                 else:
-                    neighborhood_structures['name'] = neighborhood.find("div", {"class": "hp-poi-list__description"}).contents[0].strip()
+                    neighborhood_structures['name'] = \
+                    neighborhood.find("div", {"class": "hp-poi-list__description"}).contents[0].strip()
 
                 try:
-                    neighborhood_structures['structure_type'] = neighborhood.find("div", {"class": "hp-poi-list__body"}).select_one("span.bui-badge.bui-badge--outline").text.strip()
+                    neighborhood_structures['structure_type'] = neighborhood.find("div", {
+                        "class": "hp-poi-list__body"}).select_one("span.bui-badge.bui-badge--outline").text.strip()
                 except:
                     neighborhood_structures['structure_type'] = ''
 
                 try:
-                    neighborhood_structures['distance'] = neighborhood.find('span', {"class": "hp-poi-list__distance"}).text.strip()
+                    neighborhood_structures['distance'] = neighborhood.find('span', {
+                        "class": "hp-poi-list__distance"}).text.strip()
                 except:
                     neighborhood_structures['distance'] = ''
 
@@ -187,15 +194,15 @@ def create_link(country: str, off_set: int, date_in: datetime.datetime, date_out
           "&group_children=0&order=price" \
           "&ss=%2C%20{country}" \
           "&offset={limit}".format(
-                checkin_month=month_in,
-                checkin_day=day_in,
-                checkin_year=year_in,
-                checkout_month=month_out,
-                checkout_day=day_out,
-                checkout_year=year_out,
-                group_adults=count_people,
-                country=country,
-                limit=off_set)
+        checkin_month=month_in,
+        checkin_day=day_in,
+        checkin_year=year_in,
+        checkout_month=month_out,
+        checkout_day=day_out,
+        checkout_year=year_out,
+        group_adults=count_people,
+        country=country,
+        limit=off_set)
 
     return url
 
@@ -220,8 +227,9 @@ def get_info(country: str, off_set: int, date_in: datetime.datetime, date_out: d
             end_time = datetime.datetime.now()
             difference = end_time - start_time
             time_for_every_page.append(difference.seconds)
-            logging.warning(f"Страница {i+1} из {off_set} собрана")
-            logging.warning(f"Время до конца {(sum(time_for_every_page)/len(time_for_every_page))*(off_set-i) / 3600} часов")
+            logging.warning(f"Страница {i + 1} из {off_set} собрана")
+            logging.warning(
+                f"Время до конца {(sum(time_for_every_page) / len(time_for_every_page)) * (off_set - i) / 3600} часов")
     return hotels_info
 
 
@@ -255,13 +263,31 @@ def parsing_data(session: requests.Session, country: str, date_in: datetime.date
             additional_info['services_offered'] = parser.offered_services(hotel_html)
             hotel_info['details'] = additional_info
 
-        # logging.warning(f"Данные для отеля {hotel_info['name']} получены")
+        logging.warning(f"Данные для отеля {hotel_info['name']} получены")
 
         result.append(hotel_info)
 
     session.close()
 
     return result
+
+
+def schedule_quantity_rating(results: List[List[Dict]]):
+    rating = []
+    for page in results:
+        for hotel in page:
+            if hotel['rating'] != '':
+                rating.append(float(hotel['rating'].replace(',', '.')))
+            else:
+                continue
+
+    plt.hist(rating, bins=100, rwidth=0.9, alpha=0.5, label='no', color='r')
+    plt.title('Histogram of the number of hotels from their rating')
+    plt.ylabel('Count of hotels')
+    plt.xlabel('Hotel rating')
+    plt.show()
+
+
 
 
 def main():
@@ -272,7 +298,7 @@ def main():
     date_out = NEXT_WEEK
 
     # hotels_info = get_info(country, off_set, date_in, date_out)
-    
+
     # save_data_to_json(hotels_info, country)
 
     hotels_info = get_data_from_json()
@@ -280,6 +306,8 @@ def main():
     # Получаем координаты и рисуем карту
     coords = get_coords(hotels_info)
     draw_map_by_coords(coords, 'DisplayAllHotels')
+
+    schedule_quantity_rating(hotels_info)
 
 
 if __name__ == "__main__":
