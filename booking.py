@@ -7,7 +7,6 @@ from bs4 import BeautifulSoup
 from typing import List, Dict, Optional
 from map import get_coords, draw_map_by_coords
 from pathlib import Path
-from glob import glob
 
 
 session = requests.Session()
@@ -140,12 +139,11 @@ class Parser:
 
 def get_data_from_json(file_name: Optional[str]=None):
     """Закидование данных с файла в программу."""
-    if (file_name == None):
-        path = Path.cwd()
-        json_files_path = list(path.glob('*.json'))
-        last_changes_time, last_changed_file = max((path.stat().st_mtime, path.name) for path in json_files_path)
-        last_changes_time = datetime.datetime.fromtimestamp(last_changes_time)
-        file_name = last_changed_file
+    if (file_name is None):
+        path = Path(__file__).parent
+        json_files_path = path.glob('*.json')
+        file_name = max((path.stat().st_mtime, path.name) for path in json_files_path)[1]
+        # last_changes_time = datetime.datetime.fromtimestamp(last_changes_time)
 
     with open(file_name, 'r', encoding="utf-8") as f:
         hotel_information = json.load(f)
