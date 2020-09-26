@@ -139,7 +139,7 @@ class Parser:
 
 def get_data_from_json(file_name: Optional[str]=None):
     """Закидование данных с файла в программу."""
-    if (file_name is None):
+    if file_name is None:
         path = Path(__file__).parent
         json_files_path = path.glob('*.json')
         file_name = max((path.stat().st_mtime, path.name) for path in json_files_path)[1]
