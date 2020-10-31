@@ -173,8 +173,7 @@ def main(parse_new_data: bool):
         hotels_info = get_info(country, off_set, date_in, date_out)
         save_data_to_json(hotels_info, country)
     else:
-        hotels_file_name = 'booking_Russia_2020-09-20-13.51.17.json'
-        hotels_info = get_data_from_json(hotels_file_name)
+        hotels_info = get_data_from_json()
 
     # Получаем координаты и рисуем карту
     coords = get_coords(hotels_info)
