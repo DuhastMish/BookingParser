@@ -1,18 +1,20 @@
-import datetime  # noqa:D100
-import requests
+import argparse  # noqa:D100
+import datetime
 import json
-import re
 import logging
-import argparse
-import matplotlib.pyplot as plt
-
-from tqdm import tqdm
-from bs4 import BeautifulSoup
-from typing import List, Dict, Optional
+import re
 from pathlib import Path
+from typing import Dict, List, Optional
 
-from draw_map import get_coords, draw_map_by_coords
+import requests
+from bs4 import BeautifulSoup
+from tqdm import tqdm
+
 from booking_parser import BookingParser
+from draw_map import draw_map_by_coords, get_coords
+from graph_builder import schedule_quantity_rating
+from data_base_setup import DBEngine
+
 
 session = requests.Session()
 REQUEST_HEADER = {
@@ -20,9 +22,10 @@ REQUEST_HEADER = {
 TODAY = datetime.datetime.now()
 NEXT_WEEK = TODAY + datetime.timedelta(7)
 BOOKING_PREFIX = 'https://www.booking.com'
+DATABASE = DBEngine
 
 
-def get_data_from_json(file_name: Optional[str]=None):
+def get_data_from_json(file_name: Optional[str] = None):
     """Закидование данных с файла в программу."""
     if file_name is None:
         path = Path(__file__).parent
@@ -36,14 +39,14 @@ def get_data_from_json(file_name: Optional[str]=None):
     return hotel_information
 
 
-def save_data_to_json(results: List[List[Dict]], country: str):
+def save_data_to_json(results: List[List[Dict]], country: str) -> None:
     """Запись в файл."""
     date = TODAY.strftime("%Y-%m-%d-%H.%M.%S")
     with open('booking_{country}_{date}.json'.format(country=country, date=date), 'w', encoding="utf-8") as f:
         json.dump(results, f, ensure_ascii=False, indent=4)
 
 
-def get_max_offset(soup):
+def get_max_offset(soup: BeautifulSoup):
     """Получает количество страниц с отелями."""
     all_offset = []
     if soup.find_all('div', {'class': 'sr_header'}) is not None:
@@ -52,7 +55,7 @@ def get_max_offset(soup):
     return all_offset
 
 
-def create_link(country: str, off_set: int, date_in: datetime.datetime, date_out: datetime.datetime):
+def create_link(country: str, off_set: int, date_in: datetime.datetime, date_out: datetime.datetime) -> str:
     """Создание ссылки для сбора данных."""
     month_in = date_in.month
     day_in = date_in.day
@@ -72,15 +75,15 @@ def create_link(country: str, off_set: int, date_in: datetime.datetime, date_out
           "&group_children=0&order=price" \
           "&ss=%2C%20{country}" \
           "&offset={limit}".format(
-        checkin_month=month_in,
-        checkin_day=day_in,
-        checkin_year=year_in,
-        checkout_month=month_out,
-        checkout_day=day_out,
-        checkout_year=year_out,
-        group_adults=count_people,
-        country=country,
-        limit=off_set)
+            checkin_month=month_in,
+            checkin_day=day_in,
+            checkin_year=year_in,
+            checkout_month=month_out,
+            checkout_day=day_out,
+            checkout_year=year_out,
+            group_adults=count_people,
+            country=country,
+            limit=off_set)
 
     return url
 
@@ -112,7 +115,6 @@ def get_info(country: str, off_set: int, date_in: datetime.datetime, date_out: d
 def parsing_data(session: requests.Session, country: str, date_in: datetime.datetime,
                  date_out: datetime.datetime, off_set: int):
     """Собирает информацию по конкретному отелю."""
-    result = []
 
     data_url = create_link(country, off_set, date_in, date_out)
     response = session.get(data_url, headers=REQUEST_HEADER)
@@ -121,45 +123,28 @@ def parsing_data(session: requests.Session, country: str, date_in: datetime.date
     hotels = soup.select("#hotellist_inner div.sr_item.sr_item_new")
 
     for hotel in tqdm(hotels):
-        hotel_info = {}
-        hotel_info['name'] = parser.name(hotel)
-        hotel_info['rating'] = parser.rating(hotel)
-        hotel_info['price'] = parser.price(hotel)
-        hotel_info['image'] = parser.image(hotel)
-        hotel_info['link'] = parser.detail_link(hotel)
-        if hotel_info['link'] is not None:
-            detail_page_response = session.get(BOOKING_PREFIX + hotel_info['link'], headers=REQUEST_HEADER)
-            hotel_html = BeautifulSoup(detail_page_response.text, "lxml")
-            additional_info = {}
-            additional_info['coordinates'] = {}
-            additional_info['coordinates']['latitude'] = parser.coordinates(hotel_html)[0]
-            additional_info['coordinates']['longitude'] = parser.coordinates(hotel_html)[1]
-            additional_info['important_facilities'] = parser.important_facilites(hotel_html)
-            additional_info['neighborhood_structures'] = parser.neighborhood_structures(hotel_html)
-            additional_info['services_offered'] = parser.offered_services(hotel_html)
-            hotel_info['details'] = additional_info
+        name = parser.name(hotel)
+        rating = parser.rating(hotel)
+        price = parser.price(hotel)
+        image = parser.image(hotel)
+        link = parser.detail_link(hotel)
 
-        result.append(hotel_info)
+        if link is not None:
+            detail_page_response = session.get(BOOKING_PREFIX + link, headers=REQUEST_HEADER)
+            hotel_html = BeautifulSoup(detail_page_response.text, "lxml")
+            latitude = parser.coordinates(hotel_html)[0]
+            longitude = parser.coordinates(hotel_html)[1]
+            important_facilities = ', '.join(parser.important_facilites(hotel_html))
+            #TODO: Придумать добавление в таблицы.
+            neighborhood_structures = parser.neighborhood_structures(hotel_html)
+            services_offered = parser.offered_services(hotel_html)
+
+        with DATABASE.begin() as connection:
+            connection.execute(f"insert into hotels (name, score, price, image, link) values ('{name}', '{rating}', '{price}', '{image}', '{link}')")
+            connection.execute(f"insert into coordinates (latitude, longitude) values ('{latitude}', '{longitude}')")
+            connection.execute(f"insert into important_facilities (important_facilities) values ('{important_facilities}')")
 
     session.close()
-
-    return result
-
-
-def schedule_quantity_rating(results: List[List[Dict]]):
-    rating = []
-    for page in results:
-        for hotel in page:
-            if hotel['rating'] != '':
-                rating.append(float(hotel['rating'].replace(',', '.')))
-            else:
-                continue
-
-    plt.hist(rating, bins=100, rwidth=0.9, alpha=0.5, label='no', color='r')
-    plt.title('Histogram of the number of hotels from their rating')
-    plt.ylabel('Count of hotels')
-    plt.xlabel('Hotel rating')
-    plt.show()
 
 
 def main(parse_new_data: bool):

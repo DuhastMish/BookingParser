@@ -1,5 +1,6 @@
-import gmplot  # noqa:D100
-from typing import List
+from typing import List  # noqa:D100
+
+import gmplot
 
 
 def get_coords(hotels_info: list) -> List:
