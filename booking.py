@@ -12,9 +12,9 @@ from tqdm import tqdm
 
 from booking_parser import BookingParser
 from draw_map import draw_map_by_coords, get_coords
-from graph_builder import schedule_quantity_rating
+from graph_builder import schedule_quantity_rating, diagramma_open_hotels
 from data_base_setup import DBEngine
-
+from data_base_operation import get_years_opening_hotels
 
 session = requests.Session()
 REQUEST_HEADER = {
@@ -172,7 +172,8 @@ def main(parse_new_data: bool):
     # coords = get_coords(hotels_info)
     # draw_map_by_coords(coords, 'DisplayAllHotels')
     # schedule_quantity_rating(hotels_info)
-
+    years = get_years_opening_hotels()
+    diagramma_open_hotels(years)
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
