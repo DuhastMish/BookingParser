@@ -118,6 +118,7 @@ def parsing_data(session: requests.Session, country: str, date_in: datetime.date
         price = parser.price(hotel)
         image = parser.image(hotel)
         link = parser.detail_link(hotel)
+        city = parser.city(hotel)
 
         if link is not None:
             detail_page_response = session.get(BOOKING_PREFIX + link, headers=REQUEST_HEADER)
@@ -127,22 +128,32 @@ def parsing_data(session: requests.Session, country: str, date_in: datetime.date
             important_facilities = ', '.join(parser.important_facilites(hotel_html))
             neighborhood_structures = parser.neighborhood_structures(hotel_html)
             services_offered = parser.offered_services(hotel_html)
+            open_date = parser.open_hotel_date(hotel_html)
+            # TODO: Присобачить в новую таблицу.
+            extended_rating = parser.extended_rating(hotel_html)
+            reviews = parser.review_rating(hotel_html)
 
         with DATABASE.begin() as connection:
-            connection.execute(f"insert into hotels (name, score, price, image, link) values ('{name}', '{rating}', '{price}', '{image}', '{link}')")
-            connection.execute(f"insert into coordinates (latitude, longitude) values ('{latitude}', '{longitude}')")
-            connection.execute(f"insert into important_facilities (important_facilities) values ('{important_facilities}')")
-            hotel_id = connection.execute("SELECT hotel_id FROM hotels WHERE hotel_id = (SELECT MAX(hotel_id)  FROM hotels)")
+            connection.execute(
+                f"insert into hotels (name, score, price, image, link, city, open_date) values ('{name}', '{rating}', '{price}', '{image}', '{link}', '{city}', '{open_date}')")
+            connection.execute(
+                f"insert into coordinates (latitude, longitude) values ('{latitude}', '{longitude}')")
+            connection.execute(
+                f"insert into important_facilities (important_facilities) values ('{important_facilities}')")
+            hotel_id = connection.execute(
+                "SELECT hotel_id FROM hotels WHERE hotel_id = (SELECT MAX(hotel_id)  FROM hotels)")
             hotel_id = hotel_id.fetchone()[0]
             for service_offered in services_offered:
                 service_type = service_offered['type']
                 service_value = ', '.join(service_offered['value'])
-                connection.execute(f"insert into services_offered (services_offered, value, hotel_id) values ('{service_type}', '{service_value}', '{hotel_id}')")
+                connection.execute(
+                    f"insert into services_offered (services_offered, value, hotel_id) values ('{service_type}', '{service_value}', '{hotel_id}')")
             for neighborhood_structure in neighborhood_structures:
                 name = neighborhood_structure['type']
                 structure_type = neighborhood_structure['structure_type']
                 distance = neighborhood_structure['distance']
-                connection.execute(f"insert into services_offered (neighborhood_structure, structure_type, distance) values ('{name}', '{structure_type}', '{distance}')")
+                connection.execute(
+                    f"insert into services_offered (neighborhood_structure, structure_type, distance) values ('{name}', '{structure_type}', '{distance}')")
 
     session.close()
 

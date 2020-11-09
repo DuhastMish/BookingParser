@@ -12,6 +12,8 @@ class hotels(Base):
     price = Column(Float, nullable=False)
     image = Column(String(100), nullable=False)
     link = Column(String(100), nullable=False)
+    city = Column(String(100), nullable=False)
+    open_date = Column(String(100), nullable=True)
 
 
 class coordinates(hotels):

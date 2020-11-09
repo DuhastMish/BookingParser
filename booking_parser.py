@@ -1,3 +1,19 @@
+RU_MONTH_VALUES = {
+    'янв': '01',
+    'фев': '02',
+    'мар': '03',
+    'апр': '04',
+    'мая': '05',
+    'июн': '06',
+    'июл': '07',
+    'авг': '08',
+    'сен': '09',
+    'окт': '10',
+    'ноя': '10',
+    'дек': '12',
+}
+
+
 class BookingParser:  # noqa:D100
     def name(self, hotel):
         """Возвращает имя отеля."""
@@ -12,6 +28,13 @@ class BookingParser:  # noqa:D100
             return ''
         else:
             return hotel.select_one("div.bui-review-score__badge").text.strip()
+
+    def city(self, hotel):
+        """Возвращает город отеля."""
+        if hotel.select_one("div.sr_card_address_line") is None:
+            return ''
+        else:
+            return hotel.select_one("div.sr_card_address_line").text.strip().split('\n')[0]
 
     def price(self, hotel):
         """Возвращает даты на выбранные период времени."""
@@ -65,20 +88,15 @@ class BookingParser:  # noqa:D100
         if soup.select_one('div.facilitiesChecklist') is None:
             services_offered_list = []
         else:
-
             for services in soup.findAll("div", class_="facilitiesChecklistSection"):
-
                 services_offered = {}
                 services_offered['type'] = services.find("h5").text.strip()
-
                 services_offered['value'] = []
                 for checks in services.findAll("li"):
-
                     if checks.find("p") is not None:
                         services_offered['value'].append(
                             checks.findNext(
                                 "p").text.strip().replace("\n", " ").replace("\r", " ").replace("  ", " "))
-
                     elif checks.find("span") is not None:
                         services_offered['value'].append(checks.find("span").text.strip())
                     else:
@@ -123,3 +141,49 @@ class BookingParser:  # noqa:D100
                 neighborhood_list.append(neighborhood_structures)
 
         return neighborhood_list
+
+    def extended_rating(self, soup):
+        rating_list = []
+
+        if soup.select_one('div.v2_review-scores__body.v2_review-scores__body--compared_to_average') is None:
+            rating_list = []
+        else:
+            extended_rating = {}
+            for rating in soup.select_one(
+                'div.v2_review-scores__body.v2_review-scores__body--compared_to_average').findAll(
+                    'li', {"class": "v2_review-scores__subscore"}):
+                rating_name = rating.find("div", {"class": "c-score-bar"}).contents[0].text.strip()
+                rating_score = rating.find("div", {"class": "c-score-bar"}).contents[1].text
+                extended_rating[rating_name] = rating_score
+            rating_list.append(extended_rating)
+        return rating_list
+
+    def review_rating(self, soup):
+        reviews = []
+        if soup.select_one('div.scores_full_layout') is None:
+            reviews = []
+        else:
+            reviews_rating = {}
+            for review_rating in soup.select_one('div.scores_full_layout').findAll(
+                    'li', {"class": "clearfix"}):
+                rating_class = review_rating.find("p", {"class": "review_score_name"}).text.strip()
+                rating_score = review_rating.find("p", {"class": "review_score_value"}).text.strip()
+                reviews_rating[rating_class] = rating_score
+            reviews.append(reviews_rating)
+
+        return reviews
+
+    def open_hotel_date(self, soup):
+        if soup.select_one('span.hp-desc-highlighted') is None:
+            return ''
+        else:
+            open_date_text = soup.select_one('span.hp-desc-highlighted').text.strip()
+            if " с " in open_date_text:
+                index = soup.select_one('span.hp-desc-highlighted').text.strip().find(" с ")
+                date = open_date_text[index+3:].replace('.', '')
+                day, month, year = date.split(' ')
+                month = RU_MONTH_VALUES[month[0:3]]
+                date = '.'.join([day, month, year])
+                return date
+            else:
+                return ''
