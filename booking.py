@@ -94,22 +94,12 @@ def get_info(country: str, off_set: int, date_in: datetime.datetime, date_out: d
     response = session.get(url, headers=REQUEST_HEADER)
     soup = BeautifulSoup(response.text, "lxml")
     logging.warning(f"{TODAY.strftime('%H:%M:%S')}:: Начинаю собирать данные...")
-    hotels_info = []
     off_set = int(get_max_offset(soup))
     offset = 0
-    time_for_every_page = []
     if off_set > 0:
         for i in tqdm(range(off_set)):
-            start_time = datetime.datetime.now()
             offset += 25
-            result = parsing_data(session, country, date_in, date_out, offset)
-            hotels_info.append(result)
-            save_data_to_json(hotels_info, country)
-            end_time = datetime.datetime.now()
-            difference = end_time - start_time
-            time_for_every_page.append(difference.seconds)
-
-    return hotels_info
+            parsing_data(session, country, date_in, date_out, offset)
 
 
 def parsing_data(session: requests.Session, country: str, date_in: datetime.datetime,
@@ -135,7 +125,6 @@ def parsing_data(session: requests.Session, country: str, date_in: datetime.date
             latitude = parser.coordinates(hotel_html)[0]
             longitude = parser.coordinates(hotel_html)[1]
             important_facilities = ', '.join(parser.important_facilites(hotel_html))
-            #TODO: Придумать добавление в таблицы.
             neighborhood_structures = parser.neighborhood_structures(hotel_html)
             services_offered = parser.offered_services(hotel_html)
 
@@ -143,6 +132,17 @@ def parsing_data(session: requests.Session, country: str, date_in: datetime.date
             connection.execute(f"insert into hotels (name, score, price, image, link) values ('{name}', '{rating}', '{price}', '{image}', '{link}')")
             connection.execute(f"insert into coordinates (latitude, longitude) values ('{latitude}', '{longitude}')")
             connection.execute(f"insert into important_facilities (important_facilities) values ('{important_facilities}')")
+            hotel_id = connection.execute("SELECT hotel_id FROM hotels WHERE hotel_id = (SELECT MAX(hotel_id)  FROM hotels)")
+            hotel_id = hotel_id.fetchone()[0]
+            for service_offered in services_offered:
+                service_type = service_offered['type']
+                service_value = ', '.join(service_offered['value'])
+                connection.execute(f"insert into services_offered (services_offered, value, hotel_id) values ('{service_type}', '{service_value}', '{hotel_id}')")
+            for neighborhood_structure in neighborhood_structures:
+                name = neighborhood_structure['type']
+                structure_type = neighborhood_structure['structure_type']
+                distance = neighborhood_structure['distance']
+                connection.execute(f"insert into services_offered (neighborhood_structure, structure_type, distance) values ('{name}', '{structure_type}', '{distance}')")
 
     session.close()
 
@@ -155,16 +155,12 @@ def main(parse_new_data: bool):
     date_out = NEXT_WEEK
 
     if parse_new_data:
-        hotels_info = get_info(country, off_set, date_in, date_out)
-        save_data_to_json(hotels_info, country)
-    else:
-        hotels_info = get_data_from_json()
+        get_info(country, off_set, date_in, date_out)
 
     # Получаем координаты и рисуем карту
-    coords = get_coords(hotels_info)
-    draw_map_by_coords(coords, 'DisplayAllHotels')
-
-    schedule_quantity_rating(hotels_info)
+    # coords = get_coords(hotels_info)
+    # draw_map_by_coords(coords, 'DisplayAllHotels')
+    # schedule_quantity_rating(hotels_info)
 
 
 if __name__ == "__main__":

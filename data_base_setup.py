@@ -31,7 +31,9 @@ class neighborhood_structures(hotels):
     __tablename__ = 'neighborhood_structures'
     neighborhood_structures_id = Column(Integer, primary_key=True)
     hotel_id = Column(Integer, ForeignKey('hotels.hotel_id'))
-    neighborhood_structures = Column(String(100), nullable=True)
+    neighborhood_structure = Column(String(100), nullable=True)
+    structure_type = Column(String(1000), nullable=False)
+    distance = Column(String(100), nullable=False)
 
 
 class services_offered(hotels):
