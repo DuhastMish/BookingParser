@@ -1,5 +1,7 @@
-from data_base_setup import DBEngine
+from data_base_setup import DBEngine  # noqa:D100
+
 DATABASE = DBEngine
+
 
 def get_years_opening_hotels():
     dates = []

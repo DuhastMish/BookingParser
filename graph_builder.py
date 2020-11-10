@@ -1,5 +1,5 @@
-from typing import Dict, List  # noqa:D100
-from collections import Counter
+from collections import Counter  # noqa:D100
+from typing import Dict, List
 
 import matplotlib.pyplot as plt
 
@@ -19,7 +19,8 @@ def schedule_quantity_rating(results: List[List[Dict]]):
     plt.xlabel('Hotel rating')
     plt.show()
 
-def diagramma_open_hotels(years):
+
+def diagram_open_hotels(years):
     years = sorted(years)
     count_year = Counter(years)
     years = []
@@ -33,4 +34,3 @@ def diagramma_open_hotels(years):
     plt.ylabel('Count of hotels')
     plt.xlabel('Opening year')
     plt.show()
-    

@@ -1,4 +1,5 @@
-from sqlalchemy import Column, ForeignKey, Integer, String, Float, create_engine   # noqa:D100
+from sqlalchemy import (Column, Float, ForeignKey, Integer,  # noqa:D100
+                        String, create_engine)
 from sqlalchemy.ext.declarative import declarative_base
 
 Base = declarative_base()
@@ -44,6 +45,22 @@ class services_offered(hotels):
     hotel_id = Column(Integer, ForeignKey('hotels.hotel_id'))
     services_offered = Column(String(100), nullable=False)
     value = Column(String(1000), nullable=False)
+
+
+class extended_rating(hotels):
+    __tablename__ = 'extended_rating'
+    extended_rating_id = Column(Integer, primary_key=True)
+    hotel_id = Column(Integer, ForeignKey('hotels.hotel_id'))
+    rating_name = Column(String(100), nullable=False)
+    rating_value = Column(Float, nullable=False)
+
+
+class review_rating(hotels):
+    __tablename__ = 'review_rating'
+    review_rating_id = Column(Integer, primary_key=True)
+    hotel_id = Column(Integer, ForeignKey('hotels.hotel_id'))
+    review_rating_name = Column(String(100), nullable=False)
+    review_rating_count = Column(Integer, nullable=False)
 
 
 DBEngine = create_engine('sqlite:///hotels.db', echo=False)

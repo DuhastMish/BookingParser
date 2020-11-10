@@ -20,7 +20,7 @@ class BookingParser:  # noqa:D100
         if hotel.select_one("span.sr-hotel__name") is None:
             return ''
         else:
-            return hotel.select_one("span.sr-hotel__name").text.strip()
+            return hotel.select_one("span.sr-hotel__name").text.strip().replace("'", '')
 
     def rating(self, hotel):
         """Возвращает рейтинг отеля."""
@@ -143,35 +143,31 @@ class BookingParser:  # noqa:D100
         return neighborhood_list
 
     def extended_rating(self, soup):
-        rating_list = []
-
+        extended_rating = {}
         if soup.select_one('div.v2_review-scores__body.v2_review-scores__body--compared_to_average') is None:
-            rating_list = []
-        else:
             extended_rating = {}
+        else:
+
             for rating in soup.select_one(
                 'div.v2_review-scores__body.v2_review-scores__body--compared_to_average').findAll(
                     'li', {"class": "v2_review-scores__subscore"}):
                 rating_name = rating.find("div", {"class": "c-score-bar"}).contents[0].text.strip()
                 rating_score = rating.find("div", {"class": "c-score-bar"}).contents[1].text
                 extended_rating[rating_name] = rating_score
-            rating_list.append(extended_rating)
-        return rating_list
+        return extended_rating
 
     def review_rating(self, soup):
-        reviews = []
+        reviews_rating = {}
         if soup.select_one('div.scores_full_layout') is None:
-            reviews = []
-        else:
             reviews_rating = {}
+        else:
             for review_rating in soup.select_one('div.scores_full_layout').findAll(
                     'li', {"class": "clearfix"}):
                 rating_class = review_rating.find("p", {"class": "review_score_name"}).text.strip()
                 rating_score = review_rating.find("p", {"class": "review_score_value"}).text.strip()
                 reviews_rating[rating_class] = rating_score
-            reviews.append(reviews_rating)
 
-        return reviews
+        return reviews_rating
 
     def open_hotel_date(self, soup):
         if soup.select_one('span.hp-desc-highlighted') is None:

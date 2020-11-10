@@ -1,49 +1,26 @@
 import argparse  # noqa:D100
 import datetime
-import json
 import logging
 import re
-from pathlib import Path
-from typing import Dict, List, Optional
 
 import requests
 from bs4 import BeautifulSoup
 from tqdm import tqdm
 
 from booking_parser import BookingParser
-from draw_map import draw_map_by_coords, get_coords
-from graph_builder import schedule_quantity_rating, diagramma_open_hotels
-from data_base_setup import DBEngine
 from data_base_operation import get_years_opening_hotels
+from data_base_setup import DBEngine
+# from draw_map import draw_map_by_coords, get_coords
+from graph_builder import diagram_open_hotels
 
 session = requests.Session()
 REQUEST_HEADER = {
-    "User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.75 Safari/537.36"}
+    "User-Agent": ("Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 "
+                   "(KHTML, like Gecko) Chrome/50.0.2661.75 Safari/537.36")}
 TODAY = datetime.datetime.now()
-NEXT_WEEK = TODAY + datetime.timedelta(7)
+NEXT_WEEK = TODAY + datetime.timedelta(1)
 BOOKING_PREFIX = 'https://www.booking.com'
 DATABASE = DBEngine
-
-
-def get_data_from_json(file_name: Optional[str] = None):
-    """Закидование данных с файла в программу."""
-    if file_name is None:
-        path = Path(__file__).parent
-        json_files_path = path.glob('*.json')
-        file_name = max((path.stat().st_mtime, path.name) for path in json_files_path)[1]
-        # last_changes_time = datetime.datetime.fromtimestamp(last_changes_time)
-
-    with open(file_name, 'r', encoding="utf-8") as f:
-        hotel_information = json.load(f)
-
-    return hotel_information
-
-
-def save_data_to_json(results: List[List[Dict]], country: str) -> None:
-    """Запись в файл."""
-    date = TODAY.strftime("%Y-%m-%d-%H.%M.%S")
-    with open('booking_{country}_{date}.json'.format(country=country, date=date), 'w', encoding="utf-8") as f:
-        json.dump(results, f, ensure_ascii=False, indent=4)
 
 
 def get_max_offset(soup: BeautifulSoup):
@@ -105,7 +82,6 @@ def get_info(country: str, off_set: int, date_in: datetime.datetime, date_out: d
 def parsing_data(session: requests.Session, country: str, date_in: datetime.datetime,
                  date_out: datetime.datetime, off_set: int):
     """Собирает информацию по конкретному отелю."""
-
     data_url = create_link(country, off_set, date_in, date_out)
     response = session.get(data_url, headers=REQUEST_HEADER)
     soup = BeautifulSoup(response.text, "lxml")
@@ -129,13 +105,13 @@ def parsing_data(session: requests.Session, country: str, date_in: datetime.date
             neighborhood_structures = parser.neighborhood_structures(hotel_html)
             services_offered = parser.offered_services(hotel_html)
             open_date = parser.open_hotel_date(hotel_html)
-            # TODO: Присобачить в новую таблицу.
             extended_rating = parser.extended_rating(hotel_html)
             reviews = parser.review_rating(hotel_html)
 
         with DATABASE.begin() as connection:
             connection.execute(
-                f"insert into hotels (name, score, price, image, link, city, open_date) values ('{name}', '{rating}', '{price}', '{image}', '{link}', '{city}', '{open_date}')")
+                "insert into hotels (name, score, price, image, link, city, open_date) "
+                f"values ('{name}', '{rating}', '{price}', '{image}', '{link}', '{city}', '{open_date}')")
             connection.execute(
                 f"insert into coordinates (latitude, longitude) values ('{latitude}', '{longitude}')")
             connection.execute(
@@ -143,17 +119,31 @@ def parsing_data(session: requests.Session, country: str, date_in: datetime.date
             hotel_id = connection.execute(
                 "SELECT hotel_id FROM hotels WHERE hotel_id = (SELECT MAX(hotel_id)  FROM hotels)")
             hotel_id = hotel_id.fetchone()[0]
+
             for service_offered in services_offered:
                 service_type = service_offered['type']
                 service_value = ', '.join(service_offered['value'])
                 connection.execute(
-                    f"insert into services_offered (services_offered, value, hotel_id) values ('{service_type}', '{service_value}', '{hotel_id}')")
+                    "insert into services_offered (services_offered, value, hotel_id) "
+                    f"values ('{service_type}', '{service_value}', '{hotel_id}')")
+
             for neighborhood_structure in neighborhood_structures:
                 name = neighborhood_structure['type']
                 structure_type = neighborhood_structure['structure_type']
                 distance = neighborhood_structure['distance']
                 connection.execute(
-                    f"insert into services_offered (neighborhood_structure, structure_type, distance) values ('{name}', '{structure_type}', '{distance}')")
+                    "insert into services_offered (neighborhood_structure, structure_type, distance) "
+                    f"values ('{name}', '{structure_type}', '{distance}')")
+
+            for rating_name, rating_value in extended_rating.items():
+                connection.execute(
+                    "insert into extended_rating (hotel_id, rating_name, rating_value) "
+                    f"values ('{hotel_id}', '{rating_name}', '{rating_value}')")
+
+            for review_name, review_count in reviews.items():
+                connection.execute(
+                    "insert into review_rating (hotel_id, review_rating_name, review_rating_count) "
+                    f"values ('{hotel_id}', '{review_name}', '{review_count}')")
 
     session.close()
 
@@ -173,7 +163,8 @@ def main(parse_new_data: bool):
     # draw_map_by_coords(coords, 'DisplayAllHotels')
     # schedule_quantity_rating(hotels_info)
     years = get_years_opening_hotels()
-    diagramma_open_hotels(years)
+    diagram_open_hotels(years)
+
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
