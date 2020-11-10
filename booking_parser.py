@@ -179,7 +179,7 @@ class BookingParser:  # noqa:D100
                 date = open_date_text[index+3:].replace('.', '')
                 day, month, year = date.split(' ')
                 month = RU_MONTH_VALUES[month[0:3]]
-                date = '.'.join([day, month, year])
+                date = '/'.join([day, month, year])
                 return date
             else:
                 return ''

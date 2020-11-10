@@ -4,7 +4,7 @@ import gmplot
 
 
 def get_coords(hotels_info: list) -> List:
-    """Получает координаты для отелей."""
+    """Get coordinates for hotels."""
     hotels_coordinates = []
 
     for page in hotels_info:
@@ -21,7 +21,7 @@ def get_coords(hotels_info: list) -> List:
 
 
 def draw_map_by_coords(coords: list, task: str) -> None:
-    """Рисует карту с метками по заданным координатам."""
+    """Draw a map with labels at the given coordinates."""
     gmap = gmplot.GoogleMapPlotter(coords[0]['coordinates']['latitude'], coords[0]['coordinates']['latitude'], 5)
 
     for el in coords:

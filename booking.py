@@ -24,7 +24,7 @@ DATABASE = DBEngine
 
 
 def get_max_offset(soup: BeautifulSoup):
-    """Получает количество страниц с отелями."""
+    """Get the number of hotel pages."""
     all_offset = []
     if soup.find_all('div', {'class': 'sr_header'}) is not None:
         all_offset = soup.find_all('div', {'class': 'sr_header'})[-1].get_text().strip().replace(u'\xa0', '')
@@ -33,7 +33,7 @@ def get_max_offset(soup: BeautifulSoup):
 
 
 def create_link(country: str, off_set: int, date_in: datetime.datetime, date_out: datetime.datetime) -> str:
-    """Создание ссылки для сбора данных."""
+    """Create a link to collect data."""
     month_in = date_in.month
     day_in = date_in.day
     year_in = date_in.year
@@ -66,7 +66,7 @@ def create_link(country: str, off_set: int, date_in: datetime.datetime, date_out
 
 
 def get_info(country: str, off_set: int, date_in: datetime.datetime, date_out: datetime.datetime):
-    """Получает данные по ссылке."""
+    """Receives data by link."""
     url = create_link(country, off_set, date_in, date_out)
     response = session.get(url, headers=REQUEST_HEADER)
     soup = BeautifulSoup(response.text, "lxml")
@@ -81,7 +81,7 @@ def get_info(country: str, off_set: int, date_in: datetime.datetime, date_out: d
 
 def parsing_data(session: requests.Session, country: str, date_in: datetime.datetime,
                  date_out: datetime.datetime, off_set: int):
-    """Собирает информацию по конкретному отелю."""
+    """Gather information about a specific hotel."""
     data_url = create_link(country, off_set, date_in, date_out)
     response = session.get(data_url, headers=REQUEST_HEADER)
     soup = BeautifulSoup(response.text, "lxml")
@@ -102,54 +102,57 @@ def parsing_data(session: requests.Session, country: str, date_in: datetime.date
             latitude = parser.coordinates(hotel_html)[0]
             longitude = parser.coordinates(hotel_html)[1]
             important_facilities = ', '.join(parser.important_facilites(hotel_html))
+            # TODO: Всегда пустой
             neighborhood_structures = parser.neighborhood_structures(hotel_html)
             services_offered = parser.offered_services(hotel_html)
             open_date = parser.open_hotel_date(hotel_html)
             extended_rating = parser.extended_rating(hotel_html)
             reviews = parser.review_rating(hotel_html)
-
-        with DATABASE.begin() as connection:
-            connection.execute(
-                "insert into hotels (name, score, price, image, link, city, open_date) "
-                f"values ('{name}', '{rating}', '{price}', '{image}', '{link}', '{city}', '{open_date}')")
-            connection.execute(
-                f"insert into coordinates (latitude, longitude) values ('{latitude}', '{longitude}')")
-            connection.execute(
-                f"insert into important_facilities (important_facilities) values ('{important_facilities}')")
-            hotel_id = connection.execute(
-                "SELECT hotel_id FROM hotels WHERE hotel_id = (SELECT MAX(hotel_id)  FROM hotels)")
-            hotel_id = hotel_id.fetchone()[0]
-
-            for service_offered in services_offered:
-                service_type = service_offered['type']
-                service_value = ', '.join(service_offered['value'])
+        try:
+            with DATABASE.begin() as connection:
                 connection.execute(
-                    "insert into services_offered (services_offered, value, hotel_id) "
-                    f"values ('{service_type}', '{service_value}', '{hotel_id}')")
-
-            for neighborhood_structure in neighborhood_structures:
-                name = neighborhood_structure['type']
-                structure_type = neighborhood_structure['structure_type']
-                distance = neighborhood_structure['distance']
+                    "insert into hotels (name, score, price, image, link, city, open_date) "
+                    f"values ('{name}', '{rating}', '{price}', '{image}', '{link}', '{city}', '{open_date}')")
                 connection.execute(
-                    "insert into services_offered (neighborhood_structure, structure_type, distance) "
-                    f"values ('{name}', '{structure_type}', '{distance}')")
-
-            for rating_name, rating_value in extended_rating.items():
+                    f"insert into coordinates (latitude, longitude) values ('{latitude}', '{longitude}')")
                 connection.execute(
-                    "insert into extended_rating (hotel_id, rating_name, rating_value) "
-                    f"values ('{hotel_id}', '{rating_name}', '{rating_value}')")
+                    f"insert into important_facilities (important_facilities) values ('{important_facilities}')")
+                hotel_id = connection.execute(
+                    "SELECT hotel_id FROM hotels WHERE hotel_id = (SELECT MAX(hotel_id)  FROM hotels)")
+                hotel_id = hotel_id.fetchone()[0]
 
-            for review_name, review_count in reviews.items():
-                connection.execute(
-                    "insert into review_rating (hotel_id, review_rating_name, review_rating_count) "
-                    f"values ('{hotel_id}', '{review_name}', '{review_count}')")
+                for service_offered in services_offered:
+                    service_type = service_offered['type']
+                    service_value = ', '.join(service_offered['value'])
+                    connection.execute(
+                        "insert into services_offered (services_offered, value, hotel_id) "
+                        f"values ('{service_type}', '{service_value}', '{hotel_id}')")
+
+                for neighborhood_structure in neighborhood_structures:
+                    name = neighborhood_structure['type']
+                    structure_type = neighborhood_structure['structure_type']
+                    distance = neighborhood_structure['distance']
+                    connection.execute(
+                        "insert into services_offered (neighborhood_structure, structure_type, distance) "
+                        f"values ('{name}', '{structure_type}', '{distance}')")
+
+                for rating_name, rating_value in extended_rating.items():
+                    connection.execute(
+                        "insert into extended_rating (hotel_id, rating_name, rating_value) "
+                        f"values ('{hotel_id}', '{rating_name}', '{rating_value}')")
+
+                for review_name, review_count in reviews.items():
+                    connection.execute(
+                        "insert into review_rating (hotel_id, review_rating_name, review_rating_count) "
+                        f"values ('{hotel_id}', '{review_name}', '{review_count}')")
+        except Exception as e:
+            logging.warning(f"{TODAY.strftime('%H:%M:%S')}:: DB Error: {e}")
 
     session.close()
 
 
 def main(parse_new_data: bool):
-    """Главный метод по обработке данных."""
+    """The main method for data processing."""
     date_in = TODAY
     country = "Russia"
     off_set = 1000
