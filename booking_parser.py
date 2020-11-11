@@ -110,7 +110,8 @@ class BookingParser:  # noqa:D100
         """Возвращает ближайщие достопримечательности."""
         neighborhood_list = []
 
-        if soup.select_one('div.hp_location_block__content_container.hp-poi-content-container--column') is None:
+        if soup.select_one(
+                'div.hp_location_block__content_container.hp-poi-content-container--column') is None:
             neighborhood_list = []
         else:
             for neighborhood in soup.select_one(
@@ -119,7 +120,8 @@ class BookingParser:  # noqa:D100
                 neighborhood_structures = {}
 
                 if neighborhood.find("div", {"class": "bui-list__description"}).contents[0].strip() == '':
-                    # neighborhood_structures['name'] = neighborhood.find("div", {"class": "bui-list__description"}).span.text.strip()
+                    # neighborhood_structures['name'] = neighborhood.find(
+                    #   "div", {"class": "bui-list__description"}).span.text.strip()
                     neighborhood_structures['name'] = neighborhood.find(
                         "div", {"class": "bui-list__description"}).contents[-1].strip()
                 else:
