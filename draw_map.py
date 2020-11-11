@@ -1,32 +1,16 @@
-from typing import List  # noqa:D100
-
+from data_base_operation import get_hotels_coordinates  # noqa:D100
 import gmplot
 
 
-def get_coords(hotels_info: list) -> List:
-    """Get coordinates for hotels."""
-    hotels_coordinates = []
-
-    for page in hotels_info:
-        for hotel in page:
-            hotels_coordinates.append({
-                'name': hotel['name'],
-                'coordinates': {
-                    'latitude': hotel['details']['coordinates']['latitude'],
-                    'longitude': hotel['details']['coordinates']['longitude'],
-                },
-            })
-
-    return hotels_coordinates
-
-
-def draw_map_by_coords(coords: list, task: str) -> None:
+def draw_map_by_coords(map_name: str) -> None:
     """Draw a map with labels at the given coordinates."""
-    gmap = gmplot.GoogleMapPlotter(coords[0]['coordinates']['latitude'], coords[0]['coordinates']['latitude'], 5)
+    coordinates = get_hotels_coordinates()
+    gmap = gmplot.GoogleMapPlotter(coordinates[0][1], coordinates[0][2], 5)
 
-    for el in coords:
-        ltd = float(el['coordinates']['latitude'])
-        lgd = float(el['coordinates']['longitude'])
-        gmap.marker(ltd, lgd)
+    for hotel_coordinate in coordinates:
+        hotel_name, latitude, longitude = hotel_coordinate
+        latitude = float(latitude)
+        longitude = float(longitude)
+        gmap.marker(latitude, longitude)
 
-    gmap.draw('map{0}.html'.format(task))
+    gmap.draw('map{0}.html'.format(map_name))

@@ -27,7 +27,7 @@ class BookingParser:  # noqa:D100
         if hotel.select_one("div.bui-review-score__badge") is None:
             return ''
         else:
-            return hotel.select_one("div.bui-review-score__badge").text.strip()
+            return hotel.select_one("div.bui-review-score__badge").text.strip().replace(',', '.')
 
     def city(self, hotel):
         """Возвращает город отеля."""
@@ -123,10 +123,10 @@ class BookingParser:  # noqa:D100
                     # neighborhood_structures['name'] = neighborhood.find(
                     #   "div", {"class": "bui-list__description"}).span.text.strip()
                     neighborhood_structures['name'] = neighborhood.find(
-                        "div", {"class": "bui-list__description"}).contents[-1].strip()
+                        "div", {"class": "bui-list__description"}).contents[-1].strip().replace("'", '')
                 else:
                     neighborhood_structures['name'] = neighborhood.find(
-                        "div", {"class": "bui-list__description"}).contents[-1].strip()
+                        "div", {"class": "bui-list__description"}).contents[-1].strip().replace("'", '')
 
                 try:
                     neighborhood_structures['structure_type'] = neighborhood.find(

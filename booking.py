@@ -8,10 +8,10 @@ from bs4 import BeautifulSoup
 from tqdm import tqdm
 
 from booking_parser import BookingParser
-from data_base_operation import get_years_opening_hotels
+from data_base_operation import get_years_opening_hotels, get_hotels_rating
 from data_base_setup import DBEngine
-# from draw_map import draw_map_by_coords, get_coords
-from graph_builder import diagram_open_hotels
+from draw_map import draw_map_by_coords
+from graph_builder import diagram_open_hotels, schedule_quantity_rating
 
 session = requests.Session()
 REQUEST_HEADER = {
@@ -115,7 +115,8 @@ def parsing_data(session: requests.Session, country: str, date_in: datetime.date
                 connection.execute(
                     f"insert into coordinates (latitude, longitude) values ('{latitude}', '{longitude}')")
                 connection.execute(
-                    f"insert into important_facilities (important_facilities) values ('{important_facilities}')")
+                    "insert into important_facilities (important_facilities) "
+                    f"values ('{important_facilities}')")
                 hotel_id = connection.execute(
                     "SELECT hotel_id FROM hotels WHERE hotel_id = (SELECT MAX(hotel_id)  FROM hotels)")
                 hotel_id = hotel_id.fetchone()[0]
@@ -132,7 +133,8 @@ def parsing_data(session: requests.Session, country: str, date_in: datetime.date
                     structure_type = neighborhood_structure['structure_type']
                     distance = neighborhood_structure['distance']
                     connection.execute(
-                        "insert into neighborhood_structures (neighborhood_structure, structure_type, distance) "
+                        "insert into neighborhood_structures "
+                        "(neighborhood_structure, structure_type, distance) "
                         f"values ('{name}', '{structure_type}', '{distance}')")
 
                 for rating_name, rating_value in extended_rating.items():
@@ -161,9 +163,11 @@ def main(parse_new_data: bool):
         get_info(country, off_set, date_in, date_out)
 
     # Получаем координаты и рисуем карту
-    # coords = get_coords(hotels_info)
-    # draw_map_by_coords(coords, 'DisplayAllHotels')
-    # schedule_quantity_rating(hotels_info)
+    draw_map_by_coords('DisplayAllHotels')
+
+    rating = get_hotels_rating()
+    schedule_quantity_rating(rating)
+
     years = get_years_opening_hotels()
     diagram_open_hotels(years)
 
