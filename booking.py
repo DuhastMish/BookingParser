@@ -23,7 +23,7 @@ BOOKING_PREFIX = 'https://www.booking.com'
 DATABASE = DBEngine
 
 
-def get_max_offset(soup: BeautifulSoup):
+def get_max_offset(soup: BeautifulSoup) -> int:
     """Get the number of hotel pages."""
     all_offset = []
     if soup.find_all('div', {'class': 'sr_header'}) is not None:
@@ -65,7 +65,7 @@ def create_link(country: str, off_set: int, date_in: datetime.datetime, date_out
     return url
 
 
-def get_info(country: str, off_set: int, date_in: datetime.datetime, date_out: datetime.datetime):
+def get_info(country: str, off_set: int, date_in: datetime.datetime, date_out: datetime.datetime) -> None:
     """Receives data by link."""
     url = create_link(country, off_set, date_in, date_out)
     response = session.get(url, headers=REQUEST_HEADER)
@@ -80,21 +80,21 @@ def get_info(country: str, off_set: int, date_in: datetime.datetime, date_out: d
 
 
 def parsing_data(session: requests.Session, country: str, date_in: datetime.datetime,
-                 date_out: datetime.datetime, off_set: int):
+                 date_out: datetime.datetime, off_set: int) -> None:
     """Gather information about a specific hotel."""
     data_url = create_link(country, off_set, date_in, date_out)
     response = session.get(data_url, headers=REQUEST_HEADER)
     soup = BeautifulSoup(response.text, "lxml")
-    parser = BookingParser()
     hotels = soup.select("#hotellist_inner div.sr_item.sr_item_new")
 
     for hotel in tqdm(hotels):
-        name = parser.name(hotel)
-        rating = parser.rating(hotel)
-        price = parser.price(hotel)
-        image = parser.image(hotel)
-        link = parser.detail_link(hotel)
-        city = parser.city(hotel)
+        parser = BookingParser(hotel)
+        name = parser.name()
+        rating = parser.rating()
+        price = parser.price()
+        image = parser.image()
+        link = parser.detail_link()
+        city = parser.city()
 
         if link is not None:
             detail_page_response = session.get(BOOKING_PREFIX + link, headers=REQUEST_HEADER)
@@ -152,8 +152,7 @@ def parsing_data(session: requests.Session, country: str, date_in: datetime.date
     session.close()
 
 
-def main(parse_new_data: bool):
-    """The main method for data processing."""
+def main(parse_new_data: bool) -> None:  # noqa:D100
     date_in = TODAY
     country = "Russia"
     off_set = 1000
@@ -162,7 +161,6 @@ def main(parse_new_data: bool):
     if parse_new_data:
         get_info(country, off_set, date_in, date_out)
 
-    # Получаем координаты и рисуем карту
     draw_map_by_coords('DisplayAllHotels')
 
     rating = get_hotels_rating()

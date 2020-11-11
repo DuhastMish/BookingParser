@@ -5,6 +5,7 @@ DATABASE = DBEngine
 
 
 def get_years_opening_hotels():
+    """Get hotels registration year in booking.com"""
     dates = []
     with DATABASE.begin() as connection:
         open_dates = connection.execute("SELECT open_date FROM hotels")
@@ -13,6 +14,7 @@ def get_years_opening_hotels():
 
 
 def get_hotels_coordinates() -> List[Tuple]:
+    """Get the coordination of hotels like (hotel_name, latitude, longitude)."""
     coordinates = []
     with DATABASE.begin() as connection:
         open_dates = connection.execute(
@@ -24,6 +26,7 @@ def get_hotels_coordinates() -> List[Tuple]:
 
 
 def get_hotels_rating() -> List[float]:
+    """Get all hotel ratings."""
     ratings = []
     with DATABASE.begin() as connection:
         open_dates = connection.execute(

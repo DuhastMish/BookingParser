@@ -14,49 +14,54 @@ RU_MONTH_VALUES = {
 }
 
 
-class BookingParser:  # noqa:D100
-    def name(self, hotel):
+class BookingParser:  # noqa
+    def __init__(self, hotel):  # noqa
+        self.hotel = hotel
+
+    def name(self):
         """Возвращает имя отеля."""
-        if hotel.select_one("span.sr-hotel__name") is None:
+        if self.hotel.select_one("span.sr-hotel__name") is None:
             return ''
         else:
-            return hotel.select_one("span.sr-hotel__name").text.strip().replace("'", '')
+            return self.hotel.select_one("span.sr-hotel__name").text.strip().replace("'", '')
 
-    def rating(self, hotel):
+    def rating(self):
         """Возвращает рейтинг отеля."""
-        if hotel.select_one("div.bui-review-score__badge") is None:
+        if self.hotel.select_one("div.bui-review-score__badge") is None:
             return ''
         else:
-            return hotel.select_one("div.bui-review-score__badge").text.strip().replace(',', '.')
+            return self.hotel.select_one("div.bui-review-score__badge").text.strip().replace(',', '.')
 
-    def city(self, hotel):
+    def city(self):
         """Возвращает город отеля."""
-        if hotel.select_one("div.sr_card_address_line") is None:
+        if self.hotel.select_one("div.sr_card_address_line") is None:
             return ''
         else:
-            return hotel.select_one("div.sr_card_address_line").text.strip().split('\n')[0]
+            return self.hotel.select_one(
+                "div.sr_card_address_line").text.strip().split('\n')[0].replace("'", '')
 
-    def price(self, hotel):
+    def price(self):
         """Возвращает даты на выбранные период времени."""
-        if hotel.select_one("div.bui-price-display__value.prco-inline-block-maker-helper") is None:
+        if self.hotel.select_one("div.bui-price-display__value.prco-inline-block-maker-helper") is None:
             return ''
         else:
-            return hotel.select_one("div.bui-price-display__value.prco-inline-block-maker-helper"
-                                    ).text.strip()[:-5].replace(" ", "")
+            return self.hotel.select_one(
+                "div.bui-price-display__value.prco-inline-block-maker-helper"
+                ).text.strip()[:-5].replace(" ", "")
 
-    def detail_link(self, hotel):
+    def detail_link(self):
         """Возвращает ссылку на отель."""
-        if hotel.select_one(".txp-cta.bui-button.bui-button--primary.sr_cta_button") is None:
+        if self.hotel.select_one(".txp-cta.bui-button.bui-button--primary.sr_cta_button") is None:
             return ''
         else:
-            return hotel.select_one(".txp-cta.bui-button.bui-button--primary.sr_cta_button")['href']
+            return self.hotel.select_one(".txp-cta.bui-button.bui-button--primary.sr_cta_button")['href']
 
-    def image(self, hotel):
+    def image(self):
         """Возвращает ссылку на изображение отеля."""
-        if hotel.select_one("img.hotel_image") is None:
+        if self.hotel.select_one("img.hotel_image") is None:
             return ''
         else:
-            return hotel.select_one("img.hotel_image")['src']
+            return self.hotel.select_one("img.hotel_image")['src']
 
     def coordinates(self, soup):
         """Получает координаты отеля."""
