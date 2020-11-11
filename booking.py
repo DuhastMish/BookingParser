@@ -8,7 +8,8 @@ from bs4 import BeautifulSoup
 from tqdm import tqdm
 
 from booking_parser import BookingParser
-from data_base_operation import get_years_opening_hotels, get_hotels_rating
+from data_base_operation import (get_hotels_rating, get_years_opening_hotels,
+                                 remove_extra_rows_by_name)
 from data_base_setup import DBEngine
 from draw_map import draw_map_by_coords
 from graph_builder import diagram_open_hotels, schedule_quantity_rating
@@ -160,6 +161,8 @@ def main(parse_new_data: bool) -> None:  # noqa:D100
 
     if parse_new_data:
         get_info(country, off_set, date_in, date_out)
+
+    remove_extra_rows_by_name()
 
     draw_map_by_coords('DisplayAllHotels')
 

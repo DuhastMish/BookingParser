@@ -1,5 +1,6 @@
-from data_base_operation import get_hotels_coordinates  # noqa:D100
-import gmplot
+import gmplot  # noqa:D100
+
+from data_base_operation import get_hotels_coordinates
 
 
 def draw_map_by_coords(map_name: str) -> None:
