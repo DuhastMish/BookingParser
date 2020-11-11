@@ -5,25 +5,54 @@ Parser of hotels from Russian booking, which collects information in SQLAlchemy.
 ## Collected data.
 Collected data for Russian hotels:
 ### Table "hotels"
-Name
-Rating
-Price
-Link to image thumbnail
-Hotel link
-City
-Registration date on booking
+| column_name  | Description |
+| ------------- | ------------- |
+| hotel_id  | Hotel id (Primary key)  |
+| name  | Name  |
+| score   | Rating  |
+| price  | Price  |
+| image  | Link to image thumbnail  |
+| link   | Hotel link  |
+| name  | Name  |
+| city   | City  |
+| open_date  | Registration date on booking  |
+
 ### Table "coordinates"
-Hotel coordinates (latitude and longitude)
+| column_name  | Description |
+| ------------- | ------------- |
+| hotel_id  | Hotel id   |
+| latitude   | Latitude  |
+| longitude  | Longitude  |
 ### Table "extended_rating"
-Extended rating (for example, rating for cleanliness, staff and others)
+| column_name  | Description |
+| ------------- | ------------- |
+| hotel_id  | Hotel id  |
+| rating_name  | Rating name  |
+| rating_value   | Rating  |
 ### Table "important_facilities"
-Most popular services
+| column_name  | Description |
+| ------------- | ------------- |
+| hotel_id  | Hotel id  |
+| important_facilities  | A string with all popular services  |
 ### Table "neighborhood_structures"
-Nearest district structures (with distance and type)
+| column_name  | Description |
+| ------------- | ------------- |
+| hotel_id  | Hotel id  |
+| neighborhood_structure  | Structure name  |
+| structure_type   | Structure type  |
+| distance   | Distance from hotel  |
 ### Table "review_rating"
-Number of reviews with different ratings
+| column_name  | Description |
+| ------------- | ------------- |
+| hotel_id  | Hotel id  |
+| rating_name  | Rating interval  |
+| review_rating_count   | Number of reviews  |
 ### Table "services_offered"
-Services offered (room type and service offered for this room)
+| column_name  | Description |
+| ------------- | ------------- |
+| hotel_id  | Hotel id  |
+| services_offered  | Service offered name  |
+| value   | The main amenities of this service  |
 
 ## Installation.
 
