@@ -102,7 +102,6 @@ def parsing_data(session: requests.Session, country: str, date_in: datetime.date
             latitude = parser.coordinates(hotel_html)[0]
             longitude = parser.coordinates(hotel_html)[1]
             important_facilities = ', '.join(parser.important_facilites(hotel_html))
-            # TODO: Всегда пустой
             neighborhood_structures = parser.neighborhood_structures(hotel_html)
             services_offered = parser.offered_services(hotel_html)
             open_date = parser.open_hotel_date(hotel_html)
@@ -129,11 +128,11 @@ def parsing_data(session: requests.Session, country: str, date_in: datetime.date
                         f"values ('{service_type}', '{service_value}', '{hotel_id}')")
 
                 for neighborhood_structure in neighborhood_structures:
-                    name = neighborhood_structure['type']
+                    name = neighborhood_structure['name']
                     structure_type = neighborhood_structure['structure_type']
                     distance = neighborhood_structure['distance']
                     connection.execute(
-                        "insert into services_offered (neighborhood_structure, structure_type, distance) "
+                        "insert into neighborhood_structures (neighborhood_structure, structure_type, distance) "
                         f"values ('{name}', '{structure_type}', '{distance}')")
 
                 for rating_name, rating_value in extended_rating.items():

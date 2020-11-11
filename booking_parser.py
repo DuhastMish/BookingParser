@@ -110,34 +110,35 @@ class BookingParser:  # noqa:D100
         """Возвращает ближайщие достопримечательности."""
         neighborhood_list = []
 
-        if soup.select_one('div.hp-poi-content-container.hp-poi-content-container--column.clearfix') is None:
+        if soup.select_one('div.hp_location_block__content_container.hp-poi-content-container--column') is None:
             neighborhood_list = []
         else:
             for neighborhood in soup.select_one(
-                    'div.hp-poi-content-container.hp-poi-content-container--column.clearfix').findAll(
+                    'div.hp_location_block__content_container.hp-poi-content-container--column').findAll(
                         'li', {"class": "bui-list__item"}):
                 neighborhood_structures = {}
 
-                if neighborhood.find("div", {"class": "hp-poi-list__description"}).contents[0].strip() == '':
+                if neighborhood.find("div", {"class": "bui-list__description"}).contents[0].strip() == '':
+                    # neighborhood_structures['name'] = neighborhood.find("div", {"class": "bui-list__description"}).span.text.strip()
                     neighborhood_structures['name'] = neighborhood.find(
-                        "div", {"class": "hp-poi-list__description"}).span.text.strip()
+                        "div", {"class": "bui-list__description"}).contents[-1].strip()
                 else:
                     neighborhood_structures['name'] = neighborhood.find(
-                        "div", {"class": "hp-poi-list__description"}).contents[0].strip()
+                        "div", {"class": "bui-list__description"}).contents[-1].strip()
 
                 try:
                     neighborhood_structures['structure_type'] = neighborhood.find(
-                        "div", {"class": "hp-poi-list__body"}).select_one(
-                            "span.bui-badge.bui-badge--outline").text.strip()
+                        "div", {"class": "bui-list__body"}).select_one(
+                            "span.hp_location_block__section_list_key_tag").text.strip()
                 except AttributeError:
                     neighborhood_structures['structure_type'] = ''
 
                 try:
                     neighborhood_structures['distance'] = neighborhood.find(
-                        'span', {"class": "hp-poi-list__distance"}).text.strip()
+                        'div', {"class": "bui-list__body"}).select_one(
+                            "div.bui-list__item-action.hp_location_block__section_list_distance").text.strip()
                 except AttributeError:
                     neighborhood_structures['distance'] = ''
-
                 neighborhood_list.append(neighborhood_structures)
 
         return neighborhood_list
