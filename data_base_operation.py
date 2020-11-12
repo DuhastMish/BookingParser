@@ -17,11 +17,12 @@ def get_years_opening_hotels():
         open_dates = connection.execute("SELECT open_date FROM hotels")
         dates = open_dates.fetchall()
     years = []
+    
     for date in dates:
-        try:
-            day, month, year = date[0].split('/')
-        except Exception:
+        if not date[0]:
             continue
+        
+        day, month, year = date[0].split('/')
         years.append(year)
     return years
 
