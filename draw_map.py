@@ -10,8 +10,12 @@ def draw_map_by_coords(map_name: str) -> None:
 
     for hotel_coordinate in coordinates:
         hotel_name, latitude, longitude = hotel_coordinate
-        latitude = float(latitude)
-        longitude = float(longitude)
+        # if latitude and longitude:
+        try:
+            latitude = float(latitude)
+            longitude = float(longitude)
+        except Exception:
+            continue
         gmap.marker(latitude, longitude)
 
     gmap.draw('map{0}.html'.format(map_name))

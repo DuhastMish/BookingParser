@@ -153,9 +153,8 @@ def parsing_data(session: requests.Session, country: str, date_in: datetime.date
     session.close()
 
 
-def main(parse_new_data: bool) -> None:  # noqa:D100
+def main(parse_new_data: bool, country: str) -> None:  # noqa:D100
     date_in = TODAY
-    country = "Russia"
     off_set = 1000
     date_out = NEXT_WEEK
 
@@ -178,5 +177,8 @@ if __name__ == "__main__":
     parser.add_argument("--get-data",
                         action='store_true',
                         help='Used to parsing new data from booking.')
+    parser.add_argument("--country", "-c",
+                        help='Country for parsing.',
+                        default='Russia')
     args = parser.parse_args()
-    main(args.get_data)
+    main(args.get_data, args.country)

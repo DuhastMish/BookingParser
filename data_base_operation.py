@@ -16,7 +16,14 @@ def get_years_opening_hotels():
     with DATABASE.begin() as connection:
         open_dates = connection.execute("SELECT open_date FROM hotels")
         dates = open_dates.fetchall()
-    return [date[0].split('/')[2] for date in dates]
+    years = []
+    for date in dates:
+        try:
+            day, month, year = date[0].split('/')
+        except Exception:
+            continue
+        years.append(year)
+    return years
 
 
 def get_hotels_coordinates() -> List[Tuple]:
@@ -43,7 +50,6 @@ def get_hotels_rating() -> List[float]:
 
 
 def remove_extra_rows_by_name() -> None:
-    logging.warning("Removing extra rows...")
     with DATABASE.begin() as connection:
         hostels_id = connection.execute(
             "SELECT hotel_id, name "
@@ -55,4 +61,4 @@ def remove_extra_rows_by_name() -> None:
         for hotel_id, name in hotels_id:
             for table in TABLE_NAMES:
                 connection.execute(f"DELETE FROM {table} WHERE hotel_id == {hotel_id}")
-    logging.warning("Extra rows removed!")
+    logging.warning(f": {len(hotels_id)} Extra rows removed!")
