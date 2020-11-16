@@ -7,7 +7,7 @@ DATABASE = DBEngine
 
 TABLE_NAMES = ['hotels', 'coordinates', 'important_facilities',
                'neighborhood_structures', 'services_offered',
-               'extended_rating', 'review_rating']
+               'extended_rating', 'review_rating', 'apartaments']
 
 
 def get_years_opening_hotels():

@@ -17,6 +17,7 @@ class hotels(Base):
     open_date = Column(String(100), nullable=True)
     star = Column(Integer, nullable=False)
 
+
 class coordinates(hotels):
     __tablename__ = 'coordinates'
     hotel_id = Column(Integer, ForeignKey('hotels.hotel_id'), primary_key=True)

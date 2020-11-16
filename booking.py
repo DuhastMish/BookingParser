@@ -19,7 +19,7 @@ session = requests.Session()
 REQUEST_HEADER = {
     "User-Agent": ("Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 "
                    "(KHTML, like Gecko) Chrome/50.0.2661.75 Safari/537.36")}
-TODAY = datetime.datetime.now() + datetime.timedelta(40)
+TODAY = datetime.datetime.now() + datetime.timedelta(0)
 NEXT_WEEK = TODAY + datetime.timedelta(1)
 BOOKING_PREFIX = 'https://www.booking.com'
 DATABASE = DBEngine
@@ -116,7 +116,8 @@ def parsing_data(session: requests.Session, country: str, date_in: datetime.date
             with DATABASE.begin() as connection:
                 connection.execute(
                     "insert into hotels (name, score, price, image, link, city, open_date, star) "
-                    f"values ('{name}', '{rating}', '{price}', '{image}', '{link}', '{city}', '{open_date}', '{star}')")
+                    f"values ('{name}', '{rating}', '{price}', "
+                    f"'{image}', '{link}', '{city}', '{open_date}', '{star}')")
                 connection.execute(
                     f"insert into coordinates (latitude, longitude) values ('{latitude}', '{longitude}')")
                 connection.execute(
