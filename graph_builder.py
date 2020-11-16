@@ -20,6 +20,7 @@ def schedule_quantity_rating(rating: List):
     plt.xlabel('Hotel rating')
     fname = DATA_PATH / 'Number_of_hotels_by_rating'
     plt.savefig(fname)
+    plt.close()
 
 
 def diagram_open_hotels(years):
@@ -32,12 +33,16 @@ def diagram_open_hotels(years):
         years.append(int(year))
         counts.append(int(count))
 
+    print(years)
+    print(counts)
+    
     plt.bar(years, counts)
     plt.title('Hotel opening history histogram')
     plt.ylabel('Count of hotels')
     plt.xlabel('Opening year')
     fname = DATA_PATH / 'Number_of_hotels_by_year_of_registration_on_booking'
     plt.savefig(fname)
+    plt.close()
 
 
 def draw_map_by_coords(map_name: str) -> None:
