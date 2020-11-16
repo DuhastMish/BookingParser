@@ -32,9 +32,6 @@ def diagram_open_hotels(years):
     for year, count in count_year.items():
         years.append(int(year))
         counts.append(int(count))
-
-    print(years)
-    print(counts)
     
     plt.bar(years, counts)
     plt.title('Hotel opening history histogram')
