@@ -51,7 +51,7 @@ def create_link(country: str, off_set: int, date_in: datetime.datetime, date_out
           "&checkout_monthday={checkout_day}" \
           "&checkout_year={checkout_year}" \
           "&group_adults={group_adults}" \
-          "&group_children=0&order=price" \
+          "&group_children=0&order=popularity" \
           "&ss=%2C%20{country}" \
           "&offset={limit}".format(
             checkin_month=month_in,
@@ -99,7 +99,7 @@ def parsing_data(session: requests.Session, country: str, date_in: datetime.date
         image = parser.image()
         link = parser.detail_link()
         city = parser.city()
-
+        star = parser.star()
         if link is not None:
             detail_page_response = session.get(BOOKING_PREFIX + link, headers=REQUEST_HEADER)
             hotel_html = BeautifulSoup(detail_page_response.text, "lxml")
@@ -111,11 +111,12 @@ def parsing_data(session: requests.Session, country: str, date_in: datetime.date
             open_date = parser.open_hotel_date(hotel_html)
             extended_rating = parser.extended_rating(hotel_html)
             reviews = parser.review_rating(hotel_html)
+            apartaments = parser.apartaments(hotel_html)
         try:
             with DATABASE.begin() as connection:
                 connection.execute(
-                    "insert into hotels (name, score, price, image, link, city, open_date) "
-                    f"values ('{name}', '{rating}', '{price}', '{image}', '{link}', '{city}', '{open_date}')")
+                    "insert into hotels (name, score, price, image, link, city, open_date, star) "
+                    f"values ('{name}', '{rating}', '{price}', '{image}', '{link}', '{city}', '{open_date}', '{star}')")
                 connection.execute(
                     f"insert into coordinates (latitude, longitude) values ('{latitude}', '{longitude}')")
                 connection.execute(
@@ -150,6 +151,15 @@ def parsing_data(session: requests.Session, country: str, date_in: datetime.date
                     connection.execute(
                         "insert into review_rating (hotel_id, review_rating_name, review_rating_count) "
                         f"values ('{hotel_id}', '{review_name}', '{review_count}')")
+
+                for apartament in apartaments:
+                    name = apartament['name']
+                    apartaments_price = apartament['price']
+                    capacity = apartament['capacity']
+                    connection.execute(
+                        "insert into apartaments (hotel_id, apartaments_name, apartaments_price, hotel_beds) "
+                        f"values ('{hotel_id}', '{name}', '{apartaments_price}', '{capacity}')")
+
         except Exception as e:
             logging.warning(f"{TODAY.strftime('%H:%M:%S')}:: DB Error: {e}")
 

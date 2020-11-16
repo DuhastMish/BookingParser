@@ -15,7 +15,7 @@ class hotels(Base):
     link = Column(String(100), nullable=False)
     city = Column(String(100), nullable=False)
     open_date = Column(String(100), nullable=True)
-
+    star = Column(Integer, nullable=False)
 
 class coordinates(hotels):
     __tablename__ = 'coordinates'
@@ -61,6 +61,16 @@ class review_rating(hotels):
     hotel_id = Column(Integer, ForeignKey('hotels.hotel_id'))
     review_rating_name = Column(String(100), nullable=False)
     review_rating_count = Column(Integer, nullable=False)
+
+
+class apartaments(hotels):
+    __tablename__ = 'apartaments'
+    apartaments_id = Column(Integer, primary_key=True)
+    hotel_id = Column(Integer, ForeignKey('hotels.hotel_id'))
+    apartaments_name = Column(String(100), nullable=False)
+    apartaments_price = Column(String(100), nullable=False)
+    services_offered = Column(String(1000), nullable=True)
+    hotel_beds = Column(Integer, nullable=False)
 
 
 DBEngine = create_engine('sqlite:///hotels.db', echo=False)
