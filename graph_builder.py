@@ -53,5 +53,5 @@ def draw_map_by_coords(map_name: str) -> None:
         except Exception:
             continue
         gmap.marker(latitude, longitude)
-    fname = DATA_PATH / 'map{0}.html'.format(map_name)
+    fname = DATA_PATH / 'map_{0}.html'.format(map_name)
     gmap.draw(fname)
