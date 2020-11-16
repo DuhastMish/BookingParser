@@ -8,7 +8,7 @@ from bs4 import BeautifulSoup
 from tqdm import tqdm
 
 from booking_parser import BookingParser
-from data_base_operation import (get_existing_hotel, get_hotels_rating,
+from data_base_operation import (is_hotel_exist, get_hotels_rating,
                                  get_years_opening_hotels,
                                  remove_extra_rows_by_name, get_hotels_from_city)
 from data_base_setup import DBEngine
@@ -94,26 +94,25 @@ def parsing_data(session: requests.Session, country: str, date_in: datetime.date
     for hotel in tqdm(hotels):
         parser = BookingParser(hotel)
         name = parser.name()
-        if get_existing_hotel(name):
-            continue
         rating = parser.rating()
         price = parser.price()
         image = parser.image()
         link = parser.detail_link()
+        if is_hotel_exist(link):
+            continue
         city = parser.city()
         star = parser.star()
-        if link is not None:
-            detail_page_response = session.get(BOOKING_PREFIX + link, headers=REQUEST_HEADER)
-            hotel_html = BeautifulSoup(detail_page_response.text, "lxml")
-            latitude = parser.coordinates(hotel_html)[0]
-            longitude = parser.coordinates(hotel_html)[1]
-            important_facilities = ', '.join(parser.important_facilites(hotel_html))
-            neighborhood_structures = parser.neighborhood_structures(hotel_html)
-            services_offered = parser.offered_services(hotel_html)
-            open_date = parser.open_hotel_date(hotel_html)
-            extended_rating = parser.extended_rating(hotel_html)
-            reviews = parser.review_rating(hotel_html)
-            apartaments = parser.apartaments(hotel_html)
+        detail_page_response = session.get(BOOKING_PREFIX + link, headers=REQUEST_HEADER)
+        hotel_html = BeautifulSoup(detail_page_response.text, "lxml")
+        latitude = parser.coordinates(hotel_html)[0]
+        longitude = parser.coordinates(hotel_html)[1]
+        important_facilities = ', '.join(parser.important_facilites(hotel_html))
+        neighborhood_structures = parser.neighborhood_structures(hotel_html)
+        services_offered = parser.offered_services(hotel_html)
+        open_date = parser.open_hotel_date(hotel_html)
+        extended_rating = parser.extended_rating(hotel_html)
+        reviews = parser.review_rating(hotel_html)
+        apartaments = parser.apartaments(hotel_html)
         try:
             with DATABASE.begin() as connection:
                 connection.execute(

@@ -39,11 +39,11 @@ def get_hotels_coordinates() -> List[Tuple]:
     return coordinates
 
 
-def get_existing_hotel(name: str) -> List:
+def is_hotel_exist(link: str) -> List:
     """Check if hotel name exists in hotels table."""
     existing = ()
     with DATABASE.begin() as connection:
-        hotel_name = connection.execute(f"SELECT EXISTS(SELECT * FROM hotels WHERE name == '{name}')")
+        hotel_name = connection.execute(f"SELECT EXISTS(SELECT * FROM hotels WHERE link == '{link}')")
         existing = hotel_name.fetchone()
 
     return True if existing[0] == 1 else False
