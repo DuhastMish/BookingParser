@@ -102,17 +102,18 @@ def parsing_data(session: requests.Session, country: str, date_in: datetime.date
             continue
         city = parser.city()
         star = parser.star()
-        detail_page_response = session.get(BOOKING_PREFIX + link, headers=REQUEST_HEADER)
-        hotel_html = BeautifulSoup(detail_page_response.text, "lxml")
-        latitude = parser.coordinates(hotel_html)[0]
-        longitude = parser.coordinates(hotel_html)[1]
-        important_facilities = ', '.join(parser.important_facilites(hotel_html))
-        neighborhood_structures = parser.neighborhood_structures(hotel_html)
-        services_offered = parser.offered_services(hotel_html)
-        open_date = parser.open_hotel_date(hotel_html)
-        extended_rating = parser.extended_rating(hotel_html)
-        reviews = parser.review_rating(hotel_html)
-        apartaments = parser.apartaments(hotel_html)
+        if link is not None:
+            detail_page_response = session.get(BOOKING_PREFIX + link, headers=REQUEST_HEADER)
+            hotel_html = BeautifulSoup(detail_page_response.text, "lxml")
+            latitude = parser.coordinates(hotel_html)[0]
+            longitude = parser.coordinates(hotel_html)[1]
+            important_facilities = ', '.join(parser.important_facilites(hotel_html))
+            neighborhood_structures = parser.neighborhood_structures(hotel_html)
+            services_offered = parser.offered_services(hotel_html)
+            open_date = parser.open_hotel_date(hotel_html)
+            extended_rating = parser.extended_rating(hotel_html)
+            reviews = parser.review_rating(hotel_html)
+            apartaments = parser.apartaments(hotel_html)
         try:
             with DATABASE.begin() as connection:
                 connection.execute(
