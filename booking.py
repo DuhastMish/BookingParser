@@ -8,17 +8,18 @@ from bs4 import BeautifulSoup
 from tqdm import tqdm
 
 from booking_parser import BookingParser
-from data_base_operation import (get_hotels_rating, get_years_opening_hotels,
+from data_base_operation import (get_existing_hotel, get_hotels_rating,
+                                 get_years_opening_hotels,
                                  remove_extra_rows_by_name)
 from data_base_setup import DBEngine
-from draw_map import draw_map_by_coords
-from graph_builder import diagram_open_hotels, schedule_quantity_rating
+from graph_builder import (diagram_open_hotels, draw_map_by_coords,
+                           schedule_quantity_rating)
 
 session = requests.Session()
 REQUEST_HEADER = {
     "User-Agent": ("Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 "
                    "(KHTML, like Gecko) Chrome/50.0.2661.75 Safari/537.36")}
-TODAY = datetime.datetime.now()
+TODAY = datetime.datetime.now() + datetime.timedelta(40)
 NEXT_WEEK = TODAY + datetime.timedelta(1)
 BOOKING_PREFIX = 'https://www.booking.com'
 DATABASE = DBEngine
@@ -91,6 +92,8 @@ def parsing_data(session: requests.Session, country: str, date_in: datetime.date
     for hotel in tqdm(hotels):
         parser = BookingParser(hotel)
         name = parser.name()
+        if get_existing_hotel(name):
+            continue
         rating = parser.rating()
         price = parser.price()
         image = parser.image()

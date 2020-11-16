@@ -125,8 +125,6 @@ class BookingParser:  # noqa
                 neighborhood_structures = {}
 
                 if neighborhood.find("div", {"class": "bui-list__description"}).contents[0].strip() == '':
-                    # neighborhood_structures['name'] = neighborhood.find(
-                    #   "div", {"class": "bui-list__description"}).span.text.strip()
                     neighborhood_structures['name'] = neighborhood.find(
                         "div", {"class": "bui-list__description"}).contents[-1].strip().replace("'", '')
                 else:
@@ -151,6 +149,7 @@ class BookingParser:  # noqa
         return neighborhood_list
 
     def extended_rating(self, soup):
+        """Get an extended rating from which the normal rating is added."""
         extended_rating = {}
         if soup.select_one('div.v2_review-scores__body.v2_review-scores__body--compared_to_average') is None:
             extended_rating = {}
@@ -165,6 +164,7 @@ class BookingParser:  # noqa
         return extended_rating
 
     def review_rating(self, soup):
+        """Get the number of reviews by rating."""
         reviews_rating = {}
         if soup.select_one('div.scores_full_layout') is None:
             reviews_rating = {}
@@ -178,6 +178,7 @@ class BookingParser:  # noqa
         return reviews_rating
 
     def open_hotel_date(self, soup):
+        """Get the date of registration of the hotel on booking.com."""
         if soup.select_one('span.hp-desc-highlighted') is None:
             return ''
         else:
@@ -185,9 +186,12 @@ class BookingParser:  # noqa
             if " с " in open_date_text:
                 index = soup.select_one('span.hp-desc-highlighted').text.strip().find(" с ")
                 date = open_date_text[index+3:].replace('.', '')
-                day, month, year = date.split(' ')
-                month = RU_MONTH_VALUES[month[0:3]]
-                date = '/'.join([day, month, year])
+                try:
+                    day, month, year = date.split(' ')
+                    month = RU_MONTH_VALUES[month[0:3]]
+                    date = '/'.join([day, month, year])
+                except Exception:
+                    return ''
                 return date
             else:
                 return ''
