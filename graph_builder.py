@@ -55,7 +55,8 @@ def pie_chart_from_scores(grouped_scores: dict) -> None:
     
     fig, ax = plt.subplots()
     
-    colors = ['gold', 'red', 'green']
+    # colors = ['gold', 'red', 'green']
+    colors = ['#FD6787', '#FFF44C', '#288EEB']
     ax.pie(amounts_of_scores, colors=colors, autopct=lambda p: '({:,.0f})'.format(round(p*total/100)),
             wedgeprops={"edgecolor": "0", "linewidth": "1"})
     
