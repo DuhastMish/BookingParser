@@ -13,7 +13,9 @@ from data_base_operation import (get_existing_hotel, get_hotels_rating,
                                  remove_extra_rows_by_name, get_hotels_from_city)
 from data_base_setup import DBEngine
 from graph_builder import (diagram_open_hotels, draw_map_by_coords,
-                           schedule_quantity_rating)
+                           schedule_quantity_rating, pie_chart_from_scores)
+from stat_methods import group_hotels_by_scores
+
 
 session = requests.Session()
 REQUEST_HEADER = {
@@ -187,6 +189,10 @@ def main(parse_new_data: bool, country: str) -> None:  # noqa:D100
 
     hotels_in_spb = get_hotels_from_city('Санкт-Петербург')
     hotels_in_moscow = get_hotels_from_city('Москва')
+    
+    grouped_spb_hotels = group_hotels_by_scores(hotels_in_spb)
+    grouped_moscow_hotels = group_hotels_by_scores(hotels_in_moscow)
+    pie_chart_from_scores(grouped_spb_hotels)
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()

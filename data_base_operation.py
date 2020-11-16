@@ -59,10 +59,10 @@ def get_hotels_rating() -> List[float]:
 
     return [float(rating[0]) for rating in ratings if rating[0]]
 
-def get_hotels_from_city(city: str):
+def get_hotels_from_city(city: str) -> List:
     """Get all hotels, which location is in the folowing city"""
     with DATABASE.begin() as connection:
-        result = connection.execute(f"SELECT name, score, city FROM hotels WHERE city like '%{city}%'")
+        result = connection.execute(f"SELECT name, score, city FROM hotels WHERE city like '%{city}%' AND score != ''")
         hotels_info = result.fetchall()
     
     return hotels_info    
