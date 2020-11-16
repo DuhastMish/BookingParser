@@ -10,7 +10,7 @@ from tqdm import tqdm
 from booking_parser import BookingParser
 from data_base_operation import (get_existing_hotel, get_hotels_rating,
                                  get_years_opening_hotels,
-                                 remove_extra_rows_by_name)
+                                 remove_extra_rows_by_name, get_hotels_from_city)
 from data_base_setup import DBEngine
 from graph_builder import (diagram_open_hotels, draw_map_by_coords,
                            schedule_quantity_rating)
@@ -185,6 +185,8 @@ def main(parse_new_data: bool, country: str) -> None:  # noqa:D100
     years = get_years_opening_hotels()
     diagram_open_hotels(years)
 
+    hotels_in_spb = get_hotels_from_city('Санкт-Петербург')
+    hotels_in_moscow = get_hotels_from_city('Москва')
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
