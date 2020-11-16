@@ -49,6 +49,14 @@ class BookingParser:  # noqa
                 "div.bui-price-display__value.prco-inline-block-maker-helper"
                 ).text.strip()[:-5].replace(" ", "")
 
+    def star(self):
+        """Return hotel stars."""
+        if self.hotel.select_one("span.bui-rating.bui-rating--smaller") is None:
+            return ''
+        else:
+            return int(self.hotel.select_one(
+                "span.bui-rating.bui-rating--smaller")['aria-label'].split(' ')[0])
+
     def detail_link(self):
         """Возвращает ссылку на отель."""
         if self.hotel.select_one(".txp-cta.bui-button.bui-button--primary.sr_cta_button") is None:
@@ -125,8 +133,6 @@ class BookingParser:  # noqa
                 neighborhood_structures = {}
 
                 if neighborhood.find("div", {"class": "bui-list__description"}).contents[0].strip() == '':
-                    # neighborhood_structures['name'] = neighborhood.find(
-                    #   "div", {"class": "bui-list__description"}).span.text.strip()
                     neighborhood_structures['name'] = neighborhood.find(
                         "div", {"class": "bui-list__description"}).contents[-1].strip().replace("'", '')
                 else:
@@ -151,6 +157,7 @@ class BookingParser:  # noqa
         return neighborhood_list
 
     def extended_rating(self, soup):
+        """Get an extended rating from which the normal rating is added."""
         extended_rating = {}
         if soup.select_one('div.v2_review-scores__body.v2_review-scores__body--compared_to_average') is None:
             extended_rating = {}
@@ -165,6 +172,7 @@ class BookingParser:  # noqa
         return extended_rating
 
     def review_rating(self, soup):
+        """Get the number of reviews by rating."""
         reviews_rating = {}
         if soup.select_one('div.scores_full_layout') is None:
             reviews_rating = {}
@@ -178,6 +186,7 @@ class BookingParser:  # noqa
         return reviews_rating
 
     def open_hotel_date(self, soup):
+        """Get the date of registration of the hotel on booking.com."""
         if soup.select_one('span.hp-desc-highlighted') is None:
             return ''
         else:
@@ -185,9 +194,41 @@ class BookingParser:  # noqa
             if " с " in open_date_text:
                 index = soup.select_one('span.hp-desc-highlighted').text.strip().find(" с ")
                 date = open_date_text[index+3:].replace('.', '')
-                day, month, year = date.split(' ')
-                month = RU_MONTH_VALUES[month[0:3]]
-                date = '/'.join([day, month, year])
+                try:
+                    day, month, year = date.split(' ')
+                    month = RU_MONTH_VALUES[month[0:3]]
+                    date = '/'.join([day, month, year])
+                except Exception:
+                    return ''
                 return date
             else:
                 return ''
+
+    def apartaments(self, soup):
+        apartaments = []
+        if soup.select_one('table.hprt-table') is None:
+            return apartaments
+        else:
+            apartament_name = ''
+            for apart in soup.select_one('table.hprt-table').findAll('tr')[1:]:
+                apartament = {}
+                try:
+                    apartament['name'] = apartament_name = apart.select_one(
+                        'span.hprt-roomtype-icon-link').text.strip()
+                except AttributeError:
+                    apartament['name'] = apartament_name
+                try:
+                    apartament['price'] = int(apart.select_one(
+                        'div.bui-price-display__value.prco-inline-block-maker-helper.prco-font16-helper'
+                        ).text.strip()[:-5].replace(" ", ""))
+                except AttributeError:
+                    apartament['price'] = ''
+                try:
+                    apartament['capacity'] = apart.select_one(
+                        'div.c-occupancy-icons.hprt-occupancy-occupancy-info'
+                        ).select_one('span.bui-u-sr-only').text.strip().split(':')[1].strip()
+                except AttributeError:
+                    apartament['capacity'] = ''
+                apartaments.append(apartament)
+
+        return apartaments

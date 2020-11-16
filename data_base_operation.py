@@ -7,11 +7,11 @@ DATABASE = DBEngine
 
 TABLE_NAMES = ['hotels', 'coordinates', 'important_facilities',
                'neighborhood_structures', 'services_offered',
-               'extended_rating', 'review_rating']
+               'extended_rating', 'review_rating', 'apartaments']
 
 
 def get_years_opening_hotels():
-    """Get hotels registration year in booking.com"""
+    """Get hotels registration year in booking.com."""
     dates = []
     with DATABASE.begin() as connection:
         open_dates = connection.execute("SELECT open_date FROM hotels")
@@ -39,6 +39,16 @@ def get_hotels_coordinates() -> List[Tuple]:
     return coordinates
 
 
+def get_existing_hotel(name: str) -> List:
+    """Check if hotel name exists in hotels table."""
+    existing = ()
+    with DATABASE.begin() as connection:
+        hotel_name = connection.execute(f"SELECT EXISTS(SELECT * FROM hotels WHERE name == '{name}')")
+        existing = hotel_name.fetchone()
+
+    return True if existing[0] == 1 else False
+
+
 def get_hotels_rating() -> List[float]:
     """Get all hotel ratings."""
     ratings = []
@@ -51,11 +61,12 @@ def get_hotels_rating() -> List[float]:
 
 
 def remove_extra_rows_by_name() -> None:
+    """Remove existing rows from all tables by name."""
     with DATABASE.begin() as connection:
         hostels_id = connection.execute(
             "SELECT hotel_id, name "
             "FROM hotels "
-            "WHERE hotel_id NOT IN (SELECT MAX(hotel_id) "
+            "WHERE hotel_id NOT IN (SELECT MIN(hotel_id) "
             "FROM hotels GROUP BY name);")
 
         hotels_id = hostels_id.fetchall()
