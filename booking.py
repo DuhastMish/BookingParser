@@ -8,12 +8,14 @@ from bs4 import BeautifulSoup
 from tqdm import tqdm
 
 from booking_parser import BookingParser
-from data_base_operation import (get_existing_hotel, get_hotels_rating,
+from data_base_operation import (is_hotel_exist, get_hotels_rating,
                                  get_years_opening_hotels,
-                                 remove_extra_rows_by_name)
+                                 remove_extra_rows_by_name, get_hotels_from_city)
 from data_base_setup import DBEngine
 from graph_builder import (diagram_open_hotels, draw_map_by_coords,
-                           schedule_quantity_rating)
+                           schedule_quantity_rating, pie_chart_from_scores)
+from stat_methods import group_hotels_by_scores
+
 
 session = requests.Session()
 REQUEST_HEADER = {
@@ -91,13 +93,13 @@ def parsing_data(session: requests.Session, country: str, date_in: datetime.date
 
     for hotel in tqdm(hotels):
         parser = BookingParser(hotel)
-        name = parser.name()
-        if get_existing_hotel(name):
+        link = parser.detail_link()
+        if is_hotel_exist(link):
             continue
+        name = parser.name()
         rating = parser.rating()
         price = parser.price()
         image = parser.image()
-        link = parser.detail_link()
         city = parser.city()
         star = parser.star()
         if link is not None:
@@ -185,6 +187,12 @@ def main(parse_new_data: bool, country: str) -> None:  # noqa:D100
     years = get_years_opening_hotels()
     diagram_open_hotels(years)
 
+    hotels_in_spb = get_hotels_from_city('Санкт-Петербург')
+    hotels_in_moscow = get_hotels_from_city('Москва')
+    
+    grouped_spb_hotels = group_hotels_by_scores(hotels_in_spb)
+    grouped_moscow_hotels = group_hotels_by_scores(hotels_in_moscow)
+    pie_chart_from_scores(grouped_spb_hotels)
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()

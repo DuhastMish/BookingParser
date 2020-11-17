@@ -17,11 +17,12 @@ def get_years_opening_hotels():
         open_dates = connection.execute("SELECT open_date FROM hotels")
         dates = open_dates.fetchall()
     years = []
+    
     for date in dates:
-        try:
-            day, month, year = date[0].split('/')
-        except Exception:
+        if not date[0]:
             continue
+        
+        day, month, year = date[0].split('/')
         years.append(year)
     return years
 
@@ -38,11 +39,11 @@ def get_hotels_coordinates() -> List[Tuple]:
     return coordinates
 
 
-def get_existing_hotel(name: str) -> List:
+def is_hotel_exist(link: str) -> bool:
     """Check if hotel name exists in hotels table."""
     existing = ()
     with DATABASE.begin() as connection:
-        hotel_name = connection.execute(f"SELECT EXISTS(SELECT * FROM hotels WHERE name == '{name}')")
+        hotel_name = connection.execute(f"SELECT EXISTS(SELECT * FROM hotels WHERE link == '{link}')")
         existing = hotel_name.fetchone()
 
     return True if existing[0] == 1 else False
@@ -58,6 +59,13 @@ def get_hotels_rating() -> List[float]:
 
     return [float(rating[0]) for rating in ratings if rating[0]]
 
+def get_hotels_from_city(city: str) -> List:
+    """Get all hotels, which location is in the folowing city"""
+    with DATABASE.begin() as connection:
+        result = connection.execute(f"SELECT name, score, city FROM hotels WHERE city like '%{city}%' AND score != ''")
+        hotels_info = result.fetchall()
+    
+    return hotels_info    
 
 def remove_extra_rows_by_name() -> None:
     """Remove existing rows from all tables by name."""
