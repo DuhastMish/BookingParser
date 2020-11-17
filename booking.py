@@ -177,9 +177,8 @@ def main(parse_new_data: bool, country: str) -> None:  # noqa:D100
     off_set = 1000
     date_out = NEXT_DATE
 
-    for day in range(365):
-        if parse_new_data:
-            get_info(country, off_set, (date_in + datetime.timedelta(day)), date_out)
+    if parse_new_data:
+        get_info(country, off_set, date_in, date_out)
 
     remove_extra_rows_by_name()
 
