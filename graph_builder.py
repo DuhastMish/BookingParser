@@ -1,6 +1,6 @@
 from collections import Counter  # noqa:D100
 from pathlib import Path
-from typing import List
+from typing import List, Dict
 
 import gmplot
 import matplotlib.pyplot as plt
@@ -32,7 +32,7 @@ def diagram_open_hotels(years):
     for year, count in count_year.items():
         years.append(int(year))
         counts.append(int(count))
-    
+
     plt.bar(years, counts)
     plt.title('Hotel opening history histogram')
     plt.ylabel('Count of hotels')
@@ -41,32 +41,36 @@ def diagram_open_hotels(years):
     plt.savefig(fname)
     plt.close()
 
-def pie_chart_from_scores(grouped_scores: dict) -> None:
+
+def pie_chart_from_scores(grouped_scores: Dict, city: str) -> None:
     labels = '[1-5)', '[5-8)', '[8-10]'
-    amounts_of_scores = [len(grouped_scores['firstGroup']), len(grouped_scores['secondGroup']), len(grouped_scores['thirdGroup'])]
+    amounts_of_scores = [len(grouped_scores['firstGroup']),
+                         len(grouped_scores['secondGroup']),
+                         len(grouped_scores['thirdGroup'])]
     total = sum(amounts_of_scores)
-    
+
     fig, ax = plt.subplots()
-    
+
     colors = ['#FD6787', '#FFF44C', '#288EEB']
     ax.pie(amounts_of_scores, colors=colors, autopct=lambda p: '({:,.0f})'.format(round(p*total/100)),
-            wedgeprops={"edgecolor": "0", "linewidth": "1"})
-    
+           wedgeprops={"edgecolor": "0", "linewidth": "1"})
+
     ax.axis('equal')
-    
+
     plt.legend(
         loc='upper left',
         labels=['%s, %.2f%%' % (
-            l, (s / total) * 100) for l, s in zip(labels, amounts_of_scores)],
+            label, (score / total) * 100) for label, score in zip(labels, amounts_of_scores)],
         prop={'size': 10},
         bbox_to_anchor=(0.0, 1),
         bbox_transform=fig.transFigure
     )
-    
-    fname = DATA_PATH / 'Pie_chart_from_scores'
+    plt.title(f'Pie chart with scores for {city}')
+    fname = DATA_PATH / f'Pie_chart_with_scores_for_{city}'
     plt.savefig(fname)
     plt.close()
-    
+
+
 def draw_map_by_coords(map_name: str) -> None:
     """Draw a map with labels at the given coordinates."""
     coordinates = get_hotels_coordinates()

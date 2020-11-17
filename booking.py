@@ -102,7 +102,11 @@ def parsing_data(session: requests.Session, country: str, date_in: datetime.date
         city = parser.city()
         star = parser.star()
         if link is not None:
-            detail_page_response = session.get(BOOKING_PREFIX + link, headers=REQUEST_HEADER)
+            try:
+                detail_page_response = session.get(BOOKING_PREFIX + link, headers=REQUEST_HEADER)
+            except ConnectionError as e:
+                logging.warning(f"{TODAY.strftime('%H:%M:%S')}:: Failed to connect: {e}")
+                continue
             hotel_html = BeautifulSoup(detail_page_response.text, "lxml")
             latitude = parser.coordinates(hotel_html)[0]
             longitude = parser.coordinates(hotel_html)[1]
@@ -186,12 +190,15 @@ def main(parse_new_data: bool, country: str) -> None:  # noqa:D100
     years = get_years_opening_hotels()
     diagram_open_hotels(years)
 
+    spb = 'Санкт-Петербург'
+    msk = 'Москва'
     hotels_in_spb = get_hotels_from_city('Санкт-Петербург')
     hotels_in_moscow = get_hotels_from_city('Москва')
 
     grouped_spb_hotels = group_hotels_by_scores(hotels_in_spb)
     grouped_moscow_hotels = group_hotels_by_scores(hotels_in_moscow)
-    pie_chart_from_scores(grouped_spb_hotels)
+    pie_chart_from_scores(grouped_moscow_hotels, msk)
+    pie_chart_from_scores(grouped_spb_hotels, spb)
 
 
 if __name__ == "__main__":
