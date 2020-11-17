@@ -221,7 +221,7 @@ class BookingParser:  # noqa
                     apartament['price'] = int(apart.select_one(
                         'div.bui-price-display__value.prco-inline-block-maker-helper.prco-font16-helper'
                         ).text.strip()[:-5].replace(" ", ""))
-                except AttributeError:
+                except Exception:
                     apartament['price'] = ''
                 try:
                     apartament['capacity'] = apart.select_one(
