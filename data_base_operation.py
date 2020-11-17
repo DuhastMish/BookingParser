@@ -39,7 +39,7 @@ def get_hotels_coordinates() -> List[Tuple]:
     return coordinates
 
 
-def is_hotel_exist(link: str) -> List:
+def is_hotel_exist(link: str) -> bool:
     """Check if hotel name exists in hotels table."""
     existing = ()
     with DATABASE.begin() as connection:

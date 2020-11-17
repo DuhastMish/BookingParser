@@ -42,20 +42,12 @@ def diagram_open_hotels(years):
     plt.close()
 
 def pie_chart_from_scores(grouped_scores: dict) -> None:
-    def autopct_generator(values: list):
-        def inner_autopct(pct: float) -> str:
-            total = sum(values)
-            val = int(round(pct * total / 100.0))
-            return '({v:d})'.format(v=val)
-        return inner_autopct
-    
     labels = '[1-5)', '[5-8)', '[8-10]'
     amounts_of_scores = [len(grouped_scores['firstGroup']), len(grouped_scores['secondGroup']), len(grouped_scores['thirdGroup'])]
     total = sum(amounts_of_scores)
     
     fig, ax = plt.subplots()
     
-    # colors = ['gold', 'red', 'green']
     colors = ['#FD6787', '#FFF44C', '#288EEB']
     ax.pie(amounts_of_scores, colors=colors, autopct=lambda p: '({:,.0f})'.format(round(p*total/100)),
             wedgeprops={"edgecolor": "0", "linewidth": "1"})

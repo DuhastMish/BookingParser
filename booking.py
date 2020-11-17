@@ -93,13 +93,13 @@ def parsing_data(session: requests.Session, country: str, date_in: datetime.date
 
     for hotel in tqdm(hotels):
         parser = BookingParser(hotel)
+        link = parser.detail_link()
+        if is_hotel_exist(link):
+            continue
         name = parser.name()
         rating = parser.rating()
         price = parser.price()
         image = parser.image()
-        link = parser.detail_link()
-        if is_hotel_exist(link):
-            continue
         city = parser.city()
         star = parser.star()
         if link is not None:
