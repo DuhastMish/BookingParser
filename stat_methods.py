@@ -1,6 +1,6 @@
 import math
 
-def group_hotels_by_scores(hotels: list):
+def group_hotels_by_scores(hotels: list) -> dict:
     grouped_hotels = dict(firstGroup=[], secondGroup=[], thirdGroup=[])
     
     """firstGroup - [1-5), secondGroup - [5-8), thirdGroup - [8-10]"""
