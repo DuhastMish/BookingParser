@@ -8,21 +8,20 @@ from bs4 import BeautifulSoup
 from tqdm import tqdm
 
 from booking_parser import BookingParser
-from data_base_operation import (is_hotel_exist, get_hotels_rating,
-                                 get_years_opening_hotels,
-                                 remove_extra_rows_by_name, get_hotels_from_city)
+from data_base_operation import (get_hotels_from_city, get_hotels_rating,
+                                 get_years_opening_hotels, is_hotel_exist,
+                                 remove_extra_rows_by_name)
 from data_base_setup import DBEngine
 from graph_builder import (diagram_open_hotels, draw_map_by_coords,
-                           schedule_quantity_rating, pie_chart_from_scores)
+                           pie_chart_from_scores, schedule_quantity_rating)
 from stat_methods import group_hotels_by_scores
-
 
 session = requests.Session()
 REQUEST_HEADER = {
     "User-Agent": ("Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 "
                    "(KHTML, like Gecko) Chrome/50.0.2661.75 Safari/537.36")}
 TODAY = datetime.datetime.now() + datetime.timedelta(0)
-NEXT_WEEK = TODAY + datetime.timedelta(1)
+NEXT_DATE = TODAY + datetime.timedelta(1)
 BOOKING_PREFIX = 'https://www.booking.com'
 DATABASE = DBEngine
 
@@ -172,7 +171,7 @@ def parsing_data(session: requests.Session, country: str, date_in: datetime.date
 def main(parse_new_data: bool, country: str) -> None:  # noqa:D100
     date_in = TODAY
     off_set = 1000
-    date_out = NEXT_WEEK
+    date_out = NEXT_DATE
 
     if parse_new_data:
         get_info(country, off_set, date_in, date_out)
@@ -189,10 +188,11 @@ def main(parse_new_data: bool, country: str) -> None:  # noqa:D100
 
     hotels_in_spb = get_hotels_from_city('Санкт-Петербург')
     hotels_in_moscow = get_hotels_from_city('Москва')
-    
+
     grouped_spb_hotels = group_hotels_by_scores(hotels_in_spb)
     grouped_moscow_hotels = group_hotels_by_scores(hotels_in_moscow)
     pie_chart_from_scores(grouped_spb_hotels)
+
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
