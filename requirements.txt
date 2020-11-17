@@ -1,6 +1,9 @@
 beautifulsoup4
 requests
-logging
 gmplot
 argparse
 tqdm
+aqlalchemy
+matplotlib
+lxml
+logging
