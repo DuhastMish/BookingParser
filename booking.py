@@ -54,7 +54,8 @@ def create_link(country: str, off_set: int, date_in: datetime.datetime, date_out
           "&group_adults={group_adults}" \
           "&group_children=0&order=popularity" \
           "&ss=%2C%20{country}" \
-          "&offset={limit}".format(
+          "&offset={limit}" \
+          "&selected_currency=RUB".format(
             checkin_month=month_in,
             checkin_day=day_in,
             checkin_year=year_in,
@@ -104,8 +105,8 @@ def parsing_data(session: requests.Session, country: str, date_in: datetime.date
         if link is not None:
             try:
                 detail_page_response = session.get(BOOKING_PREFIX + link, headers=REQUEST_HEADER)
-            except ConnectionError as e:
-                logging.warning(f"{TODAY.strftime('%H:%M:%S')}:: Failed to connect: {e}")
+            except Exception as e:
+                logging.warning(f"{TODAY.strftime('%H:%M:%S')}:: Failed with detail_page_response: {e}")
                 continue
             hotel_html = BeautifulSoup(detail_page_response.text, "lxml")
             latitude = parser.coordinates(hotel_html)[0]
@@ -176,9 +177,9 @@ def main(parse_new_data: bool, country: str) -> None:  # noqa:D100
     date_in = TODAY
     off_set = 1000
     date_out = NEXT_DATE
-
-    if parse_new_data:
-        get_info(country, off_set, date_in, date_out)
+    for i in range(365):
+        if parse_new_data:
+            get_info(country, off_set, (date_in + datetime.timedelta(i)), date_out)
 
     remove_extra_rows_by_name()
 
