@@ -4,3 +4,4 @@ logging
 gmplot
 argparse
 tqdm
+qwikidata
