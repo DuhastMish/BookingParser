@@ -95,7 +95,7 @@ def get_table_of_ratio_data(ratio_data: dict) -> None:
     xlsx2html(fname1, fname2)
     
     set_lang_and_table_style(fname2, "ru", "1", "5", "5", 
-                             "border: 1px solid black; font-size: 11.0px; height: 19px")
+                             "border: 1px solid black; font-size: 20.0px; height: 19px")
     
 def draw_map_by_coords(map_name: str) -> None:
     """Draw a map with labels at the given coordinates."""
