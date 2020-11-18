@@ -1,16 +1,20 @@
 from collections import Counter  # noqa:D100
 from pathlib import Path
 from typing import List
+from openpyxl import Workbook
+from xlsx2html import xlsx2html
 
 import gmplot
 import matplotlib.pyplot as plt
 
 from data_base_operation import get_hotels_coordinates
+from helper import set_lang_and_table_style
 
 DATA_PATH = Path('Charts')
 if not DATA_PATH.exists():
     DATA_PATH.mkdir(exist_ok=True)
 
+TABLE_PATH = './Charts'
 
 def schedule_quantity_rating(rating: List):
     """Build a histogram, where the hotel rating is horizontal, the count is vertical."""
@@ -42,6 +46,7 @@ def diagram_open_hotels(years):
     plt.close()
 
 def pie_chart_from_scores(grouped_scores: dict) -> None:
+    """Draw pie chat of hotels scores"""
     labels = '[1-5)', '[5-8)', '[8-10]'
     amounts_of_scores = [len(grouped_scores['firstGroup']), len(grouped_scores['secondGroup']), len(grouped_scores['thirdGroup'])]
     total = sum(amounts_of_scores)
@@ -66,6 +71,31 @@ def pie_chart_from_scores(grouped_scores: dict) -> None:
     fname = DATA_PATH / 'Pie_chart_from_scores'
     plt.savefig(fname)
     plt.close()
+    
+def get_table_of_ratio_data(ratio_data: dict) -> None:
+    """Get table with names of cities, hotels in each city, populations in each city and ratio"""
+    wb = Workbook()
+    ws = wb.active
+    
+    ws['A1'] = 'Город'
+    ws['B1'] = 'Кол-во отелей'
+    ws['C1'] = 'Население'
+    ws['D1'] = 'Соотношение'
+    
+    for i in range(len(ratio_data['cities'])):
+        row = []  
+        for key in ratio_data.keys():
+            row.append(ratio_data[key][i])
+        ws.append(row)
+        
+    fname1 = TABLE_PATH + '/ratio_data.xlsx'
+    wb.save(fname1)
+    
+    fname2 = TABLE_PATH + '/ratio_data.html'
+    xlsx2html(fname1, fname2)
+    
+    set_lang_and_table_style(fname2, "ru", "1", "5", "5", 
+                             "border: 1px solid black; font-size: 11.0px; height: 19px")
     
 def draw_map_by_coords(map_name: str) -> None:
     """Draw a map with labels at the given coordinates."""

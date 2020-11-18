@@ -36,7 +36,6 @@ def get_hotels_ratio(cities: list) -> dict:
         
         ratio = round((amount / population), 4)
         hotels_to_population_ratio.append(ratio)
-
         
     return {'cities': cities,
             'hotels_amounts': hotels_amounts, 

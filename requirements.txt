@@ -5,3 +5,5 @@ gmplot
 argparse
 tqdm
 qwikidata
+openpyxl
+xlsx2html
