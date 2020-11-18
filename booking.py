@@ -196,7 +196,8 @@ def main(parse_new_data: bool, country: str) -> None:  # noqa:D100
     
     """Here we get amounts, population and ratio (amount of hotels in city to population of this city)"""
     cities = ['Москва', 'Санкт-Петербург', 'Казань', 'Екатеринбург', 'Новосибирск', 'Нижний Новгород', 'Ярославль', 'Челябинск', 'Оренбург']
-    hotels_ratio = get_hotels_ratio(cities)
+    hotels_ratio_info = get_hotels_ratio(cities)
+    print(hotels_ratio_info)
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()

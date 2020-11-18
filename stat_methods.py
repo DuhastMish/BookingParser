@@ -1,5 +1,5 @@
 import math
-from helpers.wikidata import get_city_population_wikidata
+from wikidata import get_city_population_wikidata
 from data_base_operation import get_hotels_from_city
 
 def group_hotels_by_scores(hotels: list) -> dict:
@@ -38,7 +38,8 @@ def get_hotels_ratio(cities: list) -> dict:
         hotels_to_population_ratio.append(ratio)
 
         
-    return {'hotels_amounts': hotels_amounts, 
+    return {'cities': cities,
+            'hotels_amounts': hotels_amounts, 
             'cities_populations': cities_populations,
             'ratio': hotels_to_population_ratio}
     
