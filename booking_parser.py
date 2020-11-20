@@ -222,13 +222,13 @@ class BookingParser:  # noqa
                         'div.bui-price-display__value.prco-inline-block-maker-helper.prco-font16-helper'
                         ).text.strip()[:-5].replace(" ", ""))
                 except Exception:
-                    apartament['price'] = ''
+                    continue
                 try:
                     apartament['capacity'] = apart.select_one(
                         'div.c-occupancy-icons.hprt-occupancy-occupancy-info'
                         ).select_one('span.bui-u-sr-only').text.strip().split(':')[1].strip()
                 except AttributeError:
-                    apartament['capacity'] = ''
+                    continue
                 apartaments.append(apartament)
 
         return apartaments
