@@ -90,7 +90,7 @@ def remove_extra_rows_by_name() -> None:
         
         hotels_id_by_link = hostels_id_by_link.fetchall()
         i = 0
-        for hotel_id_by_link in hostels_id_by_link:
+        for hotel_id_by_link in hotels_id_by_link:
             if (i == 0):
                 continue
             for table in TABLE_NAMES:

@@ -14,8 +14,6 @@ DATA_PATH = Path('Charts')
 if not DATA_PATH.exists():
     DATA_PATH.mkdir(exist_ok=True)
 
-TABLE_PATH = './Charts'
-
 def schedule_quantity_rating(rating: List):
     """Build a histogram, where the hotel rating is horizontal, the count is vertical."""
     plt.hist(rating, bins=100, rwidth=0.9, alpha=0.5, label='no', color='r')
@@ -81,20 +79,22 @@ def get_table_of_ratio_data(ratio_data: dict) -> None:
     ws['B1'] = 'Кол-во отелей'
     ws['C1'] = 'Население'
     ws['D1'] = 'Соотношение'
-    
-    for i in range(len(ratio_data['cities'])):
-        row = []  
-        for key in ratio_data.keys():
-            row.append(ratio_data[key][i])
-        ws.append(row)
         
-    fname1 = TABLE_PATH + '/ratio_data.xlsx'
+    for city_info in zip(ratio_data['cities'], ratio_data['hotels_amounts'],
+                         ratio_data['cities_populations'], ratio_data['ratio']):
+        city_info = list(city_info)
+        ws.append(city_info)
+        
+    fname1 = DATA_PATH / 'ratio_data.xlsx'
     wb.save(fname1)
     
-    fname2 = TABLE_PATH + '/ratio_data.html'
-    xlsx2html(fname1, fname2)
-    
-    set_lang_and_table_style(fname2, "ru", "1", "5", "5", 
+    html_table = xlsx2html(fname1)
+    html_table.seek(0)
+    html_table = html_table.read()
+    fname2 = DATA_PATH / 'ratio_data.html'
+    fname2.write_text(html_table)
+
+    set_lang_and_table_style(fname2, "cp1251", "ru", "1", "5", "5", 
                              "border: 1px solid black; font-size: 20.0px; height: 19px")
     
 def draw_map_by_coords(map_name: str) -> None:

@@ -1,6 +1,5 @@
 import logging
-import qwikidata
-import qwikidata.sparql
+from qwikidata.sparql import return_sparql_query_results
 
 def get_city_population_wikidata(city: str) -> int:   
     query = """
@@ -21,7 +20,7 @@ def get_city_population_wikidata(city: str) -> int:
     """ % (city)
     
     try:
-        res = qwikidata.sparql.return_sparql_query_results(query)
+        res = return_sparql_query_results(query)
         population = res['results']['bindings'][0]['population']['value'] or 0
     
         return population
