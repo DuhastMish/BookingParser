@@ -10,7 +10,7 @@ from tqdm import tqdm
 from booking_parser import BookingParser
 from data_base_operation import (is_hotel_exist, get_hotels_rating,
                                  get_years_opening_hotels,
-                                 remove_extra_rows_by_name, get_hotels_from_city)
+                                 remove_extra_rows, get_hotels_from_city)
 from data_base_setup import DBEngine
 from graph_builder import (diagram_open_hotels, draw_map_by_coords,
                            schedule_quantity_rating, pie_chart_from_scores,
@@ -94,15 +94,10 @@ def parsing_data(session: requests.Session, country: str, date_in: datetime.date
 
     for hotel in tqdm(hotels):
         parser = BookingParser(hotel)
-        link = parser.detail_link()
-        if is_hotel_exist(link):
-            continue
         name = parser.name()
-        rating = parser.rating()
-        price = parser.price()
-        image = parser.image()
         city = parser.city()
-        star = parser.star()
+        link = parser.detail_link()
+        
         if link is not None:
             detail_page_response = session.get(BOOKING_PREFIX + link, headers=REQUEST_HEADER)
             hotel_html = BeautifulSoup(detail_page_response.text, "lxml")
@@ -112,9 +107,19 @@ def parsing_data(session: requests.Session, country: str, date_in: datetime.date
             neighborhood_structures = parser.neighborhood_structures(hotel_html)
             services_offered = parser.offered_services(hotel_html)
             open_date = parser.open_hotel_date(hotel_html)
+            
+            if is_hotel_exist(name, city, open_date):
+                continue
+            
             extended_rating = parser.extended_rating(hotel_html)
             reviews = parser.review_rating(hotel_html)
             apartaments = parser.apartaments(hotel_html)
+        
+        rating = parser.rating()
+        price = parser.price()
+        image = parser.image()
+        star = parser.star()
+        
         try:
             with DATABASE.begin() as connection:
                 connection.execute(
@@ -178,7 +183,7 @@ def main(parse_new_data: bool, country: str) -> None:  # noqa:D100
     if parse_new_data:
         get_info(country, off_set, date_in, date_out)
 
-    remove_extra_rows_by_name()
+    remove_extra_rows()
 
     draw_map_by_coords('DisplayAllHotels')
 
