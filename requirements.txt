@@ -3,6 +3,9 @@ requests
 gmplot
 argparse
 tqdm
+qwikidata
+openpyxl
+xlsx2html
 aqlalchemy
 matplotlib
 lxml

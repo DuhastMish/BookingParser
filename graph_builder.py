@@ -1,11 +1,14 @@
 from collections import Counter  # noqa:D100
 from pathlib import Path
 from typing import List, Dict
+from openpyxl import Workbook
+from xlsx2html import xlsx2html
 
 import gmplot
 import matplotlib.pyplot as plt
 
 from data_base_operation import get_hotels_coordinates
+from helper import set_lang_and_table_style
 
 DATA_PATH = Path('Charts')
 if not DATA_PATH.exists():
@@ -43,6 +46,7 @@ def diagram_open_hotels(years):
 
 
 def pie_chart_from_scores(grouped_scores: Dict, city: str) -> None:
+    """Draw pie chat of hotels scores."""
     labels = '[1-5)', '[5-8)', '[8-10]'
     amounts_of_scores = [len(grouped_scores['firstGroup']),
                          len(grouped_scores['secondGroup']),
@@ -69,6 +73,34 @@ def pie_chart_from_scores(grouped_scores: Dict, city: str) -> None:
     fname = DATA_PATH / f'Pie_chart_with_scores_for_{city}'
     plt.savefig(fname)
     plt.close()
+
+
+def get_table_of_ratio_data(ratio_data: Dict) -> None:
+    """Get table with names of cities, hotels in each city, populations in each city and ratio."""
+    wb = Workbook()
+    ws = wb.active
+
+    ws['A1'] = 'Город'
+    ws['B1'] = 'Кол-во отелей'
+    ws['C1'] = 'Население'
+    ws['D1'] = 'Соотношение'
+
+    for city_info in zip(ratio_data['cities'], ratio_data['hotels_amounts'],
+                         ratio_data['cities_populations'], ratio_data['ratio']):
+        city_info = list(city_info)
+        ws.append(city_info)
+
+    fname1 = DATA_PATH / 'ratio_data.xlsx'
+    wb.save(fname1)
+
+    html_table = xlsx2html(fname1)
+    html_table.seek(0)
+    html_table = html_table.read()
+    fname2 = DATA_PATH / 'ratio_data.html'
+    fname2.write_text(html_table)
+
+    set_lang_and_table_style(fname2, "cp1251", "ru", "1", "5", "5",
+                             "border: 1px solid black; font-size: 20.0px; height: 19px")
 
 
 def draw_map_by_coords(map_name: str) -> None:

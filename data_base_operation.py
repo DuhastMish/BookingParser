@@ -39,12 +39,13 @@ def get_hotels_coordinates() -> List[Tuple]:
     return coordinates
 
 
-def is_hotel_exist(link: str) -> bool:
-    """Check if hotel name exists in hotels table."""
+def is_hotel_exist(name: str, city: str, open_date: str) -> bool:
+    """Check if the hotel with the folowing combination of name, city, open_date exists in hotels table."""
     existing = ()
     with DATABASE.begin() as connection:
-        hotel_name = connection.execute(f"SELECT EXISTS(SELECT * FROM hotels WHERE link == '{link}')")
-        existing = hotel_name.fetchone()
+        hotel = connection.execute(f"""SELECT EXISTS(SELECT * FROM hotels WHERE
+                                   name == '{name}' AND city === '{city}') AND open_date == '{open_date}'""")
+        existing = hotel.fetchone()
 
     return True if existing[0] == 1 else False
 
@@ -70,17 +71,19 @@ def get_hotels_from_city(city: str) -> List:
     return hotels_info
 
 
-def remove_extra_rows_by_name() -> None:
-    """Remove existing rows from all tables by name."""
+def remove_extra_rows() -> None:
+    """Remove existing rows from all tables by name, city and open date combination."""
     with DATABASE.begin() as connection:
-        hostels_id = connection.execute(
-            "SELECT hotel_id, name "
+        repeated_hotels_id = connection.execute(
+            "SELECT hotel_id, name, city, open_date "
             "FROM hotels "
             "WHERE hotel_id NOT IN (SELECT MIN(hotel_id) "
-            "FROM hotels GROUP BY name);")
+            "FROM hotels GROUP BY name, city, open_date);"
+        )
 
-        hotels_id = hostels_id.fetchall()
-        for hotel_id, name in hotels_id:
+        repeated_hotels = repeated_hotels_id.fetchall()
+        for hotel_id, name, city, open_date in repeated_hotels:
             for table in TABLE_NAMES:
                 connection.execute(f"DELETE FROM {table} WHERE hotel_id == {hotel_id}")
-    logging.warning(f": {len(hotels_id)} Extra rows removed!")
+
+    logging.warning(f": {len(repeated_hotels)} Extra rows removed!")

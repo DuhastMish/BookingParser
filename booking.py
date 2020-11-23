@@ -8,13 +8,14 @@ from bs4 import BeautifulSoup
 from tqdm import tqdm
 
 from booking_parser import BookingParser
-from data_base_operation import (get_hotels_from_city, get_hotels_rating,
-                                 get_years_opening_hotels, is_hotel_exist,
-                                 remove_extra_rows_by_name)
+from data_base_operation import (is_hotel_exist, get_hotels_rating,
+                                 get_years_opening_hotels,
+                                 remove_extra_rows, get_hotels_from_city)
 from data_base_setup import DBEngine
 from graph_builder import (diagram_open_hotels, draw_map_by_coords,
-                           pie_chart_from_scores, schedule_quantity_rating)
-from stat_methods import group_hotels_by_scores
+                           schedule_quantity_rating, pie_chart_from_scores,
+                           get_table_of_ratio_data)
+from stat_methods import (group_hotels_by_scores, get_hotels_ratio)
 
 session = requests.Session()
 REQUEST_HEADER = {
@@ -93,15 +94,10 @@ def parsing_data(session: requests.Session, country: str, date_in: datetime.date
 
     for hotel in tqdm(hotels):
         parser = BookingParser(hotel)
-        link = parser.detail_link()
-        if is_hotel_exist(link):
-            continue
         name = parser.name()
-        rating = parser.rating()
-        price = parser.price()
-        image = parser.image()
         city = parser.city()
-        star = parser.star()
+        link = parser.detail_link()
+
         if link is not None:
             try:
                 detail_page_response = session.get(BOOKING_PREFIX + link, headers=REQUEST_HEADER)
@@ -115,9 +111,19 @@ def parsing_data(session: requests.Session, country: str, date_in: datetime.date
             neighborhood_structures = parser.neighborhood_structures(hotel_html)
             services_offered = parser.offered_services(hotel_html)
             open_date = parser.open_hotel_date(hotel_html)
+
+            if is_hotel_exist(name, city, open_date):
+                continue
+
             extended_rating = parser.extended_rating(hotel_html)
             reviews = parser.review_rating(hotel_html)
             apartaments = parser.apartaments(hotel_html)
+
+        rating = parser.rating()
+        price = parser.price()
+        image = parser.image()
+        star = parser.star()
+
         try:
             with DATABASE.begin() as connection:
                 connection.execute(
@@ -177,11 +183,10 @@ def main(parse_new_data: bool, country: str) -> None:  # noqa:D100
     date_in = TODAY
     off_set = 1000
     date_out = NEXT_DATE
+    remove_extra_rows()
     for i in range(365):
         if parse_new_data:
             get_info(country, off_set, (date_in + datetime.timedelta(i)), date_out)
-
-    remove_extra_rows_by_name()
 
     draw_map_by_coords('DisplayAllHotels')
 
@@ -191,15 +196,22 @@ def main(parse_new_data: bool, country: str) -> None:  # noqa:D100
     years = get_years_opening_hotels()
     diagram_open_hotels(years)
 
+    """Here we get hotels from spb and msc and draw pie chart about their scores"""
     spb = 'Санкт-Петербург'
     msk = 'Москва'
-    hotels_in_spb = get_hotels_from_city('Санкт-Петербург')
-    hotels_in_moscow = get_hotels_from_city('Москва')
-
+    hotels_in_spb = get_hotels_from_city(spb)
+    hotels_in_moscow = get_hotels_from_city(msk)
     grouped_spb_hotels = group_hotels_by_scores(hotels_in_spb)
     grouped_moscow_hotels = group_hotels_by_scores(hotels_in_moscow)
-    pie_chart_from_scores(grouped_moscow_hotels, msk)
     pie_chart_from_scores(grouped_spb_hotels, spb)
+    pie_chart_from_scores(grouped_moscow_hotels, msk)
+
+    """Here we get table with info about cities, amounts, population and ratio
+        (amount of hotels in city to population of this city)"""
+    cities = ['Москва', 'Санкт-Петербург', 'Казань', 'Екатеринбург',
+              'Новосибирск', 'Нижний Новгород', 'Ярославль', 'Челябинск', 'Оренбург']
+    hotels_ratio_info = get_hotels_ratio(cities)
+    get_table_of_ratio_data(hotels_ratio_info)
 
 
 if __name__ == "__main__":
