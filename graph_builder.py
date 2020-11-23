@@ -1,6 +1,6 @@
 from collections import Counter  # noqa:D100
 from pathlib import Path
-from typing import List
+from typing import List, Dict
 from openpyxl import Workbook
 from xlsx2html import xlsx2html
 
@@ -13,6 +13,7 @@ from helper import set_lang_and_table_style
 DATA_PATH = Path('Charts')
 if not DATA_PATH.exists():
     DATA_PATH.mkdir(exist_ok=True)
+
 
 def schedule_quantity_rating(rating: List):
     """Build a histogram, where the hotel rating is horizontal, the count is vertical."""
@@ -34,7 +35,7 @@ def diagram_open_hotels(years):
     for year, count in count_year.items():
         years.append(int(year))
         counts.append(int(count))
-    
+
     plt.bar(years, counts)
     plt.title('Hotel opening history histogram')
     plt.ylabel('Count of hotels')
@@ -43,60 +44,65 @@ def diagram_open_hotels(years):
     plt.savefig(fname)
     plt.close()
 
-def pie_chart_from_scores(grouped_scores: dict) -> None:
-    """Draw pie chat of hotels scores"""
+
+def pie_chart_from_scores(grouped_scores: Dict, city: str) -> None:
+    """Draw pie chat of hotels scores."""
     labels = '[1-5)', '[5-8)', '[8-10]'
-    amounts_of_scores = [len(grouped_scores['firstGroup']), len(grouped_scores['secondGroup']), len(grouped_scores['thirdGroup'])]
+    amounts_of_scores = [len(grouped_scores['firstGroup']),
+                         len(grouped_scores['secondGroup']),
+                         len(grouped_scores['thirdGroup'])]
     total = sum(amounts_of_scores)
-    
+
     fig, ax = plt.subplots()
-    
+
     colors = ['#FD6787', '#FFF44C', '#288EEB']
     ax.pie(amounts_of_scores, colors=colors, autopct=lambda p: '({:,.0f})'.format(round(p*total/100)),
-            wedgeprops={"edgecolor": "0", "linewidth": "1"})
-    
+           wedgeprops={"edgecolor": "0", "linewidth": "1"})
+
     ax.axis('equal')
-    
+
     plt.legend(
         loc='upper left',
         labels=['%s, %.2f%%' % (
-            l, (s / total) * 100) for l, s in zip(labels, amounts_of_scores)],
+            label, (score / total) * 100) for label, score in zip(labels, amounts_of_scores)],
         prop={'size': 10},
         bbox_to_anchor=(0.0, 1),
         bbox_transform=fig.transFigure
     )
-    
-    fname = DATA_PATH / 'Pie_chart_from_scores'
+    plt.title(f'Pie chart with scores for {city}')
+    fname = DATA_PATH / f'Pie_chart_with_scores_for_{city}'
     plt.savefig(fname)
     plt.close()
-    
-def get_table_of_ratio_data(ratio_data: dict) -> None:
-    """Get table with names of cities, hotels in each city, populations in each city and ratio"""
+
+
+def get_table_of_ratio_data(ratio_data: Dict) -> None:
+    """Get table with names of cities, hotels in each city, populations in each city and ratio."""
     wb = Workbook()
     ws = wb.active
-    
+
     ws['A1'] = 'Город'
     ws['B1'] = 'Кол-во отелей'
     ws['C1'] = 'Население'
     ws['D1'] = 'Соотношение'
-        
+
     for city_info in zip(ratio_data['cities'], ratio_data['hotels_amounts'],
                          ratio_data['cities_populations'], ratio_data['ratio']):
         city_info = list(city_info)
         ws.append(city_info)
-        
+
     fname1 = DATA_PATH / 'ratio_data.xlsx'
     wb.save(fname1)
-    
+
     html_table = xlsx2html(fname1)
     html_table.seek(0)
     html_table = html_table.read()
     fname2 = DATA_PATH / 'ratio_data.html'
     fname2.write_text(html_table)
 
-    set_lang_and_table_style(fname2, "cp1251", "ru", "1", "5", "5", 
+    set_lang_and_table_style(fname2, "cp1251", "ru", "1", "5", "5",
                              "border: 1px solid black; font-size: 20.0px; height: 19px")
-    
+
+
 def draw_map_by_coords(map_name: str) -> None:
     """Draw a map with labels at the given coordinates."""
     coordinates = get_hotels_coordinates()

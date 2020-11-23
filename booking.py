@@ -17,13 +17,12 @@ from graph_builder import (diagram_open_hotels, draw_map_by_coords,
                            get_table_of_ratio_data)
 from stat_methods import (group_hotels_by_scores, get_hotels_ratio)
 
-
 session = requests.Session()
 REQUEST_HEADER = {
     "User-Agent": ("Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 "
                    "(KHTML, like Gecko) Chrome/50.0.2661.75 Safari/537.36")}
 TODAY = datetime.datetime.now() + datetime.timedelta(0)
-NEXT_WEEK = TODAY + datetime.timedelta(1)
+NEXT_DATE = TODAY + datetime.timedelta(1)
 BOOKING_PREFIX = 'https://www.booking.com'
 DATABASE = DBEngine
 
@@ -56,7 +55,8 @@ def create_link(country: str, off_set: int, date_in: datetime.datetime, date_out
           "&group_adults={group_adults}" \
           "&group_children=0&order=popularity" \
           "&ss=%2C%20{country}" \
-          "&offset={limit}".format(
+          "&offset={limit}" \
+          "&selected_currency=RUB".format(
             checkin_month=month_in,
             checkin_day=day_in,
             checkin_year=year_in,
@@ -97,9 +97,13 @@ def parsing_data(session: requests.Session, country: str, date_in: datetime.date
         name = parser.name()
         city = parser.city()
         link = parser.detail_link()
-        
+
         if link is not None:
-            detail_page_response = session.get(BOOKING_PREFIX + link, headers=REQUEST_HEADER)
+            try:
+                detail_page_response = session.get(BOOKING_PREFIX + link, headers=REQUEST_HEADER)
+            except Exception as e:
+                logging.warning(f"{TODAY.strftime('%H:%M:%S')}:: Failed with detail_page_response: {e}")
+                continue
             hotel_html = BeautifulSoup(detail_page_response.text, "lxml")
             latitude = parser.coordinates(hotel_html)[0]
             longitude = parser.coordinates(hotel_html)[1]
@@ -107,19 +111,19 @@ def parsing_data(session: requests.Session, country: str, date_in: datetime.date
             neighborhood_structures = parser.neighborhood_structures(hotel_html)
             services_offered = parser.offered_services(hotel_html)
             open_date = parser.open_hotel_date(hotel_html)
-            
+
             if is_hotel_exist(name, city, open_date):
                 continue
-            
+
             extended_rating = parser.extended_rating(hotel_html)
             reviews = parser.review_rating(hotel_html)
             apartaments = parser.apartaments(hotel_html)
-        
+
         rating = parser.rating()
         price = parser.price()
         image = parser.image()
         star = parser.star()
-        
+
         try:
             with DATABASE.begin() as connection:
                 connection.execute(
@@ -178,12 +182,11 @@ def parsing_data(session: requests.Session, country: str, date_in: datetime.date
 def main(parse_new_data: bool, country: str) -> None:  # noqa:D100
     date_in = TODAY
     off_set = 1000
-    date_out = NEXT_WEEK
-
-    if parse_new_data:
-        get_info(country, off_set, date_in, date_out)
-
+    date_out = NEXT_DATE
     remove_extra_rows()
+    for i in range(365):
+        if parse_new_data:
+            get_info(country, off_set, (date_in + datetime.timedelta(i)), date_out)
 
     draw_map_by_coords('DisplayAllHotels')
 
@@ -194,18 +197,22 @@ def main(parse_new_data: bool, country: str) -> None:  # noqa:D100
     diagram_open_hotels(years)
 
     """Here we get hotels from spb and msc and draw pie chart about their scores"""
-    hotels_in_spb = get_hotels_from_city('Санкт-Петербург')
-    hotels_in_moscow = get_hotels_from_city('Москва')
+    spb = 'Санкт-Петербург'
+    msk = 'Москва'
+    hotels_in_spb = get_hotels_from_city(spb)
+    hotels_in_moscow = get_hotels_from_city(msk)
     grouped_spb_hotels = group_hotels_by_scores(hotels_in_spb)
     grouped_moscow_hotels = group_hotels_by_scores(hotels_in_moscow)
-    pie_chart_from_scores(grouped_moscow_hotels)
-    
-    """Here we get table with info about cities, amounts, population and ratio 
+    pie_chart_from_scores(grouped_spb_hotels, spb)
+    pie_chart_from_scores(grouped_moscow_hotels, msk)
+
+    """Here we get table with info about cities, amounts, population and ratio
         (amount of hotels in city to population of this city)"""
-    cities = ['Москва', 'Санкт-Петербург', 'Казань', 'Екатеринбург', 'Новосибирск', 'Нижний Новгород', 'Ярославль', 'Челябинск', 'Оренбург']
+    cities = ['Москва', 'Санкт-Петербург', 'Казань', 'Екатеринбург',
+              'Новосибирск', 'Нижний Новгород', 'Ярославль', 'Челябинск', 'Оренбург']
     hotels_ratio_info = get_hotels_ratio(cities)
     get_table_of_ratio_data(hotels_ratio_info)
-    
+
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
