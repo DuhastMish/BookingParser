@@ -17,11 +17,11 @@ def get_years_opening_hotels():
         open_dates = connection.execute("SELECT open_date FROM hotels")
         dates = open_dates.fetchall()
     years = []
-    
+
     for date in dates:
         if not date[0]:
             continue
-        
+
         day, month, year = date[0].split('/')
         years.append(year)
     return years
@@ -43,7 +43,7 @@ def is_hotel_exist(name: str, city: str, open_date: str) -> bool:
     """Check if the hotel with the folowing combination of name, city, open_date exists in hotels table."""
     existing = ()
     with DATABASE.begin() as connection:
-        hotel = connection.execute(f"""SELECT EXISTS(SELECT * FROM hotels WHERE 
+        hotel = connection.execute(f"""SELECT EXISTS(SELECT * FROM hotels WHERE
                                    name == '{name}' AND city === '{city}') AND open_date == '{open_date}'""")
         existing = hotel.fetchone()
 
@@ -60,19 +60,22 @@ def get_hotels_rating() -> List[float]:
 
     return [float(rating[0]) for rating in ratings if rating[0]]
 
+
 def get_hotels_from_city(city: str) -> List:
     """Get all hotels, which location is in the folowing city."""
     with DATABASE.begin() as connection:
-        result = connection.execute(f"SELECT name, score, city FROM hotels WHERE city like '%{city}%' AND score != ''")
+        result = connection.execute(
+            f"SELECT name, score, city FROM hotels WHERE city like '%{city}%' AND score != ''")
         hotels_info = result.fetchall()
-    
-    return hotels_info    
+
+    return hotels_info
+
 
 def remove_extra_rows() -> None:
     """Remove existing rows from all tables by name, city and open date combination."""
     with DATABASE.begin() as connection:
         repeated_hotels_id = connection.execute(
-            "SELECT hotel_id, name, city, open_date " 
+            "SELECT hotel_id, name, city, open_date "
             "FROM hotels "
             "WHERE hotel_id NOT IN (SELECT MIN(hotel_id) "
             "FROM hotels GROUP BY name, city, open_date);"
@@ -82,5 +85,5 @@ def remove_extra_rows() -> None:
         for hotel_id, name, city, open_date in repeated_hotels:
             for table in TABLE_NAMES:
                 connection.execute(f"DELETE FROM {table} WHERE hotel_id == {hotel_id}")
-                
+
     logging.warning(f": {len(repeated_hotels)} Extra rows removed!")

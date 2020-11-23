@@ -1,9 +1,12 @@
 beautifulsoup4
 requests
-logging
 gmplot
 argparse
 tqdm
 qwikidata
 openpyxl
 xlsx2html
+aqlalchemy
+matplotlib
+lxml
+logging

@@ -9,7 +9,7 @@ RU_MONTH_VALUES = {
     'авг': '08',
     'сен': '09',
     'окт': '10',
-    'ноя': '10',
+    'ноя': '11',
     'дек': '12',
 }
 
@@ -221,14 +221,14 @@ class BookingParser:  # noqa
                     apartament['price'] = int(apart.select_one(
                         'div.bui-price-display__value.prco-inline-block-maker-helper.prco-font16-helper'
                         ).text.strip()[:-5].replace(" ", ""))
-                except AttributeError:
-                    apartament['price'] = ''
+                except Exception:
+                    continue
                 try:
                     apartament['capacity'] = apart.select_one(
                         'div.c-occupancy-icons.hprt-occupancy-occupancy-info'
                         ).select_one('span.bui-u-sr-only').text.strip().split(':')[1].strip()
                 except AttributeError:
-                    apartament['capacity'] = ''
+                    continue
                 apartaments.append(apartament)
 
         return apartaments
