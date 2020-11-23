@@ -44,7 +44,7 @@ def is_hotel_exist(name: str, city: str, open_date: str) -> bool:
     existing = ()
     with DATABASE.begin() as connection:
         hotel = connection.execute(f"""SELECT EXISTS(SELECT * FROM hotels WHERE 
-                                   name == '{name}' AND city === '{city}') AND open_date == '{open_date}'""")
+                                   name == '{name}' AND city === '{city}' AND open_date == '{open_date})'""")
         existing = hotel.fetchone()
 
     return True if existing[0] == 1 else False
@@ -83,4 +83,6 @@ def remove_extra_rows() -> None:
             for table in TABLE_NAMES:
                 connection.execute(f"DELETE FROM {table} WHERE hotel_id == {hotel_id}")
                 
-    logging.warning(f": {len(repeated_hotels)} Extra rows removed!")
+    logging.warning(f": {len(repeated_hotels)} Extra rows removed!") 
+    
+    
