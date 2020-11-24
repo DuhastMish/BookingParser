@@ -43,8 +43,8 @@ def is_hotel_exist(name: str, city: str, open_date: str) -> bool:
     """Check if the hotel with the folowing combination of name, city, open_date exists in hotels table."""
     existing = ()
     with DATABASE.begin() as connection:
-        hotel = connection.execute(f"""SELECT EXISTS(SELECT * FROM hotels WHERE
-                                   name == '{name}' AND city === '{city}') AND open_date == '{open_date}'""")
+        hotel = connection.execute(f"SELECT EXISTS(SELECT * FROM hotels WHERE
+                                   name == '{name}' AND city === '{city}' AND open_date == '{open_date}'")
         existing = hotel.fetchone()
 
     return True if existing[0] == 1 else False
