@@ -1,11 +1,13 @@
-from collections import Counter  # noqa:D100
+import datetime  # noqa:D100
+import logging
+from collections import Counter
 from pathlib import Path
-from typing import List, Dict
-from openpyxl import Workbook
-from xlsx2html import xlsx2html
+from typing import Dict, List
 
 import gmplot
 import matplotlib.pyplot as plt
+from openpyxl import Workbook
+from xlsx2html import xlsx2html
 
 from data_base_operation import get_hotels_coordinates
 from helper import set_lang_and_table_style
@@ -107,6 +109,7 @@ def draw_map_by_coords(map_name: str) -> None:
     """Draw a map with labels at the given coordinates."""
     coordinates = get_hotels_coordinates()
     gmap = gmplot.GoogleMapPlotter(coordinates[0][1], coordinates[0][2], 5)
+    logging.warning(f"{datetime.datetime.now().strftime('%H:%M:%S')}:: Hotels: {len(coordinates)}")
 
     for hotel_coordinate in coordinates:
         hotel_name, latitude, longitude = hotel_coordinate

@@ -32,7 +32,7 @@ def get_max_offset(soup: BeautifulSoup) -> int:
     all_offset = []
     if soup.find_all('div', {'class': 'sr_header'}) is not None:
         all_offset = soup.find_all('div', {'class': 'sr_header'})[-1].get_text().strip().replace(u'\xa0', '')
-        all_offset = round(int(re.search(r'\d+', all_offset).group()) / 25)
+        all_offset = round(int(re.search(r'\d+', all_offset).group()) / 26)
     return all_offset
 
 
@@ -53,7 +53,7 @@ def create_link(country: str, off_set: int, date_in: datetime.datetime, date_out
           "&checkout_monthday={checkout_day}" \
           "&checkout_year={checkout_year}" \
           "&group_adults={group_adults}" \
-          "&group_children=0&order=popularity" \
+          "&group_children=0&order=score" \
           "&ss=%2C%20{country}" \
           "&offset={limit}" \
           "&selected_currency=RUB".format(
@@ -73,6 +73,7 @@ def create_link(country: str, off_set: int, date_in: datetime.datetime, date_out
 def get_info(country: str, off_set: int, date_in: datetime.datetime, date_out: datetime.datetime) -> None:
     """Receives data by link."""
     url = create_link(country, off_set, date_in, date_out)
+    logging.warning(f"{TODAY.strftime('%H:%M:%S')}:: URL: {url}")
     response = session.get(url, headers=REQUEST_HEADER)
     soup = BeautifulSoup(response.text, "lxml")
     logging.warning(f"{TODAY.strftime('%H:%M:%S')}:: Начинаю собирать данные...")
@@ -80,8 +81,8 @@ def get_info(country: str, off_set: int, date_in: datetime.datetime, date_out: d
     offset = 0
     if off_set > 0:
         for i in tqdm(range(off_set)):
-            offset += 25
             parsing_data(session, country, date_in, date_out, offset)
+            offset += 26
 
 
 def parsing_data(session: requests.Session, country: str, date_in: datetime.datetime,
@@ -104,17 +105,17 @@ def parsing_data(session: requests.Session, country: str, date_in: datetime.date
             except Exception as e:
                 logging.warning(f"{TODAY.strftime('%H:%M:%S')}:: Failed with detail_page_response: {e}")
                 continue
+
             hotel_html = BeautifulSoup(detail_page_response.text, "lxml")
+            open_date = parser.open_hotel_date(hotel_html)
+
+            if is_hotel_exist(name, city, open_date):
+                continue
             latitude = parser.coordinates(hotel_html)[0]
             longitude = parser.coordinates(hotel_html)[1]
             important_facilities = ', '.join(parser.important_facilites(hotel_html))
             neighborhood_structures = parser.neighborhood_structures(hotel_html)
             services_offered = parser.offered_services(hotel_html)
-            open_date = parser.open_hotel_date(hotel_html)
-
-            if is_hotel_exist(name, city, open_date):
-                continue
-
             extended_rating = parser.extended_rating(hotel_html)
             reviews = parser.review_rating(hotel_html)
             apartaments = parser.apartaments(hotel_html)
@@ -184,9 +185,8 @@ def main(parse_new_data: bool, country: str) -> None:  # noqa:D100
     off_set = 1000
     date_out = NEXT_DATE
     remove_extra_rows()
-    for i in range(365):
-        if parse_new_data:
-            get_info(country, off_set, (date_in + datetime.timedelta(i)), date_out)
+    if parse_new_data:
+        get_info(country, off_set, date_in, date_out)
 
     draw_map_by_coords('DisplayAllHotels')
 
