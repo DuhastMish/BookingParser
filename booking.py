@@ -32,7 +32,7 @@ def get_max_offset(soup: BeautifulSoup) -> int:
     all_offset = []
     if soup.find_all('div', {'class': 'sr_header'}) is not None:
         all_offset = soup.find_all('div', {'class': 'sr_header'})[-1].get_text().strip().replace(u'\xa0', '')
-        all_offset = round(int(re.search(r'\d+', all_offset).group()) / 26)
+        all_offset = round(int(re.search(r'\d+', all_offset).group()) / 25)
     return all_offset
 
 
@@ -82,7 +82,7 @@ def get_info(country: str, off_set: int, date_in: datetime.datetime, date_out: d
     if off_set > 0:
         for i in tqdm(range(off_set)):
             parsing_data(session, country, date_in, date_out, offset)
-            offset += 26
+            offset += 25
 
 
 def parsing_data(session: requests.Session, country: str, date_in: datetime.datetime,
