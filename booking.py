@@ -66,17 +66,17 @@ def create_link(country: str, off_set: int, date_in: datetime.datetime, date_out
             group_adults=count_people,
             country=country,
             limit=off_set)
-
+    logging.info(f'URL created: {url}')
     return url
 
 
 def get_info(country: str, off_set: int, date_in: datetime.datetime, date_out: datetime.datetime) -> None:
     """Receives data by link."""
     url = create_link(country, off_set, date_in, date_out)
-    logging.warning(f"{TODAY.strftime('%H:%M:%S')}:: URL: {url}")
+    logging.info(f"URL: {url}")
     response = session.get(url, headers=REQUEST_HEADER)
     soup = BeautifulSoup(response.text, "lxml")
-    logging.warning(f"{TODAY.strftime('%H:%M:%S')}:: Начинаю собирать данные...")
+    logging.info("Parser runs...")
     off_set = int(get_max_offset(soup))
     offset = 0
     if off_set > 0:
@@ -98,12 +98,12 @@ def parsing_data(session: requests.Session, country: str, date_in: datetime.date
         name = parser.name()
         city = parser.city()
         link = parser.detail_link()
-
+        logging.info(f'Getting info for {name}.')
         if link is not None:
             try:
                 detail_page_response = session.get(BOOKING_PREFIX + link, headers=REQUEST_HEADER)
             except Exception as e:
-                logging.warning(f"{TODAY.strftime('%H:%M:%S')}:: Failed with detail_page_response: {e}")
+                logging.error(f"Failed with detail_page_response: {e}.")
                 continue
 
             hotel_html = BeautifulSoup(detail_page_response.text, "lxml")
@@ -111,6 +111,7 @@ def parsing_data(session: requests.Session, country: str, date_in: datetime.date
 
             if is_hotel_exist(name, city, open_date):
                 continue
+
             latitude = parser.coordinates(hotel_html)[0]
             longitude = parser.coordinates(hotel_html)[1]
             important_facilities = ', '.join(parser.important_facilites(hotel_html))
@@ -124,22 +125,27 @@ def parsing_data(session: requests.Session, country: str, date_in: datetime.date
         price = parser.price()
         image = parser.image()
         star = parser.star()
-
+        logging.info('Connection to database.')
         try:
             with DATABASE.begin() as connection:
+                logging.info('Inserting into table hotels.')
                 connection.execute(
                     "insert into hotels (name, score, price, image, link, city, open_date, star) "
                     f"values ('{name}', '{rating}', '{price}', "
                     f"'{image}', '{link}', '{city}', '{open_date}', '{star}')")
+                logging.info('Inserting into table coordinates.')
                 connection.execute(
                     f"insert into coordinates (latitude, longitude) values ('{latitude}', '{longitude}')")
+                logging.info('Inserting into table important_facilities')
                 connection.execute(
                     "insert into important_facilities (important_facilities) "
                     f"values ('{important_facilities}')")
+                logging.info('Getting hotel_id.')
                 hotel_id = connection.execute(
                     "SELECT hotel_id FROM hotels WHERE hotel_id = (SELECT MAX(hotel_id)  FROM hotels)")
                 hotel_id = hotel_id.fetchone()[0]
 
+                logging.info('Inserting into table services_offered.')
                 for service_offered in services_offered:
                     service_type = service_offered['type']
                     service_value = ', '.join(service_offered['value'])
@@ -147,6 +153,7 @@ def parsing_data(session: requests.Session, country: str, date_in: datetime.date
                         "insert into services_offered (services_offered, value, hotel_id) "
                         f"values ('{service_type}', '{service_value}', '{hotel_id}')")
 
+                logging.info('Inserting into table neighborhood_structures.')
                 for neighborhood_structure in neighborhood_structures:
                     name = neighborhood_structure['name']
                     structure_type = neighborhood_structure['structure_type']
@@ -156,16 +163,19 @@ def parsing_data(session: requests.Session, country: str, date_in: datetime.date
                         "(neighborhood_structure, structure_type, distance) "
                         f"values ('{name}', '{structure_type}', '{distance}')")
 
+                logging.info('Inserting into table extended_rating.')
                 for rating_name, rating_value in extended_rating.items():
                     connection.execute(
                         "insert into extended_rating (hotel_id, rating_name, rating_value) "
                         f"values ('{hotel_id}', '{rating_name}', '{rating_value}')")
 
+                logging.info('Inserting into table review_rating.')
                 for review_name, review_count in reviews.items():
                     connection.execute(
                         "insert into review_rating (hotel_id, review_rating_name, review_rating_count) "
                         f"values ('{hotel_id}', '{review_name}', '{review_count}')")
 
+                logging.info('Inserting into table apartaments.')
                 for apartament in apartaments:
                     name = apartament['name']
                     apartaments_price = apartament['price']
@@ -173,11 +183,14 @@ def parsing_data(session: requests.Session, country: str, date_in: datetime.date
                     connection.execute(
                         "insert into apartaments (hotel_id, apartaments_name, apartaments_price, hotel_beds) "
                         f"values ('{hotel_id}', '{name}', '{apartaments_price}', '{capacity}')")
+            logging.info('Hotel added.')
 
         except Exception as e:
-            logging.warning(f"{TODAY.strftime('%H:%M:%S')}:: DB Error: {e}")
+            logging.error(f"DB Error: {e}")
 
+    logging.info('All rows added.')
     session.close()
+    logging.info('Session close.')
 
 
 def main(parse_new_data: bool, country: str) -> None:  # noqa:D100
@@ -185,7 +198,9 @@ def main(parse_new_data: bool, country: str) -> None:  # noqa:D100
     off_set = 1000
     date_out = NEXT_DATE
     remove_extra_rows()
+
     if parse_new_data:
+        logging.info('Parsing new data.')
         get_info(country, off_set, date_in, date_out)
 
     draw_map_by_coords('DisplayAllHotels')
@@ -215,6 +230,12 @@ def main(parse_new_data: bool, country: str) -> None:  # noqa:D100
 
 
 if __name__ == "__main__":
+    logging.basicConfig(handlers=[logging.FileHandler(filename="logs.log",
+                                                      encoding='cp1251', mode='w')],
+                        format="%(asctime)s %(name)s:%(levelname)s:%(message)s",
+                        datefmt="%F %A %T",
+                        level=logging.DEBUG)
+    logging.getLogger('matplotlib.font_manager').disabled = True
     parser = argparse.ArgumentParser()
     parser.add_argument("--get-data",
                         action='store_true',

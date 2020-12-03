@@ -14,11 +14,13 @@ from helper import set_lang_and_table_style
 
 DATA_PATH = Path('Charts')
 if not DATA_PATH.exists():
+    logging.info('Making path for charts.')
     DATA_PATH.mkdir(exist_ok=True)
 
 
 def schedule_quantity_rating(rating: List):
     """Build a histogram, where the hotel rating is horizontal, the count is vertical."""
+    logging.info('Drawing histogram for scores.')
     plt.hist(rating, bins=100, rwidth=0.9, alpha=0.5, label='no', color='r')
     plt.title('Histogram of the number of hotels from their rating')
     plt.ylabel('Count of hotels')
@@ -26,10 +28,12 @@ def schedule_quantity_rating(rating: List):
     fname = DATA_PATH / 'Number_of_hotels_by_rating'
     plt.savefig(fname)
     plt.close()
+    logging.info('Histogram for scores drawn.')
 
 
 def diagram_open_hotels(years):
     """Build a histogram of hotel registration on booking.com."""
+    logging.info('Drawing years diagram.')
     years = sorted(years)
     count_year = Counter(years)
     years = []
@@ -45,10 +49,12 @@ def diagram_open_hotels(years):
     fname = DATA_PATH / 'Number_of_hotels_by_year_of_registration_on_booking'
     plt.savefig(fname)
     plt.close()
+    logging.info('Years diagram drawn.')
 
 
 def pie_chart_from_scores(grouped_scores: Dict, city: str) -> None:
     """Draw pie chat of hotels scores."""
+    logging.info(f'Drawing pie chart for {city}.')
     labels = '[1-5)', '[5-8)', '[8-10]'
     amounts_of_scores = [len(grouped_scores['firstGroup']),
                          len(grouped_scores['secondGroup']),
@@ -75,13 +81,14 @@ def pie_chart_from_scores(grouped_scores: Dict, city: str) -> None:
     fname = DATA_PATH / f'Pie_chart_with_scores_for_{city}'
     plt.savefig(fname)
     plt.close()
+    logging.info('Pie chart drawn.')
 
 
 def get_table_of_ratio_data(ratio_data: Dict) -> None:
     """Get table with names of cities, hotels in each city, populations in each city and ratio."""
     wb = Workbook()
     ws = wb.active
-
+    logging.info('Making table.')
     ws['A1'] = 'Город'
     ws['B1'] = 'Кол-во отелей'
     ws['C1'] = 'Население'
@@ -103,14 +110,15 @@ def get_table_of_ratio_data(ratio_data: Dict) -> None:
 
     set_lang_and_table_style(fname2, "cp1251", "ru", "1", "5", "5",
                              "border: 1px solid black; font-size: 20.0px; height: 19px")
+    logging.info('Table is done.')
 
 
 def draw_map_by_coords(map_name: str) -> None:
     """Draw a map with labels at the given coordinates."""
     coordinates = get_hotels_coordinates()
     gmap = gmplot.GoogleMapPlotter(coordinates[0][1], coordinates[0][2], 5)
-    logging.warning(f"{datetime.datetime.now().strftime('%H:%M:%S')}:: Hotels: {len(coordinates)}")
-
+    logging.info(f"{datetime.datetime.now().strftime('%H:%M:%S')}:: Hotels: {len(coordinates)}")
+    logging.info('Drawing map.')
     for hotel_coordinate in coordinates:
         hotel_name, latitude, longitude = hotel_coordinate
         try:
@@ -121,3 +129,4 @@ def draw_map_by_coords(map_name: str) -> None:
         gmap.marker(latitude, longitude)
     fname = DATA_PATH / 'map_{0}.html'.format(map_name)
     gmap.draw(fname)
+    logging.info('Map drawn.')
