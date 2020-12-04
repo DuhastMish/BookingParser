@@ -89,7 +89,7 @@ def parsing_data(session: requests.Session, country: str, date_in: datetime.date
                  date_out: datetime.datetime, off_set: int) -> None:
     """Gather information about a specific hotel."""
     data_url = create_link(country, off_set, date_in, date_out)
-    response = session.get(data_url, headers=REQUEST_HEADER)
+    response = session.get(data_url, headers=REQUEST_HEADER, timeout=5)
     soup = BeautifulSoup(response.text, "lxml")
     hotels = soup.select("#hotellist_inner div.sr_item.sr_item_new")
 
@@ -101,7 +101,7 @@ def parsing_data(session: requests.Session, country: str, date_in: datetime.date
         logging.info(f'Getting info for {name}.')
         if link is not None:
             try:
-                detail_page_response = session.get(BOOKING_PREFIX + link, headers=REQUEST_HEADER)
+                detail_page_response = session.get(BOOKING_PREFIX + link, headers=REQUEST_HEADER, timeout=5)
             except Exception as e:
                 logging.error(f"Failed with detail_page_response: {e}.")
                 continue
@@ -184,12 +184,10 @@ def parsing_data(session: requests.Session, country: str, date_in: datetime.date
                         "insert into apartaments (hotel_id, apartaments_name, apartaments_price, hotel_beds) "
                         f"values ('{hotel_id}', '{name}', '{apartaments_price}', '{capacity}')")
             logging.info('Hotel added.')
-
         except Exception as e:
             logging.error(f"DB Error: {e}")
-
-    logging.info('All rows added.')
-    session.close()
+        logging.info('All rows added.')
+        session.close()
     logging.info('Session close.')
 
 
