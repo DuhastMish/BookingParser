@@ -55,29 +55,31 @@ def diagram_open_hotels(years):
 def pie_chart_from_scores(grouped_scores: Dict, city: str) -> None:
     """Draw pie chat of hotels scores."""
     logging.info(f'Drawing pie chart for {city}.')
-    labels = '[1-5)', '[5-8)', '[8-10]'
+    labels = 'Under 7', '7 to 8', '8 to 9', '9 to 10'
     amounts_of_scores = [len(grouped_scores['firstGroup']),
                          len(grouped_scores['secondGroup']),
-                         len(grouped_scores['thirdGroup'])]
+                         len(grouped_scores['thirdGroup']),
+                         len(grouped_scores['fourthGroup'])]
     total = sum(amounts_of_scores)
-
     fig, ax = plt.subplots()
-
-    colors = ['#FD6787', '#FFF44C', '#288EEB']
-    ax.pie(amounts_of_scores, colors=colors, autopct=lambda p: '({:,.0f})'.format(round(p*total/100)),
-           wedgeprops={"edgecolor": "0", "linewidth": "1"})
+    
+    colors = ['#ffa88a', '#7b85cb', '#b491ca', '#b3d094' ]
+    _, _, autotext = ax.pie(amounts_of_scores, colors=colors, autopct=lambda p: '{:,.0f}%'.format(p),
+           wedgeprops={"edgecolor": "0", "linewidth": "0"})
 
     ax.axis('equal')
 
     plt.legend(
+        title='Score groups',
         loc='upper left',
-        labels=['%s, %.2f%%' % (
-            label, (score / total) * 100) for label, score in zip(labels, amounts_of_scores)],
+        labels=['%s, %s' % (
+            label, score) for label, score in zip(labels, amounts_of_scores)],
         prop={'size': 10},
         bbox_to_anchor=(0.0, 1),
         bbox_transform=fig.transFigure
     )
-    plt.title(f'Pie chart with scores for {city}')
+
+    plt.title(f'{city}', loc='center')
     fname = DATA_PATH / f'Pie_chart_with_scores_for_{city}'
     plt.savefig(fname)
     plt.close()
