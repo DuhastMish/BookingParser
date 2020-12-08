@@ -1,9 +1,11 @@
 from bs4 import BeautifulSoup  # noqa: D100
+import logging
 
 
 def set_lang_and_table_style(path_to_file: str, charset: str, lang: str, table_border: str,
                              cellspacing: str, cellpadding: str, td_style: str) -> None:
     """Edit attributes in ratio_data.html file: set language, borders and other."""
+    logging.info('Seting styles for html table.')
     with open(path_to_file) as f:
         txt = f.read()
         soup = BeautifulSoup(txt, "html.parser")

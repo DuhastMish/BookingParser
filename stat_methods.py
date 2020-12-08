@@ -3,19 +3,21 @@ from wikidata import get_city_population_wikidata
 from data_base_operation import get_hotels_from_city
 
 def group_hotels_by_scores(hotels: list) -> dict:
-    grouped_hotels = dict(firstGroup=[], secondGroup=[], thirdGroup=[])
+    grouped_hotels = dict(firstGroup=[], secondGroup=[], thirdGroup=[], fourthGroup=[])
     
-    """firstGroup - [1-5), secondGroup - [5-8), thirdGroup - [8-10]"""
+    """firstGroup - [0-7), secondGroup - [7-8), thirdGroup - [8-9), fourthGroup - [9-10]"""
     for hotel in hotels:
         score = float(hotel[1])
         bottom_score = math.floor(score)
         
-        if bottom_score < 5:
+        if bottom_score < 7:
             key = 'firstGroup'
         elif bottom_score < 8:
             key = 'secondGroup'
-        else:
+        elif bottom_score < 9:
             key = 'thirdGroup'
+        else:
+            key = 'fourthGroup'
         
         grouped_hotels[key].append(score)
     

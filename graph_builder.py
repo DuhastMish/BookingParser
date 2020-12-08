@@ -1,22 +1,26 @@
-from collections import Counter  # noqa:D100
+import datetime  # noqa:D100
+import logging
+from collections import Counter
 from pathlib import Path
-from typing import List, Dict
-from openpyxl import Workbook
-from xlsx2html import xlsx2html
+from typing import Dict, List
 
 import gmplot
 import matplotlib.pyplot as plt
+from openpyxl import Workbook
+from xlsx2html import xlsx2html
 
 from data_base_operation import get_hotels_coordinates
 from helper import set_lang_and_table_style
 
 DATA_PATH = Path('Charts')
 if not DATA_PATH.exists():
+    logging.info('Making path for charts.')
     DATA_PATH.mkdir(exist_ok=True)
 
 
 def schedule_quantity_rating(rating: List):
     """Build a histogram, where the hotel rating is horizontal, the count is vertical."""
+    logging.info('Drawing histogram for scores.')
     plt.hist(rating, bins=100, rwidth=0.9, alpha=0.5, label='no', color='r')
     plt.title('Histogram of the number of hotels from their rating')
     plt.ylabel('Count of hotels')
@@ -24,10 +28,12 @@ def schedule_quantity_rating(rating: List):
     fname = DATA_PATH / 'Number_of_hotels_by_rating'
     plt.savefig(fname)
     plt.close()
+    logging.info('Histogram for scores drawn.')
 
 
 def diagram_open_hotels(years):
     """Build a histogram of hotel registration on booking.com."""
+    logging.info('Drawing years diagram.')
     years = sorted(years)
     count_year = Counter(years)
     years = []
@@ -43,43 +49,48 @@ def diagram_open_hotels(years):
     fname = DATA_PATH / 'Number_of_hotels_by_year_of_registration_on_booking'
     plt.savefig(fname)
     plt.close()
+    logging.info('Years diagram drawn.')
 
 
 def pie_chart_from_scores(grouped_scores: Dict, city: str) -> None:
     """Draw pie chat of hotels scores."""
-    labels = '[1-5)', '[5-8)', '[8-10]'
+    logging.info(f'Drawing pie chart for {city}.')
+    labels = 'Under 7', '7 to 8', '8 to 9', '9 to 10'
     amounts_of_scores = [len(grouped_scores['firstGroup']),
                          len(grouped_scores['secondGroup']),
-                         len(grouped_scores['thirdGroup'])]
+                         len(grouped_scores['thirdGroup']),
+                         len(grouped_scores['fourthGroup'])]
     total = sum(amounts_of_scores)
-
     fig, ax = plt.subplots()
-
-    colors = ['#FD6787', '#FFF44C', '#288EEB']
-    ax.pie(amounts_of_scores, colors=colors, autopct=lambda p: '({:,.0f})'.format(round(p*total/100)),
-           wedgeprops={"edgecolor": "0", "linewidth": "1"})
+    
+    colors = ['#ffa88a', '#7b85cb', '#b491ca', '#b3d094' ]
+    _, _, autotext = ax.pie(amounts_of_scores, colors=colors, autopct=lambda p: '{:,.0f}%'.format(p),
+           wedgeprops={"edgecolor": "0", "linewidth": "0"})
 
     ax.axis('equal')
 
     plt.legend(
+        title='Score groups',
         loc='upper left',
-        labels=['%s, %.2f%%' % (
-            label, (score / total) * 100) for label, score in zip(labels, amounts_of_scores)],
+        labels=['%s, %s' % (
+            label, score) for label, score in zip(labels, amounts_of_scores)],
         prop={'size': 10},
         bbox_to_anchor=(0.0, 1),
         bbox_transform=fig.transFigure
     )
-    plt.title(f'Pie chart with scores for {city}')
+
+    plt.title(f'{city}', loc='center')
     fname = DATA_PATH / f'Pie_chart_with_scores_for_{city}'
     plt.savefig(fname)
     plt.close()
+    logging.info('Pie chart drawn.')
 
 
 def get_table_of_ratio_data(ratio_data: Dict) -> None:
     """Get table with names of cities, hotels in each city, populations in each city and ratio."""
     wb = Workbook()
     ws = wb.active
-
+    logging.info('Making table.')
     ws['A1'] = 'Город'
     ws['B1'] = 'Кол-во отелей'
     ws['C1'] = 'Население'
@@ -101,13 +112,15 @@ def get_table_of_ratio_data(ratio_data: Dict) -> None:
 
     set_lang_and_table_style(fname2, "cp1251", "ru", "1", "5", "5",
                              "border: 1px solid black; font-size: 20.0px; height: 19px")
+    logging.info('Table is done.')
 
 
 def draw_map_by_coords(map_name: str) -> None:
     """Draw a map with labels at the given coordinates."""
     coordinates = get_hotels_coordinates()
     gmap = gmplot.GoogleMapPlotter(coordinates[0][1], coordinates[0][2], 5)
-
+    logging.info(f"{datetime.datetime.now().strftime('%H:%M:%S')}:: Hotels: {len(coordinates)}")
+    logging.info('Drawing map.')
     for hotel_coordinate in coordinates:
         hotel_name, latitude, longitude = hotel_coordinate
         try:
@@ -118,3 +131,4 @@ def draw_map_by_coords(map_name: str) -> None:
         gmap.marker(latitude, longitude)
     fname = DATA_PATH / 'map_{0}.html'.format(map_name)
     gmap.draw(fname)
+    logging.info('Map drawn.')

@@ -35,7 +35,7 @@ def get_hotels_coordinates() -> List[Tuple]:
             "SELECT name, latitude, longitude FROM hotels INNER JOIN coordinates "
             "on hotels.hotel_id == coordinates.hotel_id")
         coordinates = open_dates.fetchall()
-
+    logging.info("Received all hotel coordinates.")
     return coordinates
 
 
@@ -43,11 +43,14 @@ def is_hotel_exist(name: str, city: str, open_date: str) -> bool:
     """Check if the hotel with the folowing combination of name, city, open_date exists in hotels table."""
     existing = ()
     with DATABASE.begin() as connection:
-        hotel = connection.execute(f"""SELECT EXISTS(SELECT * FROM hotels WHERE 
-                                   name == '{name}' AND city === '{city}' AND open_date == '{open_date})'""")
+        hotel = connection.execute(f"SELECT EXISTS(SELECT * FROM hotels WHERE name == '{name}'"
+                                   f"AND city == '{city}' AND open_date == '{open_date}')")
         existing = hotel.fetchone()
-
-    return True if existing[0] == 1 else False
+    if existing[0] == 1:
+        logging.info('HOTEL EXIST. SKIP')
+        return True
+    else:
+        return False
 
 
 def get_hotels_rating() -> List[float]:
@@ -57,7 +60,7 @@ def get_hotels_rating() -> List[float]:
         open_dates = connection.execute(
             "SELECT score FROM hotels")
         ratings = open_dates.fetchall()
-
+    logging.info("Received hotels rating.")
     return [float(rating[0]) for rating in ratings if rating[0]]
 
 
@@ -67,7 +70,7 @@ def get_hotels_from_city(city: str) -> List:
         result = connection.execute(
             f"SELECT name, score, city FROM hotels WHERE city like '%{city}%' AND score != ''")
         hotels_info = result.fetchall()
-
+    logging.info(f"Received hotel name, score for {city}.")
     return hotels_info
 
 
@@ -86,4 +89,4 @@ def remove_extra_rows() -> None:
             for table in TABLE_NAMES:
                 connection.execute(f"DELETE FROM {table} WHERE hotel_id == {hotel_id}")
 
-    logging.warning(f": {len(repeated_hotels)} Extra rows removed!")
+    logging.info(f": {len(repeated_hotels)} Extra rows removed!")
