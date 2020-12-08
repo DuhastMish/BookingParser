@@ -10,11 +10,12 @@ from tqdm import tqdm
 from booking_parser import BookingParser
 from data_base_operation import (is_hotel_exist, get_hotels_rating,
                                  get_years_opening_hotels,
-                                 remove_extra_rows, get_hotels_from_city)
+                                 remove_extra_rows, get_hotels_from_city,
+                                 get_important_facilities)
 from data_base_setup import DBEngine
 from graph_builder import (diagram_open_hotels, draw_map_by_coords,
                            schedule_quantity_rating, pie_chart_from_scores,
-                           get_table_of_ratio_data)
+                           get_table_of_ratio_data, get_table_of_prices)
 from stat_methods import (group_hotels_by_scores, get_hotels_ratio)
 
 session = requests.Session()
@@ -25,6 +26,9 @@ TODAY = datetime.datetime.now() + datetime.timedelta(0)
 NEXT_DATE = TODAY + datetime.timedelta(1)
 BOOKING_PREFIX = 'https://www.booking.com'
 DATABASE = DBEngine
+
+cities = ['Москва', 'Санкт-Петербург', 'Новосибирск', 'Екатеринбург',
+          'Казань', 'Нижний Новгород', 'Челябинск', 'Самара', 'Омск', 'Ростов-на-Дону']
 
 
 def get_max_offset(soup: BeautifulSoup) -> int:
@@ -218,11 +222,10 @@ def main(parse_new_data: bool, country: str) -> None:  # noqa:D100
     grouped_moscow_hotels = group_hotels_by_scores(hotels_in_moscow)
     pie_chart_from_scores(grouped_spb_hotels, spb)
     pie_chart_from_scores(grouped_moscow_hotels, msk)
-
+    important_facilities = get_important_facilities()
+    get_table_of_prices(cities)
     """Here we get table with info about cities, amounts, population and ratio
         (amount of hotels in city to population of this city)"""
-    cities = ['Москва', 'Санкт-Петербург', 'Казань', 'Екатеринбург',
-              'Новосибирск', 'Нижний Новгород', 'Ярославль', 'Челябинск', 'Оренбург']
     hotels_ratio_info = get_hotels_ratio(cities)
     get_table_of_ratio_data(hotels_ratio_info)
 

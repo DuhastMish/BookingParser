@@ -9,7 +9,7 @@ import matplotlib.pyplot as plt
 from openpyxl import Workbook
 from xlsx2html import xlsx2html
 
-from data_base_operation import get_hotels_coordinates
+from data_base_operation import get_hotels_coordinates, get_average_prices_for_city
 from helper import set_lang_and_table_style
 
 DATA_PATH = Path('Charts')
@@ -62,7 +62,7 @@ def pie_chart_from_scores(grouped_scores: Dict, city: str) -> None:
                          len(grouped_scores['fourthGroup'])]
     total = sum(amounts_of_scores)
     fig, ax = plt.subplots()
-    
+
     colors = ['#ffa88a', '#7b85cb', '#b491ca', '#b3d094' ]
     _, _, autotext = ax.pie(amounts_of_scores, colors=colors, autopct=lambda p: '{:,.0f}%'.format(p),
            wedgeprops={"edgecolor": "0", "linewidth": "0"})
@@ -108,6 +108,40 @@ def get_table_of_ratio_data(ratio_data: Dict) -> None:
     html_table.seek(0)
     html_table = html_table.read()
     fname2 = DATA_PATH / 'ratio_data.html'
+    fname2.write_text(html_table)
+
+    set_lang_and_table_style(fname2, "cp1251", "ru", "1", "5", "5",
+                             "border: 1px solid black; font-size: 20.0px; height: 19px")
+    logging.info('Table is done.')
+
+
+def get_table_of_prices(cities: List) -> None:
+    apartaments_prices = {}
+    for city in cities:
+        """Get tuple with minimal price, average minimal price, average price, average maximal price, maximal price for city"""
+        apartaments_prices[city] = get_average_prices_for_city(city)
+    wb = Workbook()
+    ws = wb.active
+    logging.info('Making table.')
+    ws['A1'] = 'Город'
+    ws['B1'] = 'Минимальная цена'
+    ws['C1'] = 'Минимальная средняя цена'
+    ws['D1'] = 'Средняя цена'
+    ws['E1'] = 'Максимальная средняя цена'
+    ws['F1'] = 'Максимальная цена'
+
+    for city, value in apartaments_prices.items():
+        prices = list(value)
+        prices.insert(0, city)
+        ws.append(prices)
+
+    fname1 = DATA_PATH / 'prices_data.xlsx'
+    wb.save(fname1)
+
+    html_table = xlsx2html(fname1)
+    html_table.seek(0)
+    html_table = html_table.read()
+    fname2 = DATA_PATH / 'prices_data.html'
     fname2.write_text(html_table)
 
     set_lang_and_table_style(fname2, "cp1251", "ru", "1", "5", "5",

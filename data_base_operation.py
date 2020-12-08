@@ -1,5 +1,5 @@
 import logging  # noqa:D100
-from typing import List, Tuple
+from typing import List, Tuple, Dict
 
 from data_base_setup import DBEngine
 
@@ -72,6 +72,82 @@ def get_hotels_from_city(city: str) -> List:
         hotels_info = result.fetchall()
     logging.info(f"Received hotel name, score for {city}.")
     return hotels_info
+
+
+def get_important_facilities() -> Dict:
+    with DATABASE.begin() as connection:
+        result = connection.execute(
+            "SELECT important_facilities FROM important_facilities"
+        )
+        hotels_info = result.fetchall()
+    important_facilities = {}
+    for important_facility in hotels_info:
+        facilities = important_facility[0].strip().split(',')
+        for facility in facilities:
+            facility = facility.strip().replace('\n', '')
+            if 'Временно не работает' in facility:
+                continue
+            elif facility in important_facilities:
+                important_facilities[facility] += 1
+            else:
+                important_facilities[facility] = 1
+
+    return important_facilities
+
+
+def get_average_prices_for_city(city: str) -> Tuple:
+    with DATABASE.begin() as connection:
+        result = connection.execute(
+            "SELECT name, apartaments_price, hotel_beds, star FROM hotels "
+            f"INNER JOIN apartaments on hotels.hotel_id == apartaments.hotel_id WHERE city like '%{city}%'")
+        hotels_info = result.fetchall()
+
+    hotels_prices = {}
+    for apart in hotels_info:
+        hotel_name, price, capacity, stars = apart
+        price = int(price)
+        if hotel_name not in hotels_prices:
+            hotels_prices[hotel_name] = {}
+
+        if 'min_price' not in hotels_prices[hotel_name]:
+            hotels_prices[hotel_name]['min_price'] = price
+        elif hotels_prices[hotel_name]['min_price'] > price:
+            hotels_prices[hotel_name]['min_price'] = price
+
+        if 'max_price' not in hotels_prices[hotel_name]:
+            hotels_prices[hotel_name]['max_price'] = price
+        elif hotels_prices[hotel_name]['max_price'] < price:
+            hotels_prices[hotel_name]['max_price'] = price
+
+        if 'sum_price' not in hotels_prices[hotel_name]:
+            hotels_prices[hotel_name]['sum_price'] = price
+        else:
+            hotels_prices[hotel_name]['sum_price'] += price
+
+        if 'apartaments_count' not in hotels_prices[hotel_name]:
+            hotels_prices[hotel_name]['apartaments_count'] = 1
+        else:
+            hotels_prices[hotel_name]['apartaments_count'] += 1
+
+        hotels_prices[hotel_name]['avg_price'] = (hotels_prices[hotel_name]['sum_price']
+                                                  / hotels_prices[hotel_name]['apartaments_count'])
+    apartaments_count = sum_prices = avg_min_price = avg_price = avg_max_price = max_price = count_hotels = 0
+    min_price = 100000000
+    for value in hotels_prices.values():
+        count_hotels += 1
+        apartaments_count += value['apartaments_count']
+        sum_prices += value['sum_price']
+        if value['min_price'] < min_price:
+            min_price = value['min_price']
+        if value['max_price'] > max_price:
+            max_price = value['max_price']
+        avg_min_price += value['min_price']
+        avg_max_price += value['max_price']
+    avg_price = round(sum_prices / apartaments_count)
+    avg_min_price = round(avg_min_price / count_hotels)
+    avg_max_price = round(avg_max_price / count_hotels)
+
+    return (min_price, avg_min_price, avg_price, avg_max_price, max_price)
 
 
 def remove_extra_rows() -> None:
