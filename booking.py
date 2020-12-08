@@ -66,7 +66,6 @@ def create_link(country: str, off_set: int, date_in: datetime.datetime, date_out
             group_adults=count_people,
             country=country,
             limit=off_set)
-
     return url
 
 

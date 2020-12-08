@@ -85,12 +85,5 @@ def remove_extra_rows() -> None:
         for hotel_id, name, city, open_date in repeated_hotels:
             for table in TABLE_NAMES:
                 connection.execute(f"DELETE FROM {table} WHERE hotel_id == {hotel_id}")
-<<<<<<< HEAD
-                
-    logging.warning(f": {len(repeated_hotels)} Extra rows removed!") 
-    
-    
-=======
 
     logging.warning(f": {len(repeated_hotels)} Extra rows removed!")
->>>>>>> cf4fe858af80cf3f196eef3511d03de9ba0acf97
