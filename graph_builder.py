@@ -157,11 +157,11 @@ def get_table_of_prices_by_star(cities: List) -> None:
         wb = Workbook()
         ws = wb.active
         logging.info('Making table.')
-        ws['A1'] = 'Тип / Звездность'
-        ws['B1'] = 'Минимальная цена'
-        ws['C1'] = 'Максимальная цена'
+        ws['A1'] = 'Звездность'
+        ws['B1'] = 'Мин. цена'
+        ws['C1'] = 'Макс. цена'
         ws['D1'] = 'Средняя цена'
-        ws['E1'] = 'Нормированный диапазон цен от средней цены (%)'
+        ws['E1'] = 'Нормированный диапазон от средней цены (%)'
         for star, information in apartaments_prices.items():
             if information:
                 prices = [information['min_price'], information['max_price'], information['avg_price'], information['range']]

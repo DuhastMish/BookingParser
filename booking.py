@@ -29,6 +29,8 @@ DATABASE = DBEngine
 
 cities = ['Москва', 'Санкт-Петербург', 'Новосибирск', 'Екатеринбург',
           'Казань', 'Нижний Новгород', 'Челябинск', 'Самара', 'Омск', 'Ростов-на-Дону']
+cities_in_english = ['Moscow', 'Saint_Petersburg', 'Novosibirsk', 'Yekaterinburg',
+                     'Kazan', 'Nizhny_Novgorod', 'Chelyabinsk', 'Samara', 'Omsk', 'Rostov-on-Don']
 
 
 def get_max_offset(soup: BeautifulSoup) -> int:
@@ -40,7 +42,7 @@ def get_max_offset(soup: BeautifulSoup) -> int:
     return all_offset
 
 
-def create_link(country: str, off_set: int, date_in: datetime.datetime, date_out: datetime.datetime) -> str:
+def create_link(city: str, country: str, off_set: int, date_in: datetime.datetime, date_out: datetime.datetime) -> str:
     """Create a link to collect data."""
     month_in = date_in.month
     day_in = date_in.day
@@ -58,7 +60,7 @@ def create_link(country: str, off_set: int, date_in: datetime.datetime, date_out
           "&checkout_year={checkout_year}" \
           "&group_adults={group_adults}" \
           "&group_children=0&order=score" \
-          "&ss=%2C%20{country}" \
+          "&ss={city}%2C%20{country}" \
           "&offset={limit}" \
           "&selected_currency=RUB".format(
             checkin_month=month_in,
@@ -69,14 +71,19 @@ def create_link(country: str, off_set: int, date_in: datetime.datetime, date_out
             checkout_year=year_out,
             group_adults=count_people,
             country=country,
-            limit=off_set)
+            limit=off_set,
+            city=city)
     logging.info(f'URL created: {url}')
     return url
 
 
-def get_info(country: str, off_set: int, date_in: datetime.datetime, date_out: datetime.datetime) -> None:
+def get_info(city: str,
+             country: str,
+             off_set: int,
+             date_in: datetime.datetime,
+             date_out: datetime.datetime) -> None:
     """Receives data by link."""
-    url = create_link(country, off_set, date_in, date_out)
+    url = create_link(city, country, off_set, date_in, date_out)
     logging.info(f"URL: {url}")
     response = session.get(url, headers=REQUEST_HEADER)
     soup = BeautifulSoup(response.text, "lxml")
@@ -85,14 +92,14 @@ def get_info(country: str, off_set: int, date_in: datetime.datetime, date_out: d
     offset = 0
     if off_set > 0:
         for i in tqdm(range(off_set)):
-            parsing_data(session, country, date_in, date_out, offset)
+            parsing_data(session, city, country, date_in, date_out, offset)
             offset += 25
 
 
-def parsing_data(session: requests.Session, country: str, date_in: datetime.datetime,
+def parsing_data(session: requests.Session, city: str, country: str, date_in: datetime.datetime,
                  date_out: datetime.datetime, off_set: int) -> None:
     """Gather information about a specific hotel."""
-    data_url = create_link(country, off_set, date_in, date_out)
+    data_url = create_link(city, country, off_set, date_in, date_out)
     response = session.get(data_url, headers=REQUEST_HEADER, timeout=5)
     soup = BeautifulSoup(response.text, "lxml")
     hotels = soup.select("#hotellist_inner div.sr_item.sr_item_new")
@@ -203,7 +210,8 @@ def main(parse_new_data: bool, country: str) -> None:  # noqa:D100
 
     if parse_new_data:
         logging.info('Parsing new data.')
-        get_info(country, off_set, date_in, date_out)
+        for city in cities_in_english:
+            get_info(city, country, off_set, date_in, date_out)
 
     draw_map_by_coords('DisplayAllHotels')
 
