@@ -149,6 +149,41 @@ def get_table_of_prices(cities: List) -> None:
     logging.info('Table is done.')
 
 
+def get_table_of_prices_by_star(cities: List) -> None:
+    apartaments_prices = {}
+    for city in cities:
+        """Get tuple with minimal price, average minimal price, average price, average maximal price, maximal price for city"""
+        apartaments_prices = get_average_prices_for_city(city, by_stars=True)
+        wb = Workbook()
+        ws = wb.active
+        logging.info('Making table.')
+        ws['A1'] = 'Тип / Звездность'
+        ws['B1'] = 'Минимальная цена'
+        ws['C1'] = 'Максимальная цена'
+        ws['D1'] = 'Средняя цена'
+        ws['E1'] = 'Нормированный диапазон цен от средней цены (%)'
+        for star, information in apartaments_prices.items():
+            if information:
+                prices = [information['min_price'], information['max_price'], information['avg_price'], information['range']]
+                prices.insert(0, star)
+            else:
+                prices = [star, 0, 0, 0, 0]
+            ws.append(prices)
+
+        fname1 = DATA_PATH / f'prices_data_by_star_{city}.xlsx'
+        wb.save(fname1)
+
+        html_table = xlsx2html(fname1)
+        html_table.seek(0)
+        html_table = html_table.read()
+        fname2 = DATA_PATH / f'prices_data_by_star_{city}.html'
+        fname2.write_text(html_table)
+
+        set_lang_and_table_style(fname2, "cp1251", "ru", "1", "5", "5",
+                                "border: 1px solid black; font-size: 20.0px; height: 19px")
+        logging.info(f'Prices table by stars is done for {city}.')
+
+
 def draw_map_by_coords(map_name: str) -> None:
     """Draw a map with labels at the given coordinates."""
     coordinates = get_hotels_coordinates()

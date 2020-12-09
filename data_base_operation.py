@@ -95,7 +95,7 @@ def get_important_facilities() -> Dict:
     return important_facilities
 
 
-def get_average_prices_for_city(city: str) -> Tuple:
+def get_average_prices_for_city(city: str, by_stars: bool = False) -> Tuple:
     with DATABASE.begin() as connection:
         result = connection.execute(
             "SELECT name, apartaments_price, hotel_beds, star FROM hotels "
@@ -128,26 +128,51 @@ def get_average_prices_for_city(city: str) -> Tuple:
             hotels_prices[hotel_name]['apartaments_count'] = 1
         else:
             hotels_prices[hotel_name]['apartaments_count'] += 1
-
+        hotels_prices[hotel_name]['star'] = 'Другие' if stars == '' else stars
         hotels_prices[hotel_name]['avg_price'] = (hotels_prices[hotel_name]['sum_price']
                                                   / hotels_prices[hotel_name]['apartaments_count'])
-    apartaments_count = sum_prices = avg_min_price = avg_price = avg_max_price = max_price = count_hotels = 0
-    min_price = 100000000
-    for value in hotels_prices.values():
-        count_hotels += 1
-        apartaments_count += value['apartaments_count']
-        sum_prices += value['sum_price']
-        if value['min_price'] < min_price:
-            min_price = value['min_price']
-        if value['max_price'] > max_price:
-            max_price = value['max_price']
-        avg_min_price += value['min_price']
-        avg_max_price += value['max_price']
-    avg_price = round(sum_prices / apartaments_count)
-    avg_min_price = round(avg_min_price / count_hotels)
-    avg_max_price = round(avg_max_price / count_hotels)
-
-    return (min_price, avg_min_price, avg_price, avg_max_price, max_price)
+    if by_stars:
+        stars_list = ['Другие', 1, 2, 3, 4, 5]
+        prices_by_stars = {star: {} for star in stars_list}
+        for star in stars_list:
+            max_price = sum_prices = apartaments_count = 0
+            min_price = 10000000
+            for value in hotels_prices.values():
+                if value['star'] == star:
+                    if value['min_price'] < min_price:
+                        min_price = value['min_price']
+                    if value['max_price'] > max_price:
+                        max_price = value['max_price']
+                    apartaments_count += value['apartaments_count']
+                    sum_prices += value['sum_price']
+            if apartaments_count == 0:
+                continue
+            avg_price = round(sum_prices / apartaments_count, 2)
+            minimal_percentage = "{:.2%}".format(min_price / avg_price)
+            maximal_percentage = "{:.2%}".format(max_price / avg_price)
+            normal_range = f'{minimal_percentage} - {maximal_percentage}'
+            prices_by_stars[star]['min_price'] = min_price
+            prices_by_stars[star]['avg_price'] = avg_price
+            prices_by_stars[star]['max_price'] = max_price
+            prices_by_stars[star]['range'] = normal_range
+        return prices_by_stars
+    else:
+        apartaments_count = sum_prices = avg_min_price = avg_price = avg_max_price = max_price = count_hotels = 0
+        min_price = 100000000
+        for value in hotels_prices.values():
+            count_hotels += 1
+            apartaments_count += value['apartaments_count']
+            sum_prices += value['sum_price']
+            if value['min_price'] < min_price:
+                min_price = value['min_price']
+            if value['max_price'] > max_price:
+                max_price = value['max_price']
+            avg_min_price += value['min_price']
+            avg_max_price += value['max_price']
+        avg_price = round(sum_prices / apartaments_count)
+        avg_min_price = round(avg_min_price / count_hotels)
+        avg_max_price = round(avg_max_price / count_hotels)
+        return (min_price, avg_min_price, avg_price, avg_max_price, max_price)
 
 
 def remove_extra_rows() -> None:

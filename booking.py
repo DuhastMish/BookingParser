@@ -15,7 +15,7 @@ from data_base_operation import (is_hotel_exist, get_hotels_rating,
 from data_base_setup import DBEngine
 from graph_builder import (diagram_open_hotels, draw_map_by_coords,
                            schedule_quantity_rating, pie_chart_from_scores,
-                           get_table_of_ratio_data, get_table_of_prices)
+                           get_table_of_ratio_data, get_table_of_prices, get_table_of_prices_by_star)
 from stat_methods import (group_hotels_by_scores, get_hotels_ratio)
 
 session = requests.Session()
@@ -224,6 +224,7 @@ def main(parse_new_data: bool, country: str) -> None:  # noqa:D100
     pie_chart_from_scores(grouped_moscow_hotels, msk)
     important_facilities = get_important_facilities()
     get_table_of_prices(cities)
+    get_table_of_prices_by_star(cities)
     """Here we get table with info about cities, amounts, population and ratio
         (amount of hotels in city to population of this city)"""
     hotels_ratio_info = get_hotels_ratio(cities)
