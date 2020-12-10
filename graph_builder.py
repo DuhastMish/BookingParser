@@ -183,6 +183,31 @@ def get_table_of_prices_by_star(cities: List) -> None:
                                 "border: 1px solid black; font-size: 20.0px; height: 19px")
         logging.info(f'Prices table by stars is done for {city}.')
 
+def get_table_of_facilities(facilities_by_star) -> None:
+    needed_facilities = ['Бассейн', 'Завтрак', 'Бар', 'Фитнес-центр']
+    for star in facilities_by_star:
+        facilities = get_needed_facilities_data(facilities_by_star[star], needed_facilities)  
+        
+        wb = Workbook()
+        ws = wb.active
+        logging.info('Making table.')
+        ws['A1'] = 'Звездность'
+        ws['B1'] = 'Бар'
+        ws['C1'] = 'Бассейн'
+        ws['D1'] = 'Фитнес-центр'
+        ws['E1'] = 'Завтрак'
+            
+
+def get_needed_facilities_data(facilities, needed_facilities: list):
+    """Get data of needed facilities"""
+    facilitiesData = []
+    for facility in facilities:
+        if(facility == 'amount'):
+            continue
+        if facility in needed_facilities:
+            facilitiesData.append({facility: facilities[facility] / facilities['amounts']})
+            
+    return facilitiesData
 
 def draw_map_by_coords(map_name: str) -> None:
     """Draw a map with labels at the given coordinates."""

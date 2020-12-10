@@ -11,7 +11,7 @@ from booking_parser import BookingParser
 from data_base_operation import (is_hotel_exist, get_hotels_rating,
                                  get_years_opening_hotels,
                                  remove_extra_rows, get_hotels_from_city,
-                                 get_important_facilities)
+                                 get_important_facilities, getF)
 from data_base_setup import DBEngine
 from graph_builder import (diagram_open_hotels, draw_map_by_coords,
                            schedule_quantity_rating, pie_chart_from_scores,
@@ -220,7 +220,6 @@ def main(parse_new_data: bool, country: str) -> None:  # noqa:D100
 
     years = get_years_opening_hotels()
     diagram_open_hotels(years)
-
     """Here we get hotels from spb and msc and draw pie chart about their scores"""
     spb = 'Санкт-Петербург'
     msk = 'Москва'
@@ -230,7 +229,8 @@ def main(parse_new_data: bool, country: str) -> None:  # noqa:D100
     grouped_moscow_hotels = group_hotels_by_scores(hotels_in_moscow)
     pie_chart_from_scores(grouped_spb_hotels, spb)
     pie_chart_from_scores(grouped_moscow_hotels, msk)
-    important_facilities = get_important_facilities()
+    important_facilities = get_important_facilities(by_stars=True)
+    print(important_facilities)
     get_table_of_prices(cities)
     get_table_of_prices_by_star(cities)
     """Here we get table with info about cities, amounts, population and ratio
