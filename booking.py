@@ -11,7 +11,7 @@ from booking_parser import BookingParser
 from data_base_operation import (is_hotel_exist, get_hotels_rating,
                                  get_years_opening_hotels,
                                  remove_extra_rows, get_hotels_from_city,
-                                 get_important_facilities, getF)
+                                 get_important_facilities)
 from data_base_setup import DBEngine
 from graph_builder import (diagram_open_hotels, draw_map_by_coords,
                            schedule_quantity_rating, pie_chart_from_scores,
