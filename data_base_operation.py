@@ -74,15 +74,23 @@ def get_hotels_from_city(city: str) -> List:
     return hotels_info
 
 
-def get_important_facilities() -> Dict:
+def get_important_facilities(by_stars: bool = False) -> Dict:
     with DATABASE.begin() as connection:
         result = connection.execute(
-            "SELECT important_facilities FROM important_facilities"
-        )
+            "SELECT important_facilities, star FROM important_facilities "
+            f"INNER JOIN hotels on important_facilities.hotel_id == hotels.hotel_id")
         hotels_info = result.fetchall()
+    
     important_facilities = {}
     for important_facility in hotels_info:
         facilities = important_facility[0].strip().split(',')
+        
+        if (by_stars):
+            star = important_facility[1]
+            if (star not in important_facilities):
+                    important_facilities[star] = {}
+                    important_facilities[star]['amount'] = 0
+        
         for facility in facilities:
             facility = facility.strip().replace('\n', '')
             if 'Временно не работает' in facility:
@@ -103,11 +111,33 @@ def get_important_facilities() -> Dict:
                 facility = 'Wi-Fi'
             elif 'бассейн' in facility:
                 facility = 'Бассейн'
-            if facility in important_facilities:
-                important_facilities[facility] += 1
+            
+            if (by_stars):
+                if (not star):
+                    continue
+            
+                if facility in important_facilities[star]:
+                    important_facilities[star][facility] += 1
+                else:
+                    important_facilities[star][facility] = 1
+                    
+                important_facilities[star]['amount'] += 1 
+                
             else:
-                important_facilities[facility] = 1
+                if facility in important_facilities:
+                    important_facilities[facility] += 1
+                else:
+                    important_facilities[facility] = 1
 
+    return important_facilities
+
+def getF():
+    with DATABASE.begin() as connection:
+        result = connection.execute(
+            "SELECT important_facilities, star FROM important_facilities "
+            f"INNER JOIN hotels on important_facilities.hotel_id == hotels.hotel_id")
+        important_facilities = result.fetchall()
+    
     return important_facilities
 
 
