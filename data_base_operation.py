@@ -87,7 +87,23 @@ def get_important_facilities() -> Dict:
             facility = facility.strip().replace('\n', '')
             if 'Временно не работает' in facility:
                 continue
-            elif facility in important_facilities:
+            elif facility == '':
+                continue
+            if 'фитнес-центр' in facility:
+                facility = 'Фитнес-центр'
+            elif 'Фитнес-центр' in facility:
+                facility = 'Фитнес-центр'
+            elif 'Парковка' in facility:
+                facility = 'Парковка'
+            elif 'парковка' in facility:
+                facility = 'Парковка'
+            elif 'завтрак' in facility:
+                facility = 'Завтрак'
+            elif 'Wi-Fi' in facility:
+                facility = 'Wi-Fi'
+            elif 'бассейн' in facility:
+                facility = 'Бассейн'
+            if facility in important_facilities:
                 important_facilities[facility] += 1
             else:
                 important_facilities[facility] = 1
