@@ -185,30 +185,49 @@ def get_table_of_prices_by_star(cities: List) -> None:
 
 
 def get_table_of_facilities(facilities_by_star) -> None:
-    needed_facilities = ['Бассейн', 'Завтрак', 'Бар', 'Фитнес-центр']
+    needed_facilities = ['Бар', 'Бассейн', 'Фитнес-центр', 'Завтрак']    
+    wb = Workbook()
+    ws = wb.active
+    logging.info('Making table.')
+    ws['A1'] = 'Звездность'
+    ws['B1'] = 'Бар'
+    ws['C1'] = 'Бассейн'
+    ws['D1'] = 'Фитнес-центр'
+    ws['E1'] = 'Завтрак'
+        
     for star in facilities_by_star:
-        facilities = get_needed_facilities_data(facilities_by_star[star], needed_facilities)
-        import pdb; pdb.set_trace()
-        wb = Workbook()
-        ws = wb.active
-        logging.info('Making table.')
-        ws['A1'] = 'Звездность'
-        ws['B1'] = 'Бар'
-        ws['C1'] = 'Бассейн'
-        ws['D1'] = 'Фитнес-центр'
-        ws['E1'] = 'Завтрак'
+        facilities_ratio = get_needed_facilities_data(facilities_by_star[star], needed_facilities)
+        facilities_ratio.insert(0, star)
+        ws.append(facilities_ratio)
 
+    fname1 = DATA_PATH / f'facilities_ratio.xlsx'
+    wb.save(fname1)
+
+    html_table = xlsx2html(fname1)
+    html_table.seek(0)
+    html_table = html_table.read()
+    fname2 = DATA_PATH / f'facilities_ratio.html'
+    fname2.write_text(html_table)
+
+    set_lang_and_table_style(fname2, "cp1251", "ru", "1", "5", "5",
+                            "border: 1px solid black; font-size: 20.0px; height: 19px")
+    logging.info(f'Facilities ratio by stars')
 
 def get_needed_facilities_data(facilities, needed_facilities: list):
     """Get data of needed facilities"""
     facilitiesData = []
+    
     for needed_facility in needed_facilities:
         if needed_facility not in facilities:
             facilitiesData.append({needed_facility: 0})
         else:
             facilitiesData.append({needed_facility: "{:.2%}".format(facilities[needed_facility] / facilities['amount'])})
-
-    return facilitiesData
+    
+    res = [{}, {}, {}, {}]
+    for el in facilitiesData:
+        for key in el.keys():
+            res[needed_facilities.index(key)] = el[key]
+    return res
 
 
 def draw_map_by_coords(map_name: str) -> None:

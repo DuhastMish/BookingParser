@@ -231,7 +231,6 @@ def main(parse_new_data: bool, country: str) -> None:  # noqa:D100
     pie_chart_from_scores(grouped_moscow_hotels, msk)
     important_facilities = get_important_facilities(by_stars=True)
     get_table_of_facilities(important_facilities)
-    # print(important_facilities)
     get_table_of_prices(cities)
     get_table_of_prices_by_star(cities)
     """Here we get table with info about cities, amounts, population and ratio
