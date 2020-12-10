@@ -194,10 +194,12 @@ def get_table_of_facilities(facilities_by_star) -> None:
     ws['C1'] = 'Бассейн'
     ws['D1'] = 'Фитнес-центр'
     ws['E1'] = 'Завтрак'
-
-    for star in facilities_by_star:
+    ws['F1'] = 'Кол-во отелей'
+    stars = ['-', 1, 2, 3, 4, 5]
+    for star in stars:
         facilities_ratio = get_needed_facilities_data(facilities_by_star[star], needed_facilities)
         facilities_ratio.insert(0, star)
+        facilities_ratio.append(facilities_by_star[star]['amount'])
         ws.append(facilities_ratio)
 
     fname1 = DATA_PATH / 'facilities_ratio.xlsx'
